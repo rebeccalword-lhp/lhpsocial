@@ -588,3 +588,4 @@ const styles = {
   footerText2: { color: "rgba(255,255,255,0.8)", fontSize: 13, fontWeight: 600, marginBottom: 10, marginTop: 4 },
   footerBtn2: { background: "rgba(255,255,255,0.15)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 12, padding: "10px 24px", fontWeight: 800, fontSize: 13, cursor: "pointer", width: "100%" },
 };
+export default App;
