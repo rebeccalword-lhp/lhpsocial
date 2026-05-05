@@ -65,7 +65,13 @@ const sections = [
   { id: "arts", label: "Arts" },
   { id: "community", label: "Community" },
 ];
-
+const happyHours = [
+  { id: "hh1", emoji: "🦞", name: "Papa's Raw Bar", location: "Lighthouse Point", days: "Mon – Fri", time: "11:00 AM – 6:00 PM", deals: ["$5 off oysters (half dozen)", "$2 off sushi rolls, spirits, draft beer & wine by the glass"], color: "#52B788", link: null },
+  { id: "hh2", emoji: "🍺", name: "Packy's Sports Pub", location: "Lighthouse Point", days: "Mon – Fri", time: "11:30 AM – 7:00 PM", deals: ["Great deals on liquor, wine & beer"], color: "#0077B6", link: "https://www.packyslhp.com" },
+  { id: "hh3", emoji: "⚓", name: "Nauti Dawg Marina Cafe", location: "Lighthouse Point", days: "Sunday Brunch", time: "All Morning", deals: ["$25 Bottomless Mimosas", "$20 Loaded Mary's · Live music at 10 AM & 4 PM"], color: "#00B4A6", link: "https://nautidawg.com" },
+  { id: "hh4", emoji: "🍻", name: "Cove Brewery", location: "Deerfield Beach", days: "Mon – Fri", time: "4:00 – 6:00 PM", deals: ["$2 off draft beer & select wines"], color: "#52B788", link: null },
+  { id: "hh5", emoji: "🎸", name: "Galuppi's", location: "Pompano Beach", days: "Mon – Fri", time: "4:00 – 7:00 PM", deals: ["25% off wine, liquor, bottles & draft beer", "25% off select appetizers (super premium excluded)", "Live acoustic music Mon–Thu 5–8 PM · Fri–Sat 4–7 PM"], color: "#0077B6", link: "https://www.galuppis.com" },
+];
 const venues = [
   { id: "all", label: "All Venues" },
   { id: "packys", label: "🍺 Packy's" },
@@ -241,7 +247,9 @@ export default function LHPApp() {
     );
 
   const showByte = activeCategory === "social";
-  const showMusic = !activeCategory || activeCategory === "nightlife";
+ const showMusic = !activeCategory || activeCategory === "nightlife";
+const [nightlifeTab, setNightlifeTab] = useState("music");
+const showHappyHour = !activeCategory || activeCategory === "nightlife";
   const showSales = !activeCategory || activeCategory === "sales";
 
   const visibleMusic = showMusic
@@ -365,7 +373,34 @@ export default function LHPApp() {
           ))}
         </div>
       </div>}
-
+{/* HAPPY HOUR — shows on All and Nightlife views */}
+{showHappyHour && (
+  <div style={styles.happyWrap}>
+    <div style={styles.happyHeader}>
+      <div style={styles.happyTitle}>🍹 Happy Hour Specials</div>
+      <span style={styles.happyBadge}>5 venues</span>
+    </div>
+    <div style={styles.happySub}>Local deals · Updated monthly · Free to list yours</div>
+    <div style={styles.happyList}>
+      {happyHours.map((hh) => (
+        <div key={hh.id} style={{ ...styles.happyCard, borderLeft: `4px solid ${hh.color}` }}>
+          <div style={styles.happyEmoji}>{hh.emoji}</div>
+          <div style={{ flex: 1 }}>
+            <div style={styles.happyName}>{hh.name}</div>
+            <div style={styles.happyMeta}>{hh.days} · {hh.time}</div>
+            {hh.deals.map((deal, i) => (
+              <div key={i} style={styles.happyDeal}>✓ {deal}</div>
+            ))}
+          </div>
+          <span style={{ ...styles.happyLoc, color: hh.color, background: hh.color + "15" }}>{hh.location}</span>
+        </div>
+      ))}
+    </div>
+    <div style={styles.happyFooter}>
+      Own a bar or restaurant? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={styles.happySubmit}>Submit your specials free →</a>
+    </div>
+  </div>
+)}
       {/* LIVE MUSIC — only on All and Nightlife views */}
       {showMusic && <div style={styles.featuredWrap}>
         <div style={styles.featuredHeader}>
@@ -579,6 +614,20 @@ const styles = {
   tagRow: { display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 8 },
   tag: { background: "#E8F4FD", color: "#0096C7", fontSize: 10, fontWeight: 700, borderRadius: 6, padding: "2px 7px" },
   ctaBtn: { display: "inline-block", color: "#fff", borderRadius: 10, padding: "7px 14px", fontSize: 12, fontWeight: 800, cursor: "pointer", textDecoration: "none" },
+  happyWrap: { margin: "16px 16px 0", background: "#fff", borderRadius: 18, padding: "16px", boxShadow: "0 2px 14px rgba(230,150,0,0.10)", border: "2px solid #FFF3E0" },
+happyHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 },
+happyTitle: { fontWeight: 900, fontSize: 15, color: "#E07A1F" },
+happyBadge: { background: "#FEF3E7", color: "#E07A1F", fontSize: 11, fontWeight: 700, borderRadius: 10, padding: "3px 10px" },
+happySub: { fontSize: 11, color: "#aaa", fontWeight: 500, marginBottom: 12 },
+happyList: { display: "flex", flexDirection: "column", gap: 10 },
+happyCard: { background: "#FAFAFA", borderRadius: 12, padding: "12px", display: "flex", gap: 10, alignItems: "flex-start" },
+happyEmoji: { fontSize: 22, flexShrink: 0, marginTop: 2 },
+happyName: { fontWeight: 800, fontSize: 13, color: "#023E8A", marginBottom: 2 },
+happyMeta: { fontSize: 11, color: "#7aabb8", fontWeight: 600, marginBottom: 5 },
+happyDeal: { fontSize: 12, color: "#444", fontWeight: 600, marginBottom: 2 },
+happyLoc: { fontSize: 10, fontWeight: 700, borderRadius: 8, padding: "3px 8px", whiteSpace: "nowrap", alignSelf: "flex-start", marginTop: 2 },
+happyFooter: { marginTop: 12, fontSize: 11, color: "#aaa", textAlign: "center" },
+happySubmit: { color: "#E07A1F", fontWeight: 800, textDecoration: "none" },
   footer: { margin: "24px 16px 0", background: "linear-gradient(135deg, #023E8A 0%, #0096C7 100%)", borderRadius: 20, padding: "22px 20px", textAlign: "center" },
   footerIcon: { fontSize: 28, marginBottom: 6 },
   footerText: { color: "#fff", fontSize: 15, fontWeight: 800, marginBottom: 4 },
