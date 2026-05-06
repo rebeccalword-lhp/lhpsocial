@@ -65,159 +65,150 @@ const sections = [
   { id: "arts", label: "Arts" },
   { id: "community", label: "Community" },
 ];
+
 const happyHours = [
-  { id: "hh1", emoji: "🦞", name: "Papa's Raw Bar", location: "Lighthouse Point", days: "Mon – Fri", time: "11:00 AM – 6:00 PM", deals: ["$5 off oysters (half dozen)", "$2 off sushi rolls, spirits, draft beer & wine by the glass"], color: "#52B788", link: null },
-  { id: "hh2", emoji: "🍺", name: "Packy's Sports Pub", location: "Lighthouse Point", days: "Mon – Fri", time: "11:30 AM – 7:00 PM", deals: ["Great deals on liquor, wine & beer"], color: "#0077B6", link: "https://www.packyslhp.com" },
+  { id: "hh1", emoji: "🦞", name: "Papa's Raw Bar", location: "Lighthouse Point", days: "Mon - Fri", time: "11:00 AM - 6:00 PM", deals: ["$5 off oysters (half dozen)", "$2 off sushi rolls, spirits, draft beer & wine by the glass"], color: "#52B788", link: null },
+  { id: "hh2", emoji: "🍺", name: "Packy's Sports Pub", location: "Lighthouse Point", days: "Mon - Fri", time: "11:30 AM - 7:00 PM", deals: ["Great deals on liquor, wine & beer"], color: "#0077B6", link: "https://www.packyslhp.com" },
   { id: "hh3", emoji: "⚓", name: "Nauti Dawg Marina Cafe", location: "Lighthouse Point", days: "Sunday Brunch", time: "All Morning", deals: ["$25 Bottomless Mimosas", "$20 Loaded Mary's · Live music at 10 AM & 4 PM"], color: "#00B4A6", link: "https://nautidawg.com" },
-  { id: "hh4", emoji: "🍻", name: "Cove Brewery", location: "Deerfield Beach", days: "Mon – Fri", time: "4:00 – 6:00 PM", deals: ["$2 off draft beer & select wines"], color: "#52B788", link: null },
-  { id: "hh5", emoji: "🎸", name: "Galuppi's", location: "Pompano Beach", days: "Mon – Fri", time: "4:00 – 7:00 PM", deals: ["25% off wine, liquor, bottles & draft beer", "25% off select appetizers (super premium excluded)", "Live acoustic music Mon–Thu 5–8 PM · Fri–Sat 4–7 PM"], color: "#0077B6", link: "https://www.galuppis.com" },
+  { id: "hh4", emoji: "🍻", name: "Cove Brewery", location: "Deerfield Beach", days: "Mon - Fri", time: "4:00 - 6:00 PM", deals: ["$2 off draft beer & select wines"], color: "#52B788", link: null },
+  { id: "hh5", emoji: "🎸", name: "Galuppi's", location: "Pompano Beach", days: "Mon - Fri", time: "4:00 - 7:00 PM", deals: ["25% off wine, liquor, bottles & draft beer", "25% off select appetizers (super premium excluded)", "Live acoustic music Mon-Thu 5-8 PM · Fri-Sat 4-7 PM"], color: "#0077B6", link: "https://www.galuppis.com" },
 ];
+
 const venues = [
   { id: "all", label: "All Venues" },
-  { id: "packys", label: "🍺 Packy's" },
-  { id: "nautidawg", label: "⚓ Nauti Dawg" },
-  { id: "papas", label: "🦞 Papa's Raw Bar" },
-  { id: "galuppis", label: "🎸 Galuppi's" },
-  { id: "cove", label: "🍻 Cove Brewery" },
+  { id: "packys", label: "Packy's" },
+  { id: "nautidawg", label: "Nauti Dawg" },
+  { id: "papas", label: "Papa's Raw Bar" },
+  { id: "galuppis", label: "Galuppi's" },
+  { id: "cove", label: "Cove Brewery" },
 ];
 
 const featuredEvents = [
-  { id: "pk1", venue: "packys", title: "South58 @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP · 954-657-8423", date: "Fri, May 1", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk2", venue: "packys", title: "Havoc 305 @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 2", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk3", venue: "packys", title: "Gus Rios @ Packy's", thisWeek: true, org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Wed, May 6", time: "5:30 – 8:30 PM", price: "Free · Kitchen open late · Free parking", emoji: "🎤", note: "Solo performer", link: "https://www.packyslhp.com", color: "#0096C7", category: ["nightlife"] },
-  { id: "pk4", venue: "packys", title: "How Original @ Packy's",thisWeek: true, org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Fri, May 8", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk5", venue: "packys", title: "Nobody's Fault @ Packy's",thisWeek: true, org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 9", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk6", venue: "packys", title: "Jonny Edwards @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Wed, May 13", time: "5:30 – 8:30 PM", price: "Free · Kitchen open late · Free parking", emoji: "🎤", note: "Solo performer", link: "https://www.packyslhp.com", color: "#0096C7", category: ["nightlife"] },
-  { id: "pk7", venue: "packys", title: "Nigh Horizon @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Fri, May 15", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk8", venue: "packys", title: "Bounce @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 16", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk9", venue: "packys", title: "Jerry Leeman @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Wed, May 20", time: "5:30 – 8:30 PM", price: "Free · Kitchen open late · Free parking", emoji: "🎤", note: "Solo performer", link: "https://www.packyslhp.com", color: "#0096C7", category: ["nightlife"] },
-  { id: "pk10", venue: "packys", title: "Thought Monkey @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Fri, May 22", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk11", venue: "packys", title: "The Bango Bangos @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 23", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk12", venue: "packys", title: "Cairo O'Toole @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Wed, May 27", time: "5:30 – 8:30 PM", price: "Free · Kitchen open late · Free parking", emoji: "🎤", note: "Solo performer", link: "https://www.packyslhp.com", color: "#0096C7", category: ["nightlife"] },
-  { id: "pk13", venue: "packys", title: "Sippin' Fire @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Fri, May 29", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "pk14", venue: "packys", title: "Sailor Ripley @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 30", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
-  { id: "f2", venue: "nautidawg", title: "Mark Zaden @ The Nauti Dawg ⚓", org: "The Nauti Dawg Marina Cafe · Mark Zaden & The Weedline Band", date: "Every Friday & Sunday", time: "5:30 – 9:30 PM", price: "Tickets at nautidawg.com", emoji: "⚓", note: "At the new Nauti Bar right at B Dock", link: "https://nautidawg.com", color: "#00B4A6", category: ["nightlife"] },
-  { id: "p1", venue: "papas", title: "Marcus Amaya @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Fri, May 1", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p2", venue: "papas", title: "Dan Abbott @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 2", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p3", venue: "papas", title: "Mojo Ike @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sun, May 3", time: "1–4 PM", price: "Free", emoji: "🎵", note: "Sunday afternoon music", link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p4", venue: "papas", title: "Pierre @ Papa's Raw Bar", thisWeek:true, org: "Papa's Raw Bar", date: "Fri, May 8", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p5", venue: "papas", title: "Justin Enco @ Papa's Raw Bar", thisWeek:true, org: "Papa's Raw Bar", date: "Sat, May 9", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p6", venue: "papas", title: "Marina Laurendi @ Papa's Raw Bar",thisWeek:true, org: "Papa's Raw Bar", date: "Sun, May 10", time: "1–4 PM", price: "Free", emoji: "🎵", note: "Sunday afternoon music", link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p7", venue: "papas", title: "Pierre @ Papa's Raw Bar",thisWeek:true, org: "Papa's Raw Bar", date: "Fri, May 15", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p8", venue: "papas", title: "Justin Enco @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 16", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p9", venue: "papas", title: "Mojo Ike @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sun, May 17", time: "1–4 PM", price: "Free", emoji: "🎵", note: "Sunday afternoon music", link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p10", venue: "papas", title: "Pierre @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Fri, May 22", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p11", venue: "papas", title: "Jonathan James @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 23", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p12", venue: "papas", title: "Xavier on Steel Drums @ Papa's Raw Bar 🥁", org: "Papa's Raw Bar", date: "Sun, May 24", time: "1–4 PM", price: "Free", emoji: "🥁", note: "Steel drum vibes — very coastal!", link: null, color: "#00B4A6", category: ["nightlife"] },
-  { id: "p13", venue: "papas", title: "Eric Xarles @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Fri, May 29", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p14", venue: "papas", title: "Dan Abbott @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 30", time: "7–10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "p15", venue: "papas", title: "Justin Enco @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sun, May 31", time: "1–4 PM", price: "Free", emoji: "🎵", note: "Sunday afternoon music", link: null, color: "#52B788", category: ["nightlife"] },
-  { id: "g1", venue: "galuppis", title: "The Long Run — Eagles Tribute 🦅", org: "Galuppi's · Pompano Beach", date: "Fri, May 1", time: "Evening", price: "RSVP", emoji: "🎸", note: "Tribute to The Eagles", link: "https://www.galuppis.com/event/the-long-run-2/", color: "#0077B6", category: ["nightlife"] },
-  { id: "g2", venue: "galuppis", title: "Private Stock — Rock Star Tribute", org: "Galuppi's · Pompano Beach", date: "Sat, May 2", time: "Evening", price: "RSVP", emoji: "🎶", note: "The Ultimate Rock Star Tribute Show", link: "https://www.galuppis.com/event/private-stock-3/", color: "#0077B6", category: ["nightlife"] },
-  { id: "g3", venue: "galuppis", title: "The Brass Evolution — FREE 🎺", org: "Galuppi's · Pompano Beach", date: "Sun, May 3", time: "Evening", price: "FREE", emoji: "🎺", note: "Horn bands from the 70s & 80s", link: "https://www.galuppis.com/event/the-brass-evolution-25/", color: "#00B4A6", category: ["nightlife"] },
-  { id: "g4", venue: "galuppis", title: "Hot Legs — Tina Turner Tribute", org: "Galuppi's · Pompano Beach", date: "Tue, May 5", time: "Evening", price: "$49.95/person", emoji: "🎤", note: "3-course dinner +$29.95", link: "https://www.galuppis.com/event/high-tide/", color: "#0077B6", category: ["nightlife", "seniors"] },
-  { id: "g5", venue: "galuppis", title: "High Tide — Yacht Rock Night 🛥️",thisWeek: true, org: "Galuppi's · Pompano Beach", date: "Wed, May 6", time: "Evening", price: "$49.95/person", emoji: "🛥️", note: "Classics from the 70s & 80s · 3-course dinner +$29.95", link: "https://www.galuppis.com/event/high-tide-presents-yacht-rock-3/", color: "#0077B6", category: ["nightlife", "seniors"] },
-  { id: "g6", venue: "galuppis", title: "The 807 Band — FREE 🎸",thisWeek: true, org: "Galuppi's · Pompano Beach", date: "Thu, May 7", time: "Evening", price: "FREE", emoji: "🎸", note: "Rock classic dance music", link: "https://www.galuppis.com/event/the-807-band-12/", color: "#52B788", category: ["nightlife"] },
-  { id: "g7", venue: "galuppis", title: "Hot Brass — Chicago & EWF Tribute 🎺",thisWeek: true, org: "Galuppi's · Pompano Beach", date: "Fri, May 8", time: "Evening", price: "RSVP", emoji: "🎺", note: "Tribute to Chicago and Earth, Wind & Fire", link: "https://www.galuppis.com/event/hot-brass-4/", color: "#00B4A6", category: ["nightlife", "seniors"] },
-  { id: "g8", venue: "galuppis", title: "True Rumours — Fleetwood Mac Tribute 🎤",thisWeek: true, org: "Galuppi's · Pompano Beach", date: "Sat, May 9", time: "Evening", price: "RSVP", emoji: "🎤", note: "Fleetwood Mac tribute + Stevie Nicks Look-Alike Contest!", link: "https://www.galuppis.com/event/true-rumours-7/", color: "#48CAE4", category: ["nightlife"] },
-  { id: "g9", venue: "galuppis", title: "Mother's Day Brunch & Dinner Buffet 🌸",thisWeek: true, org: "Galuppi's · Pompano Beach", date: "Sun, May 10", time: "Brunch & Dinner", price: "$50 deposit", emoji: "🌸", note: "Special Mother's Day celebration", link: "https://www.galuppis.com/event/mothers-day-brunch-dinner-buffet/", color: "#48CAE4", category: ["nightlife", "families", "seniors"] },
-  { id: "g10", venue: "galuppis", title: "Miz' Behavin' — FREE 🎵",thisWeek: true, org: "Galuppi's · Pompano Beach", date: "Sun, May 10", time: "Evening", price: "FREE", emoji: "🎵", note: "Rock, Country, Pop & Blues", link: "https://www.galuppis.com/event/miz-behavin/", color: "#52B788", category: ["nightlife"] },
-  { id: "g11", venue: "galuppis", title: "Mixtape FM — 80s Night 📼",thisWeek: true, org: "Galuppi's · Pompano Beach", date: "Fri, May 15", time: "Evening", price: "RSVP", emoji: "📼", note: "80s Rock & Pop Cover Bands", link: "https://www.galuppis.com/event/mixtape-fm/", color: "#0096C7", category: ["nightlife"] },
-  { id: "cove1", venue: "cove", title: "Reggae Sundays — Live Music", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Sunday", time: "1:00 PM", price: "Free", emoji: "🎵", note: "Reggae vibes every Sunday afternoon", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife"] },
-  { id: "cove2", venue: "cove", title: "Industry Reset — ITB Mondays", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Monday", time: "2:00 PM", price: "Specials for industry workers", emoji: "🍺", note: "Industry workers welcome — reset your week at the Cove", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife"] },
+  { id: "pk1", venue: "packys", title: "South58 @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP · 954-657-8423", date: "Fri, May 1", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk2", venue: "packys", title: "Havoc 305 @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 2", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk3", venue: "packys", thisWeek: true, title: "Gus Rios @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Wed, May 6", time: "5:30 - 8:30 PM", price: "Free · Kitchen open late · Free parking", emoji: "🎤", note: "Solo performer", link: "https://www.packyslhp.com", color: "#0096C7", category: ["nightlife"] },
+  { id: "pk4", venue: "packys", thisWeek: true, title: "How Original @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Fri, May 8", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk5", venue: "packys", thisWeek: true, title: "Nobody's Fault @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 9", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk6", venue: "packys", title: "Jonny Edwards @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Wed, May 13", time: "5:30 - 8:30 PM", price: "Free · Kitchen open late · Free parking", emoji: "🎤", note: "Solo performer", link: "https://www.packyslhp.com", color: "#0096C7", category: ["nightlife"] },
+  { id: "pk7", venue: "packys", thisWeek: true, title: "Nigh Horizon @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Fri, May 15", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk8", venue: "packys", title: "Bounce @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 16", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk9", venue: "packys", title: "Jerry Leeman @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Wed, May 20", time: "5:30 - 8:30 PM", price: "Free · Kitchen open late · Free parking", emoji: "🎤", note: "Solo performer", link: "https://www.packyslhp.com", color: "#0096C7", category: ["nightlife"] },
+  { id: "pk10", venue: "packys", title: "Thought Monkey @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Fri, May 22", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk11", venue: "packys", title: "The Bango Bangos @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 23", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk12", venue: "packys", title: "Cairo O'Toole @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Wed, May 27", time: "5:30 - 8:30 PM", price: "Free · Kitchen open late · Free parking", emoji: "🎤", note: "Solo performer", link: "https://www.packyslhp.com", color: "#0096C7", category: ["nightlife"] },
+  { id: "pk13", venue: "packys", title: "Sippin' Fire @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Fri, May 29", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "pk14", venue: "packys", title: "Sailor Ripley @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 30", time: "8:00 PM - 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
+  { id: "f2", venue: "nautidawg", title: "Mark Zaden @ The Nauti Dawg", org: "The Nauti Dawg Marina Cafe · Mark Zaden & The Weedline Band", date: "Every Friday & Sunday", time: "5:30 - 9:30 PM", price: "Tickets at nautidawg.com", emoji: "⚓", note: "At the new Nauti Bar right at B Dock", link: "https://nautidawg.com", color: "#00B4A6", category: ["nightlife"] },
+  { id: "p1", venue: "papas", title: "Marcus Amaya @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Fri, May 1", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p2", venue: "papas", title: "Dan Abbott @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 2", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p3", venue: "papas", title: "Mojo Ike @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sun, May 3", time: "1-4 PM", price: "Free", emoji: "🎵", note: "Sunday afternoon music", link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p4", venue: "papas", thisWeek: true, title: "Pierre @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Fri, May 8", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p5", venue: "papas", thisWeek: true, title: "Justin Enco @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 9", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p6", venue: "papas", thisWeek: true, title: "Marina Laurendi @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sun, May 10", time: "1-4 PM", price: "Free", emoji: "🎵", note: "Sunday afternoon music", link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p7", venue: "papas", thisWeek: true, title: "Pierre @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Fri, May 15", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p8", venue: "papas", title: "Justin Enco @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 16", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p9", venue: "papas", title: "Mojo Ike @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sun, May 17", time: "1-4 PM", price: "Free", emoji: "🎵", note: "Sunday afternoon music", link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p10", venue: "papas", title: "Pierre @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Fri, May 22", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p11", venue: "papas", title: "Jonathan James @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 23", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p12", venue: "papas", title: "Xavier on Steel Drums @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sun, May 24", time: "1-4 PM", price: "Free", emoji: "🥁", note: "Steel drum vibes - very coastal!", link: null, color: "#00B4A6", category: ["nightlife"] },
+  { id: "p13", venue: "papas", title: "Eric Xarles @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Fri, May 29", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p14", venue: "papas", title: "Dan Abbott @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sat, May 30", time: "7-10 PM", price: "Free", emoji: "🎵", note: null, link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "p15", venue: "papas", title: "Justin Enco @ Papa's Raw Bar", org: "Papa's Raw Bar", date: "Sun, May 31", time: "1-4 PM", price: "Free", emoji: "🎵", note: "Sunday afternoon music", link: null, color: "#52B788", category: ["nightlife"] },
+  { id: "g1", venue: "galuppis", title: "The Long Run - Eagles Tribute", org: "Galuppi's · Pompano Beach", date: "Fri, May 1", time: "Evening", price: "RSVP", emoji: "🎸", note: "Tribute to The Eagles", link: "https://www.galuppis.com/event/the-long-run-2/", color: "#0077B6", category: ["nightlife"] },
+  { id: "g2", venue: "galuppis", title: "Private Stock - Rock Star Tribute", org: "Galuppi's · Pompano Beach", date: "Sat, May 2", time: "Evening", price: "RSVP", emoji: "🎶", note: "The Ultimate Rock Star Tribute Show", link: "https://www.galuppis.com/event/private-stock-3/", color: "#0077B6", category: ["nightlife"] },
+  { id: "g3", venue: "galuppis", title: "The Brass Evolution - FREE", org: "Galuppi's · Pompano Beach", date: "Sun, May 3", time: "Evening", price: "FREE", emoji: "🎺", note: "Horn bands from the 70s & 80s", link: "https://www.galuppis.com/event/the-brass-evolution-25/", color: "#00B4A6", category: ["nightlife"] },
+  { id: "g4", venue: "galuppis", title: "Hot Legs - Tina Turner Tribute", org: "Galuppi's · Pompano Beach", date: "Tue, May 5", time: "Evening", price: "$49.95/person", emoji: "🎤", note: "3-course dinner +$29.95", link: "https://www.galuppis.com/event/high-tide/", color: "#0077B6", category: ["nightlife", "seniors"] },
+  { id: "g5", venue: "galuppis", thisWeek: true, title: "High Tide - Yacht Rock Night", org: "Galuppi's · Pompano Beach", date: "Wed, May 6", time: "Evening", price: "$49.95/person", emoji: "🛥️", note: "Classics from the 70s & 80s · 3-course dinner +$29.95", link: "https://www.galuppis.com/event/high-tide-presents-yacht-rock-3/", color: "#0077B6", category: ["nightlife", "seniors"] },
+  { id: "g6", venue: "galuppis", thisWeek: true, title: "The 807 Band - FREE", org: "Galuppi's · Pompano Beach", date: "Thu, May 7", time: "Evening", price: "FREE", emoji: "🎸", note: "Rock classic dance music", link: "https://www.galuppis.com/event/the-807-band-12/", color: "#52B788", category: ["nightlife"] },
+  { id: "g7", venue: "galuppis", thisWeek: true, title: "Hot Brass - Chicago & EWF Tribute", org: "Galuppi's · Pompano Beach", date: "Fri, May 8", time: "Evening", price: "RSVP", emoji: "🎺", note: "Tribute to Chicago and Earth, Wind & Fire", link: "https://www.galuppis.com/event/hot-brass-4/", color: "#00B4A6", category: ["nightlife", "seniors"] },
+  { id: "g8", venue: "galuppis", thisWeek: true, title: "True Rumours - Fleetwood Mac Tribute", org: "Galuppi's · Pompano Beach", date: "Sat, May 9", time: "Evening", price: "RSVP", emoji: "🎤", note: "Fleetwood Mac tribute + Stevie Nicks Look-Alike Contest!", link: "https://www.galuppis.com/event/true-rumours-7/", color: "#48CAE4", category: ["nightlife"] },
+  { id: "g9", venue: "galuppis", thisWeek: true, title: "Mother's Day Brunch & Dinner Buffet", org: "Galuppi's · Pompano Beach", date: "Sun, May 10", time: "Brunch & Dinner", price: "$50 deposit", emoji: "🌸", note: "Special Mother's Day celebration", link: "https://www.galuppis.com/event/mothers-day-brunch-dinner-buffet/", color: "#48CAE4", category: ["nightlife", "families", "seniors"] },
+  { id: "g10", venue: "galuppis", thisWeek: true, title: "Miz' Behavin' - FREE", org: "Galuppi's · Pompano Beach", date: "Sun, May 10", time: "Evening", price: "FREE", emoji: "🎵", note: "Rock, Country, Pop & Blues", link: "https://www.galuppis.com/event/miz-behavin/", color: "#52B788", category: ["nightlife"] },
+  { id: "g11", venue: "galuppis", thisWeek: true, title: "Mixtape FM - 80s Night", org: "Galuppi's · Pompano Beach", date: "Fri, May 15", time: "Evening", price: "RSVP", emoji: "📼", note: "80s Rock & Pop Cover Bands", link: "https://www.galuppis.com/event/mixtape-fm/", color: "#0096C7", category: ["nightlife"] },
+  { id: "cove1", venue: "cove", title: "Reggae Sundays - Live Music", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Sunday", time: "1:00 PM", price: "Free", emoji: "🎵", note: "Reggae vibes every Sunday afternoon", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife"] },
+  { id: "cove2", venue: "cove", title: "Industry Reset - ITB Mondays", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Monday", time: "2:00 PM", price: "Specials for industry workers", emoji: "🍺", note: "Industry workers welcome - reset your week at the Cove", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife"] },
   { id: "cove3", venue: "cove", title: "Trivia Night", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Tuesday", time: "7:00 PM", price: "Free", emoji: "🎯", note: "Weekly trivia every Tuesday night", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "social"] },
   { id: "cove4", venue: "cove", title: "On Wednesdays We Drink Wine", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Wednesday", time: "6:00 PM", price: "Wine specials", emoji: "🍷", note: "Weekly wine night every Wednesday", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife"] },
-  { id: "cove5", venue: "cove", title: "Boots & Brews Line Dancing", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Thursday", time: "7:00 PM", price: "Free", emoji: "🥾", note: "Line dancing every Thursday — all levels welcome!", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "social"] },
-  { id: "cove6", venue: "cove", title: "First Responder Fridays — BOGO Beer", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Friday", time: "12:00 PM", price: "BOGO Beer for first responders", emoji: "🚒", note: "BOGO beer all day for first responders — thank you for your service!", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "community"] },
-  { id: "cove7", venue: "cove", title: "Brews & Tunes — Live Music", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Fri & Sat", time: "6:00 PM", price: "Free", emoji: "🎶", note: "Live music every Friday and Saturday evening", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife"] },
+  { id: "cove5", venue: "cove", title: "Boots & Brews Line Dancing", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Thursday", time: "7:00 PM", price: "Free", emoji: "🥾", note: "Line dancing every Thursday - all levels welcome!", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "social"] },
+  { id: "cove6", venue: "cove", title: "First Responder Fridays - BOGO Beer", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Friday", time: "12:00 PM", price: "BOGO Beer for first responders", emoji: "🚒", note: "BOGO beer all day for first responders - thank you for your service!", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "community"] },
+  { id: "cove7", venue: "cove", title: "Brews & Tunes - Live Music", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Every Fri & Sat", time: "6:00 PM", price: "Free", emoji: "🎶", note: "Live music every Friday and Saturday evening", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife"] },
   { id: "cove8", venue: "cove", title: "Derby Day at Cove Brewery", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Sat, May 2", time: "2:00 PM", price: "Free", emoji: "🐎", note: "Watch the Kentucky Derby with cold craft beer", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "community"] },
-  { id: "cove9", venue: "cove", title: "Cinco at the Cove — All Day Celebration", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Tue, May 5", time: "All Day", price: "Specials all day", emoji: "🎉", note: "Cinco de Mayo all day celebration", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "community"] },
-  { id: "cove10", venue: "cove", title: "Mother's Day Brunch & Blooms",thisWeek: true, org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Sat, May 9", time: "12:00 PM", price: "See website", emoji: "🌸", note: "Special Mother's Day brunch with blooms — treat mom to something special!", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "families", "seniors"] },
-  { id: "cove11", venue: "cove", title: "Cove Brewery x Won-Tom's — 5 Course Dinner Pairing", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Wed, May 13", time: "6:30 PM", price: "Ticketed — see website", emoji: "🍽️", note: "5 course dinner paired with Cove beers in collaboration with Won-Tom's", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "seniors"] },
-{ id: "elks1", venue: "all", title: "Live Music by Sherlock Homies 🎸",thisWeek: true, org: "Pompano Beach Elks Lodge · 4000 NE 10th Way, Pompano Beach", date: "Thu, May 8", time: "6:00 PM", price: "Free", emoji: "🎸", note: "Acoustic music by Sherlock Homies & friends — Jay Marienthal, Lyla Marienthal, Craig Pugatch", link: null, color: "#52B788", category: ["nightlife"] },];
+  { id: "cove9", venue: "cove", title: "Cinco at the Cove - All Day Celebration", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Tue, May 5", time: "All Day", price: "Specials all day", emoji: "🎉", note: "Cinco de Mayo all day celebration", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "community"] },
+  { id: "cove10", venue: "cove", thisWeek: true, title: "Mother's Day Brunch & Blooms", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Sat, May 9", time: "12:00 PM", price: "See website", emoji: "🌸", note: "Special Mother's Day brunch with blooms - treat mom to something special!", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "families", "seniors"] },
+  { id: "cove11", venue: "cove", title: "Cove Brewery x Won-Tom's - 5 Course Dinner Pairing", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Wed, May 13", time: "6:30 PM", price: "Ticketed - see website", emoji: "🍽️", note: "5 course dinner paired with Cove beers in collaboration with Won-Tom's", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "seniors"] },
+  { id: "elks1", venue: "all", thisWeek: true, title: "Live Music by Sherlock Homies", org: "Pompano Beach Elks Lodge · 4000 NE 10th Way, Pompano Beach", date: "Thu, May 8", time: "6:00 PM", price: "Free", emoji: "🎸", note: "Acoustic music by Sherlock Homies & friends - Jay Marienthal, Lyla Marienthal, Craig Pugatch", link: null, color: "#52B788", category: ["nightlife"] },
+];
 
-// ✅ Byte & Coffee events are SEPARATE — NOT in allEvents
-// They only appear in the dedicated Byte & Coffee block, which shows only when social is active
 const byteEvents = [
-  { id: "b1", title: "Backgammon Night ♟️", org: "Byte & Coffee · 2424 N Federal Hwy, Lighthouse Point", category: ["social"], date: "Every Friday", time: "6:00 – 9:00 PM", location: "Byte & Coffee, Lighthouse Point", price: "Free · Food & drinks available", color: "#48CAE4", tags: ["backgammon", "games", "weekly", "social"], note: "All skill levels welcome. Casual evening of backgammon, drinks & good vibes.", ages: null, link: "https://bytencoffee.com/events/" },
-  { id: "b2", title: "Board Game Night 🎲", org: "Byte & Coffee · 2424 N Federal Hwy, Lighthouse Point", category: ["social"], date: "Every Friday", time: "6:00 – 9:00 PM", location: "Byte & Coffee, Lighthouse Point", price: "Free · 10% off drinks while you play", color: "#48CAE4", tags: ["board-games", "games", "weekly", "social"], note: "Grab a seat, choose a game, enjoy 10% off drinks!", ages: null, link: "https://bytencoffee.com/events/" },
-  { id: "b3", title: "Mahjong Night 🀄", org: "Byte & Coffee · 2424 N Federal Hwy, Lighthouse Point", category: ["social"], date: "Every Tuesday", time: "5:00 – 8:00 PM", location: "Byte & Coffee, Lighthouse Point", price: "Free · Some sets provided", color: "#48CAE4", tags: ["mahjong", "games", "weekly", "social"], note: "Relaxed, welcoming atmosphere. Sets provided — players welcome to bring their own.", ages: null, link: "https://bytencoffee.com/events/" },
+  { id: "b1", title: "Backgammon Night", org: "Byte & Coffee · 2424 N Federal Hwy, Lighthouse Point", category: ["social"], date: "Every Friday", time: "6:00 - 9:00 PM", location: "Byte & Coffee, Lighthouse Point", price: "Free · Food & drinks available", color: "#48CAE4", tags: ["backgammon", "games", "weekly", "social"], note: "All skill levels welcome. Casual evening of backgammon, drinks & good vibes.", ages: null, link: "https://bytencoffee.com/events/" },
+  { id: "b2", title: "Board Game Night", org: "Byte & Coffee · 2424 N Federal Hwy, Lighthouse Point", category: ["social"], date: "Every Friday", time: "6:00 - 9:00 PM", location: "Byte & Coffee, Lighthouse Point", price: "Free · 10% off drinks while you play", color: "#48CAE4", tags: ["board-games", "games", "weekly", "social"], note: "Grab a seat, choose a game, enjoy 10% off drinks!", ages: null, link: "https://bytencoffee.com/events/" },
+  { id: "b3", title: "Mahjong Night", org: "Byte & Coffee · 2424 N Federal Hwy, Lighthouse Point", category: ["social"], date: "Every Tuesday", time: "5:00 - 8:00 PM", location: "Byte & Coffee, Lighthouse Point", price: "Free · Some sets provided", color: "#48CAE4", tags: ["mahjong", "games", "weekly", "social"], note: "Relaxed, welcoming atmosphere. Sets provided - players welcome to bring their own.", ages: null, link: "https://bytencoffee.com/events/" },
 ];
 
 const events = [
-  // SPIRITUALITY
-  { id: "ch1", title: "Sunday Services — Coastal Community Church", org: "Coastal Community Church · 3901 NE 22nd Ave, Lighthouse Point", category: ["spirit"], date: "Every Sunday", time: "8:45 AM · 10:15 AM · 11:45 AM", location: "3901 NE 22nd Ave, Lighthouse Point, FL 33064", price: "Free · All welcome", color: "#7B5EA7", tags: ["church", "worship", "sunday", "kids-ministry", "weekly"], note: "Kids Ministry at all services · Special Space class for children with special needs at 11:45 AM · Next Steps class at 10:15 AM", ages: "All ages", link: null },
-  { id: "ch2", title: "Sunday Mass — St. Paul the Apostle", org: "Saint Paul the Apostle Catholic Church · (954) 943-9154", category: ["spirit"], date: "Every Sunday", time: "7:30 AM · 9:00 AM · 11:30 AM · Sat Vigil 4:30 PM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All welcome", color: "#7B5EA7", tags: ["catholic", "mass", "sunday", "weekly"], note: "Saturday Vigil Mass at 4:30 PM · Confessions: Saturdays 3:30–4:30 PM or by request", ages: "All ages", link: null },
-  { id: "ch3", title: "Daily Mass — St. Paul the Apostle", org: "Saint Paul the Apostle Catholic Church · Lighthouse Point", category: ["spirit"], date: "Mon–Fri 7:30 AM & 11:00 AM · Saturday 11:00 AM", time: "7:30 AM & 11:00 AM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All welcome", color: "#7B5EA7", tags: ["catholic", "mass", "daily", "weekday"], note: null, ages: null, link: null },
-  { id: "ch4", title: "Adoration — St. Paul the Apostle 🕯️", org: "Saint Paul the Apostle Catholic Church · Lighthouse Point", category: ["spirit"], date: "First Friday of each month", time: "11:30 AM – 5:00 PM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All welcome", color: "#7B5EA7", tags: ["catholic", "adoration", "prayer", "first-friday"], note: "Includes prayer, benediction and exposition of the Blessed Sacrament.", ages: null, link: null },
-  { id: "ch5", title: "Women's Rosary Cenacle 📿", org: "Saint Paul the Apostle Catholic Church · Lighthouse Point", category: ["spirit", "seniors"], date: "Every Monday", time: "9:30 AM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All women welcome", color: "#7B5EA7", tags: ["catholic", "rosary", "women", "prayer", "weekly"], note: null, ages: "Women", link: null },
-  { id: "ch6", title: "Men's Rosary Cenacle 📿", org: "Saint Paul the Apostle Catholic Church · Lighthouse Point", category: ["spirit"], date: "Every Wednesday", time: "7:00 PM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All men welcome", color: "#7B5EA7", tags: ["catholic", "rosary", "men", "prayer", "weekly"], note: null, ages: "Men", link: null },
-  { id: "ch7", title: "Sunday Services — The Pink Church 🌸", org: "The Pink Church · 2331 NE 26th Ave, Pompano Beach, FL 33062", category: ["spirit"], date: "Every Sunday", time: "9:30 AM (Contemporary) · 11:00 AM (Traditional)", location: "2331 NE 26th Ave, Pompano Beach, FL 33062", price: "Free · All welcome", color: "#7B5EA7", tags: ["church", "worship", "sunday", "contemporary", "traditional", "weekly"], note: "Contemporary service at 9:30 AM · Traditional service at 11:00 AM", ages: "All ages", link: null },
-  // LIBRARY
-  { id: "lib1", title: "Family Story Time",thisWeek: true, org: "Lighthouse Point Library", category: ["library"], date: "Fri, May 1 & Fri, May 8", time: "10:30 – 11:30 AM", location: "Lighthouse Point Library, 2200 NE 38th St", price: "Free · Registration required", color: "#0096C7", tags: ["library", "kids", "storytime", "babies"], note: "Waitlist open — register with your LHP library card.", ages: "Babies 0–3 · Youth 4–11 · Families", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib2", title: "Wild About the Library! Grand Reopening 🎉",thisWeek: true, org: "Lighthouse Point Library", category: ["library", "families", "community"], date: "Sat, May 9", time: "10:00 AM – 12:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#52B788", tags: ["library", "free", "all-ages", "celebration"], note: "Ribbon cutting 10 AM · Wildlife presentations · Therapy dogs · Scavenger hunt · Tours. Carpool — parking limited.", ages: "All ages", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib3", title: "Trinity School Field Trip", org: "Lighthouse Point Library", category: ["library"], date: "Mon, May 4", time: "10:30 AM – 12:30 PM", location: "Lighthouse Point Library", price: "Free", color: "#0096C7", tags: ["library", "school", "kids"], note: "Community Partners program", ages: "Youth", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib4", title: "Family Makerspace", org: "Lighthouse Point Library", category: ["library", "families", "arts"], date: "Mon, May 4", time: "4:00 – 5:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#48CAE4", tags: ["library", "makerspace", "kids", "STEM"], note: null, ages: "Youth 4–11 · Families", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib5", title: "Knitting with Nancy & Janet", org: "Lighthouse Point Library", category: ["library", "seniors", "arts"], date: "Tue, May 5", time: "10:30 AM – 12:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#0096C7", tags: ["library", "knitting", "crochet", "seniors"], note: "Bring Red Heart Super Saver Worsted Yarn, Size 8 Needles, Size G/H Crochet Hook if new.", ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib6", title: "S.T.E.A.M Labs | Science of Birds 🐦", org: "Lighthouse Point Library", category: ["library", "families"], date: "Tue, May 5", time: "4:00 – 5:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#52B788", tags: ["library", "STEAM", "science", "kids"], note: null, ages: "Youth 4–6", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib7", title: "Friends Zoom Book Club",thisWeek: true, org: "Lighthouse Point Library", category: ["library", "seniors", "social"], date: "Wed, May 6", time: "4:00 – 5:00 PM", location: "Via Zoom", price: "Free · Online registration required", color: "#0096C7", tags: ["library", "book-club", "zoom", "adults"], note: "Hosted 2nd Wednesday of the month. Supported by Friends of the Library & Barker Library Fund.", ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib8", title: "ABCs of Investing 💰",thisWeek: true, org: "Lighthouse Point Library", category: ["library", "seniors", "community"], date: "Thu May 7 · Thu May 21 · Wed May 28", time: "10:30 AM – 12:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#0077B6", tags: ["library", "finance", "investing", "adults"], note: null, ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib9", title: "Broward County Agencies Visit", org: "Lighthouse Point Library", category: ["library", "community"], date: "Sun, May 18", time: "10:30 AM – 12:00 PM", location: "Lighthouse Point Library", price: "Free", color: "#023E8A", tags: ["library", "government", "community"], note: "Broward Property Appraiser & Supervisor of Elections available to assist residents.", ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib10", title: "Read to a Therapy Dog 🐕", org: "Lighthouse Point Library", category: ["library", "families"], date: "Tue, May 19", time: "6:30 – 7:30 PM (3 sessions)", location: "Lighthouse Point Library", price: "Free · Waitlist open", color: "#52B788", tags: ["library", "therapy-dog", "kids", "reading"], note: "Three 15-min sessions: 6:30–6:45, 6:45–7:00, 7:15–7:30. Registration required.", ages: "Youth 4–17 · Families", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib11", title: "Library Advisory Board Meeting", org: "Lighthouse Point Library", category: ["library", "community"], date: "Tue, May 19", time: "6:30 – 8:00 PM", location: "Lighthouse Point Library", price: "Free · Open to public", color: "#023E8A", tags: ["library", "civic", "community"], note: null, ages: null, link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib12", title: "CDBG Zoom Book Club", org: "Lighthouse Point Library", category: ["library", "seniors"], date: "Wed, May 20", time: "4:00 – 5:00 PM", location: "Via Zoom", price: "Free · Registration required", color: "#48CAE4", tags: ["library", "book-club", "seniors", "CDBG"], note: "CDBG grant-funded program for LHP residents 62+.", ages: "CDBG Seniors 62+", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib13", title: "Friends Bi-Monthly Mystery Book Club", org: "Lighthouse Point Library", category: ["library", "seniors", "social"], date: "Mon, May 26", time: "2:00 – 3:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#0096C7", tags: ["library", "book-club", "mystery", "adults"], note: "In-person. Supported by Friends of the Lighthouse Point Library.", ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
-  { id: "lib14", title: "CDBG Arts & Crafts Summer Lottery", org: "Lighthouse Point Library", category: ["library", "seniors", "arts"], date: "Lottery open now – Fri, May 22", time: "Visit library for details", location: "Lighthouse Point Library", price: "Free (grant-funded)", color: "#48CAE4", tags: ["art", "seniors", "free", "watercolor", "CDBG"], note: "Watercolor, needle felting & alcohol inks. LHP resident 62+. Registration by lottery.", ages: "Ages 62+ · LHP Residents", link: "https://lighthousepointlibrary.com" },
-  { id: "lib15", title: "Library Closed — Memorial Day Weekend", org: "Lighthouse Point Library", category: ["library", "community"], date: "Sat May 23 & Mon May 25", time: "All Day", location: "Lighthouse Point Library", price: null, color: "#888", tags: ["library", "closed", "memorial-day"], note: "Library closed for Memorial Day weekend.", ages: null, link: null },
-  // COMMUNITY
-  { id: 1, title: "Alzheimer's Mobile Screening", org: "John Trudel Community Center", category: ["seniors", "community"], date: "Fri, May 1", time: "10:00 AM – 2:00 PM", location: "John Trudel Community Center", price: "Free · By Appointment", color: "#00B4A6", tags: ["health", "seniors", "free"], note: "By appointment", ages: null, link: null },
-  { id: 2, title: "OneBlood Mobile Blood Drive", org: "Dan Witt Park", category: ["community"], date: "Sat, May 16", time: "8:30 – 11:30 AM", location: "Dan Witt Park", price: "Free · Donors get $20 e-gift card + Sunshade + Wellness Check", color: "#0077B6", tags: ["community", "volunteer", "free"], note: "Appointments preferred, walk-ins welcome", ages: null, link: null },
-  { id: 3, title: "Farmers Market at Dan Witt Park", org: "City of Lighthouse Point", category: ["families", "community", "seniors"], date: "Sun, May 17", time: "9:00 AM – 12:30 PM", location: "Dan Witt Park", price: "Free", color: "#52B788", tags: ["food", "outdoor", "community", "free"], note: "Limited parking · No dogs in park", ages: null, link: null },
-  { id: 4, title: "Tip-A-Cop", org: "Bonefish Mac's Sports Grille", category: ["community", "families"], date: "Tue, May 19", time: "4:00 – 9:00 PM", location: "Bonefish Mac's Sports Grille", price: "Dine out & support Special Olympics", color: "#0096C7", tags: ["dining", "fundraiser", "community"], note: null, ages: null, link: null },
-{ id: "bingo1", title: "Norcrest PTA Bingo Night", org: "Norcrest Elementary PTA · 4000 NE 10th Way, Pompano Beach", category: ["social", "families", "community"], date: "Sat, May 9", time: "5:00 – 9:00 PM", location: "4000 NE 10th Way, Pompano Beach", price: "Free", color: "#48CAE4", tags: ["bingo", "fundraiser", "kids", "community"], note: "Bingo Night benefiting Norcrest PTA", ages: "All ages", link: "https://www.facebook.com/NorcrestPTA", thisWeek: true },
- { id: "sale1", title: "Submit Your Garage or Yard Sale", org: "LHP Community Guide", category: ["sales"], date: "Ongoing — submit anytime", time: "Varies", location: "Lighthouse Point & surrounding area", price: "Free to list", color: "#E07A1F", tags: ["garage-sale", "yard-sale", "deals", "local", "free"], note: "Have a sale coming up? Submit it free and let your neighbors find it!", ages: null, link: "https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" },
-];
-  // FITNESS
-  { id: 8, title: "Mat Yogalates (Weekly)", org: "John Trudel Community Center", category: ["fitness", "seniors"], date: "Tuesdays & Fridays", time: "9:00 – 10:00 AM", location: "John Trudel Community Center", price: "$10/class", color: "#52B788", tags: ["yoga", "pilates", "weekly"], note: null, ages: null, link: "https://lhp.recdesk.com" },
-  { id: 9, title: "Chair Yoga (Weekly)", org: "John Trudel Community Center", category: ["fitness", "seniors"], date: "Wednesdays & Fridays", time: "10:30 – 11:30 AM", location: "John Trudel Community Center", price: "$10 res / $20 non-res", color: "#52B788", tags: ["yoga", "seniors", "weekly"], note: null, ages: null, link: "https://lhp.recdesk.com" },
-  { id: 10, title: "Tai Chi for Arthritis", org: "John Trudel Community Center", category: ["fitness", "seniors"], date: "Tues & Thurs — thru May 14", time: "11:00 AM", location: "John Trudel Community Center", price: "Free", color: "#00B4A6", tags: ["tai-chi", "seniors", "free"], note: "6-week session", ages: "Ages 60+", link: "https://lhp.recdesk.com" },
-  { id: 11, title: "Pickleball Clinics", org: "John Trudel Community Center", category: ["fitness"], date: "Wednesdays", time: "5–6 PM (Beginners) · 6–7 PM (Int/Advanced)", location: "John Trudel Community Center", price: "$20/clinic", color: "#52B788", tags: ["pickleball", "sports", "weekly"], note: null, ages: null, link: "https://lhp.recdesk.com" },
-  { id: 12, title: "Youth Pickleball Clinics 🏓", org: "Dan Witt Park · George Bulger, Professional Player & Coach · (954) 784-3439", category: ["fitness", "families"], date: "Mondays · May 11, May 18, Jun 1, Jun 8 (No class May 25)", time: "4-week session", location: "Dan Witt Park", price: "$40/class · $120 (4-week session) · Trial class available — call for details", color: "#0077B6", tags: ["kids", "pickleball", "sports", "youth", "drills", "coaching"], note: "Drills, skills, technique & game play. Instruction by George Bulger, Professional Player & Coach. Trial class available — call (954) 784-3439.", ages: "Ages 6–17", link: "https://lhp.recdesk.com" },
-  { id: 29, title: "Summer Adult Kickball League", org: "LHP Recreation", category: ["fitness", "community"], date: "Registration opens May 11 · Jun 6 – Jul 23", time: "Thursday nights", location: "Lighthouse Point", price: "See flyer", color: "#52B788", tags: ["kickball", "adult", "league", "summer"], note: "Registration opens May 11 at 9 AM", ages: "Adults", link: "https://lhp.recdesk.com" },
-  { id: 30, title: "Fall Coed Youth Soccer", org: "LHP Recreation", category: ["fitness", "families"], date: "Registration opens May 18 · Season starts August", time: "See schedule", location: "Lighthouse Point", price: "See lhp.recdesk.com", color: "#0077B6", tags: ["soccer", "kids", "fall", "registration"], note: "LHP residents first! Divisions: 6U, 8U, 10U, 13U", ages: "6U–13U", link: "https://lhp.recdesk.com" },
-  { id: 31, title: "LHP Tennis Center Summer Camp", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness", "families"], date: "Jun 8 – Aug 7", time: "Flexible day or weekly", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "kids", "summer-camp"], note: null, ages: "Ages 5+", link: "https://lhp.recdesk.com" },
-  { id: "tc1", title: "Cardio Tennis 2.0+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Monday", time: "9:00 – 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "cardio", "weekly", "adult"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.0+ level", link: null },
-  { id: "tc2", title: "Adult Intermediate Tennis Clinic 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Monday", time: "6:30 – 8:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "intermediate", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "Intermediate level", link: null },
-  { id: "tc3", title: "Advanced LiveBall Tennis 3.5+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Tuesday", time: "7:00 – 8:30 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "advanced", "liveball", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.5+ level", link: null },
-  { id: "tc4", title: "LiveBall Tennis 2.5+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Wednesday", time: "6:30 – 8:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.5+ level", link: null },
-  { id: "tc5", title: "Advanced LiveBall Tennis 3.5+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Thursday", time: "6:30 – 8:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "advanced", "liveball", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.5+ level", link: null },
-  { id: "tc6", title: "Beginners Tennis 0–1.8 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Thursday", time: "6:30 – 8:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#0096C7", tags: ["tennis", "beginners", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "Beginners 0–1.8", link: null },
-  { id: "tc7", title: "LiveBall Tennis 2.5+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Friday", time: "8:30 – 10:00 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "adult", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.5+ level", link: null },
-  { id: "tc8", title: "LiveBall Tennis 3.0+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Friday", time: "10:00 – 11:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "adult", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.0+ level", link: null },
-  { id: "tc9", title: "Beginners Tennis 0–1.8 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Saturday", time: "8:00 – 9:00 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#0096C7", tags: ["tennis", "beginners", "weekly", "saturday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "Beginners 0–1.8", link: null },
-  { id: "tc10", title: "Intermediate Tennis 2.0–2.5 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Saturday", time: "9:00 – 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "intermediate", "weekly", "saturday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.0–2.5 level", link: null },
-  { id: "tc11", title: "Advanced LiveBall Tennis 3.5+ 🎾",thisWeek: true, org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Saturday", time: "9:00 – 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "advanced", "liveball", "weekly", "saturday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.5+ level", link: null },
-  { id: "tc12", title: "LiveBall Tennis 2.5+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Sunday", time: "9:00 – 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "sunday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.5+ level", link: null },
-  // ARTS & KIDS
-  { id: 13, title: "Baton Twirling Classes", org: "John Trudel Community Center", category: ["families"], date: "Mondays", time: "4:30–6:30 PM (varies by age)", location: "John Trudel Community Center", price: "$65/mo or $45 one-time", color: "#48CAE4", tags: ["kids", "performance", "weekly"], note: null, ages: "Ages 5–14", link: "https://lhp.recdesk.com" },
-  { id: 14, title: "Robotics Class",thisWeek: true, org: "John Trudel Community Center", category: ["families"], date: "Thursdays — ends May 21", time: "4:00–6:00 PM", location: "John Trudel Community Center", price: "$270 res / $297 non-res", color: "#0077B6", tags: ["STEM", "robotics", "kids"], note: "Trial class available", ages: "K–4th grade", link: "https://lhp.recdesk.com" },
-  { id: 15, title: "Miss Wendy's Wiggles & Giggles", org: "John Trudel Community Center", category: ["families"], date: "Wednesdays — 8-week session", time: "9:30 – 10:15 AM", location: "John Trudel Community Center", price: "$200 res / $240 non-res", color: "#0096C7", tags: ["toddlers", "movement", "play"], note: null, ages: "Crawlers – Age 3", link: "https://lhp.recdesk.com" },
-  { id: 17, title: "artNest: Bubble Gum Machines", org: "John Trudel Community Center", category: ["arts", "families"], date: "Wed, May 6", time: "4:00 – 5:00 PM", location: "John Trudel Community Center", price: "$35", color: "#48CAE4", tags: ["art", "kids", "craft"], note: null, ages: "Ages 5+", link: "https://lhp.recdesk.com" },
-  { id: 18, title: "Flower Power Floral Arranging", thisWeek: true, org: "John Trudel Community Center", category: ["arts", "seniors"], date: "Wed, May 6", time: "6:00 – 8:00 PM", location: "John Trudel Community Center", price: "$50", color: "#48CAE4", tags: ["floral", "art", "workshop"], note: null, ages: null, link: "https://lhp.recdesk.com" },
-  { id: 19, title: "artNest: Fidget Making", org: "John Trudel Community Center", category: ["arts", "families"], date: "Wed, May 13", time: "4:00 – 5:00 PM", location: "John Trudel Community Center", price: "$35", color: "#48CAE4", tags: ["art", "kids", "craft"], note: null, ages: "Ages 5+", link: "https://lhp.recdesk.com" },
-  { id: 20, title: "Custom Summer Doormat Workshop", org: "John Trudel Community Center", category: ["arts"], date: "Wed, May 13", time: "6:00 – 8:00 PM", location: "John Trudel Community Center", price: "$54", color: "#48CAE4", tags: ["craft", "workshop", "adults"], note: null, ages: null, link: "https://lhp.recdesk.com" },
-  { id: 21, title: "Creative Writing Workshop", org: "John Trudel Community Center", category: ["arts", "seniors"], date: "Tue, May 19", time: "10:00 AM – 12:00 PM", location: "John Trudel Community Center", price: "Free", color: "#48CAE4", tags: ["writing", "workshop", "free"], note: null, ages: "Adults & Seniors", link: "https://lhp.recdesk.com" },
-  { id: 22, title: "Sea Turtle & Manatee Talk 🐢", org: "John Trudel Community Center", category: ["families", "community"], date: "Wed, May 27", time: "1:00 – 2:00 PM", location: "John Trudel Community Center", price: "Free", color: "#52B788", tags: ["nature", "coastal", "educational", "free"], note: null, ages: "Ages 2–6", link: "https://lhp.recdesk.com" },
-  { id: 23, title: "Pottery Class: Trinket Dishes", org: "John Trudel Community Center", category: ["arts", "families"], date: "Thu, May 28", time: "4:30 – 5:30 PM", location: "John Trudel Community Center", price: "$55", color: "#48CAE4", tags: ["pottery", "art", "hands-on"], note: null, ages: "Ages 7–11", link: "https://lhp.recdesk.com" },
-  { id: 24, title: "artNest: Play Dough Worlds (Parent & Me)", org: "John Trudel Community Center", category: ["arts", "families"], date: "Wed, May 28", time: "10:00 – 11:00 AM", location: "John Trudel Community Center", price: "$35", color: "#48CAE4", tags: ["toddlers", "art", "parent-child"], note: null, ages: "Ages 1–5", link: "https://lhp.recdesk.com" },
-  { id: 26, title: "Mahjong Instructional & Open Play", org: "John Trudel Community Center", category: ["seniors", "community", "social"], date: "Mondays — May 4, 11, 18", time: "6:00 – 8:00 PM", location: "John Trudel Community Center", price: "Free", color: "#00B4A6", tags: ["mahjong", "games", "free"], note: null, ages: null, link: "https://lhp.recdesk.com" },
-  { id: 32, title: "May City Commission Meetings", org: "City of Lighthouse Point — Fletcher Hall", category: ["community"], date: "Tue May 12 & Tue May 26", time: "6:30 PM", location: "Fletcher Hall, 2200 NE 38th St", price: "Free · Open to public", color: "#023E8A", tags: ["government", "civic", "public-meeting"], note: "Instructions posted on City website the Friday before", ages: null, link: "https://www.lighthousepointfl.gov" },
-  { id: 33, title: "Compost Pilot Program — Limited Spots!", org: "City of Lighthouse Point × Filthy Organics", category: ["community"], date: "Apply now — first come, first served", time: "Ongoing", location: "Citywide", price: "Free · First 50 residents", color: "#52B788", tags: ["sustainability", "composting", "free"], note: "5-gallon compost bucket + twice-weekly drop-off access", ages: null, link: "https://www.lighthousepointfl.gov/369/Composting" },
-  // ✅ NEW: Garage & Yard Sales
-  { id: "sale1", title: "Submit Your Garage or Yard Sale 🏡", org: "LHP Community Guide", category: ["sales"], date: "Ongoing — submit anytime", time: "Varies", location: "Lighthouse Point & surrounding area", price: "Free to list", color: "#E07A1F", tags: ["garage-sale", "yard-sale", "deals", "local", "free"], note: "Have a sale coming up? Submit it free and let your neighbors find it!", ages: null, link: "https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" },
+  { id: "ch1", title: "Sunday Services - Coastal Community Church", org: "Coastal Community Church · 3901 NE 22nd Ave, Lighthouse Point", category: ["spirit"], date: "Every Sunday", time: "8:45 AM · 10:15 AM · 11:45 AM", location: "3901 NE 22nd Ave, Lighthouse Point, FL 33064", price: "Free · All welcome", color: "#7B5EA7", tags: ["church", "worship", "sunday", "kids-ministry", "weekly"], note: "Kids Ministry at all services · Special Space class for children with special needs at 11:45 AM · Next Steps class at 10:15 AM", ages: "All ages", link: null },
+  { id: "ch2", title: "Sunday Mass - St. Paul the Apostle", org: "Saint Paul the Apostle Catholic Church · (954) 943-9154", category: ["spirit"], date: "Every Sunday", time: "7:30 AM · 9:00 AM · 11:30 AM · Sat Vigil 4:30 PM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All welcome", color: "#7B5EA7", tags: ["catholic", "mass", "sunday", "weekly"], note: "Saturday Vigil Mass at 4:30 PM · Confessions: Saturdays 3:30-4:30 PM or by request", ages: "All ages", link: null },
+  { id: "ch3", title: "Daily Mass - St. Paul the Apostle", org: "Saint Paul the Apostle Catholic Church · Lighthouse Point", category: ["spirit"], date: "Mon-Fri 7:30 AM & 11:00 AM · Saturday 11:00 AM", time: "7:30 AM & 11:00 AM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All welcome", color: "#7B5EA7", tags: ["catholic", "mass", "daily", "weekday"], note: null, ages: null, link: null },
+  { id: "ch4", title: "Adoration - St. Paul the Apostle", org: "Saint Paul the Apostle Catholic Church · Lighthouse Point", category: ["spirit"], date: "First Friday of each month", time: "11:30 AM - 5:00 PM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All welcome", color: "#7B5EA7", tags: ["catholic", "adoration", "prayer", "first-friday"], note: "Includes prayer, benediction and exposition of the Blessed Sacrament.", ages: null, link: null },
+  { id: "ch5", title: "Women's Rosary Cenacle", org: "Saint Paul the Apostle Catholic Church · Lighthouse Point", category: ["spirit", "seniors"], date: "Every Monday", time: "9:30 AM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All women welcome", color: "#7B5EA7", tags: ["catholic", "rosary", "women", "prayer", "weekly"], note: null, ages: "Women", link: null },
+  { id: "ch6", title: "Men's Rosary Cenacle", org: "Saint Paul the Apostle Catholic Church · Lighthouse Point", category: ["spirit"], date: "Every Wednesday", time: "7:00 PM", location: "2700 NE 36th St, Lighthouse Point, FL 33064", price: "Free · All men welcome", color: "#7B5EA7", tags: ["catholic", "rosary", "men", "prayer", "weekly"], note: null, ages: "Men", link: null },
+  { id: "ch7", title: "Sunday Services - The Pink Church", org: "The Pink Church · 2331 NE 26th Ave, Pompano Beach, FL 33062", category: ["spirit"], date: "Every Sunday", time: "9:30 AM (Contemporary) · 11:00 AM (Traditional)", location: "2331 NE 26th Ave, Pompano Beach, FL 33062", price: "Free · All welcome", color: "#7B5EA7", tags: ["church", "worship", "sunday", "contemporary", "traditional", "weekly"], note: "Contemporary service at 9:30 AM · Traditional service at 11:00 AM", ages: "All ages", link: null },
+  { id: "lib1", thisWeek: true, title: "Family Story Time", org: "Lighthouse Point Library", category: ["library"], date: "Fri, May 1 & Fri, May 8", time: "10:30 - 11:30 AM", location: "Lighthouse Point Library, 2200 NE 38th St", price: "Free · Registration required", color: "#0096C7", tags: ["library", "kids", "storytime", "babies"], note: "Waitlist open - register with your LHP library card.", ages: "Babies 0-3 · Youth 4-11 · Families", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib2", thisWeek: true, title: "Wild About the Library! Grand Reopening", org: "Lighthouse Point Library", category: ["library", "families", "community"], date: "Sat, May 9", time: "10:00 AM - 12:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#52B788", tags: ["library", "free", "all-ages", "celebration"], note: "Ribbon cutting 10 AM · Wildlife presentations · Therapy dogs · Scavenger hunt · Tours. Carpool - parking limited.", ages: "All ages", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib3", title: "Trinity School Field Trip", org: "Lighthouse Point Library", category: ["library"], date: "Mon, May 4", time: "10:30 AM - 12:30 PM", location: "Lighthouse Point Library", price: "Free", color: "#0096C7", tags: ["library", "school", "kids"], note: "Community Partners program", ages: "Youth", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib4", title: "Family Makerspace", org: "Lighthouse Point Library", category: ["library", "families", "arts"], date: "Mon, May 4", time: "4:00 - 5:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#48CAE4", tags: ["library", "makerspace", "kids", "STEM"], note: null, ages: "Youth 4-11 · Families", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib5", title: "Knitting with Nancy & Janet", org: "Lighthouse Point Library", category: ["library", "seniors", "arts"], date: "Tue, May 5", time: "10:30 AM - 12:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#0096C7", tags: ["library", "knitting", "crochet", "seniors"], note: "Bring Red Heart Super Saver Worsted Yarn, Size 8 Needles, Size G/H Crochet Hook if new.", ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib6", title: "S.T.E.A.M Labs Science of Birds", org: "Lighthouse Point Library", category: ["library", "families"], date: "Tue, May 5", time: "4:00 - 5:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#52B788", tags: ["library", "STEAM", "science", "kids"], note: null, ages: "Youth 4-6", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib7", thisWeek: true, title: "Friends Zoom Book Club", org: "Lighthouse Point Library", category: ["library", "seniors", "social"], date: "Wed, May 6", time: "4:00 - 5:00 PM", location: "Via Zoom", price: "Free · Online registration required", color: "#0096C7", tags: ["library", "book-club", "zoom", "adults"], note: "Hosted 2nd Wednesday of the month. Supported by Friends of the Library & Barker Library Fund.", ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib8", thisWeek: true, title: "ABCs of Investing", org: "Lighthouse Point Library", category: ["library", "seniors", "community"], date: "Thu May 7 · Thu May 21 · Wed May 28", time: "10:30 AM - 12:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#0077B6", tags: ["library", "finance", "investing", "adults"], note: null, ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib9", title: "Broward County Agencies Visit", org: "Lighthouse Point Library", category: ["library", "community"], date: "Sun, May 18", time: "10:30 AM - 12:00 PM", location: "Lighthouse Point Library", price: "Free", color: "#023E8A", tags: ["library", "government", "community"], note: "Broward Property Appraiser & Supervisor of Elections available to assist residents.", ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib10", title: "Read to a Therapy Dog", org: "Lighthouse Point Library", category: ["library", "families"], date: "Tue, May 19", time: "6:30 - 7:30 PM (3 sessions)", location: "Lighthouse Point Library", price: "Free · Waitlist open", color: "#52B788", tags: ["library", "therapy-dog", "kids", "reading"], note: "Three 15-min sessions: 6:30-6:45, 6:45-7:00, 7:15-7:30. Registration required.", ages: "Youth 4-17 · Families", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib11", title: "Library Advisory Board Meeting", org: "Lighthouse Point Library", category: ["library", "community"], date: "Tue, May 19", time: "6:30 - 8:00 PM", location: "Lighthouse Point Library", price: "Free · Open to public", color: "#023E8A", tags: ["library", "civic", "community"], note: null, ages: null, link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib12", title: "CDBG Zoom Book Club", org: "Lighthouse Point Library", category: ["library", "seniors"], date: "Wed, May 20", time: "4:00 - 5:00 PM", location: "Via Zoom", price: "Free · Registration required", color: "#48CAE4", tags: ["library", "book-club", "seniors", "CDBG"], note: "CDBG grant-funded program for LHP residents 62+.", ages: "CDBG Seniors 62+", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib13", title: "Friends Bi-Monthly Mystery Book Club", org: "Lighthouse Point Library", category: ["library", "seniors", "social"], date: "Mon, May 26", time: "2:00 - 3:00 PM", location: "Lighthouse Point Library", price: "Free · Registration required", color: "#0096C7", tags: ["library", "book-club", "mystery", "adults"], note: "In-person. Supported by Friends of the Lighthouse Point Library.", ages: "Adults", link: "https://lighthousepointlib.librarycalendar.com/events/month" },
+  { id: "lib14", title: "CDBG Arts & Crafts Summer Lottery", org: "Lighthouse Point Library", category: ["library", "seniors", "arts"], date: "Lottery open now - Fri, May 22", time: "Visit library for details", location: "Lighthouse Point Library", price: "Free (grant-funded)", color: "#48CAE4", tags: ["art", "seniors", "free", "watercolor", "CDBG"], note: "Watercolor, needle felting & alcohol inks. LHP resident 62+. Registration by lottery.", ages: "Ages 62+ · LHP Residents", link: "https://lighthousepointlibrary.com" },
+  { id: "lib15", title: "Library Closed - Memorial Day Weekend", org: "Lighthouse Point Library", category: ["library", "community"], date: "Sat May 23 & Mon May 25", time: "All Day", location: "Lighthouse Point Library", price: null, color: "#888", tags: ["library", "closed", "memorial-day"], note: "Library closed for Memorial Day weekend.", ages: null, link: null },
+  { id: 1, title: "Alzheimer's Mobile Screening", org: "John Trudel Community Center", category: ["seniors", "community"], date: "Fri, May 1", time: "10:00 AM - 2:00 PM", location: "John Trudel Community Center", price: "Free · By Appointment", color: "#00B4A6", tags: ["health", "seniors", "free"], note: "By appointment", ages: null, link: null },
+  { id: 2, title: "OneBlood Mobile Blood Drive", org: "Dan Witt Park", category: ["community"], date: "Sat, May 16", time: "8:30 - 11:30 AM", location: "Dan Witt Park", price: "Free · Donors get $20 e-gift card + Sunshade + Wellness Check", color: "#0077B6", tags: ["community", "volunteer", "free"], note: "Appointments preferred, walk-ins welcome", ages: null, link: null },
+  { id: 3, title: "Farmers Market at Dan Witt Park", org: "City of Lighthouse Point", category: ["families", "community", "seniors"], date: "Sun, May 17", time: "9:00 AM - 12:30 PM", location: "Dan Witt Park", price: "Free", color: "#52B788", tags: ["food", "outdoor", "community", "free"], note: "Limited parking · No dogs in park", ages: null, link: null },
+  { id: 4, title: "Tip-A-Cop", org: "Bonefish Mac's Sports Grille", category: ["community", "families"], date: "Tue, May 19", time: "4:00 - 9:00 PM", location: "Bonefish Mac's Sports Grille", price: "Dine out & support Special Olympics", color: "#0096C7", tags: ["dining", "fundraiser", "community"], note: null, ages: null, link: null },
+  { id: "bingo1", thisWeek: true, title: "Norcrest PTA Bingo Night", org: "Norcrest Elementary PTA · 4000 NE 10th Way, Pompano Beach", category: ["social", "families", "community"], date: "Sat, May 9", time: "5:00 - 9:00 PM", location: "4000 NE 10th Way, Pompano Beach", price: "Free", color: "#48CAE4", tags: ["bingo", "fundraiser", "kids", "community", "social"], note: "Bingo Night benefiting Norcrest PTA", ages: "All ages", link: "https://www.facebook.com/NorcrestPTA" },
+  { id: 8, title: "Mat Yogalates (Weekly)", org: "John Trudel Community Center", category: ["fitness", "seniors"], date: "Tuesdays & Fridays", time: "9:00 - 10:00 AM", location: "John Trudel Community Center", price: "$10/class", color: "#52B788", tags: ["yoga", "pilates", "weekly"], note: null, ages: null, link: "https://lhp.recdesk.com" },
+  { id: 9, title: "Chair Yoga (Weekly)", org: "John Trudel Community Center", category: ["fitness", "seniors"], date: "Wednesdays & Fridays", time: "10:30 - 11:30 AM", location: "John Trudel Community Center", price: "$10 res / $20 non-res", color: "#52B788", tags: ["yoga", "seniors", "weekly"], note: null, ages: null, link: "https://lhp.recdesk.com" },
+  { id: 10, title: "Tai Chi for Arthritis", org: "John Trudel Community Center", category: ["fitness", "seniors"], date: "Tues & Thurs - thru May 14", time: "11:00 AM", location: "John Trudel Community Center", price: "Free", color: "#00B4A6", tags: ["tai-chi", "seniors", "free"], note: "6-week session", ages: "Ages 60+", link: "https://lhp.recdesk.com" },
+  { id: 11, title: "Pickleball Clinics", org: "John Trudel Community Center", category: ["fitness"], date: "Wednesdays", time: "5-6 PM (Beginners) · 6-7 PM (Int/Advanced)", location: "John Trudel Community Center", price: "$20/clinic", color: "#52B788", tags: ["pickleball", "sports", "weekly"], note: null, ages: null, link: "https://lhp.recdesk.com" },
+  { id: 12, title: "Youth Pickleball Clinics", org: "Dan Witt Park · George Bulger, Professional Player & Coach · (954) 784-3439", category: ["fitness", "families"], date: "Mondays · May 11, May 18, Jun 1, Jun 8 (No class May 25)", time: "4-week session", location: "Dan Witt Park", price: "$40/class · $120 (4-week session) · Trial class available - call for details", color: "#0077B6", tags: ["kids", "pickleball", "sports", "youth", "drills", "coaching"], note: "Drills, skills, technique & game play. Instruction by George Bulger, Professional Player & Coach. Trial class available - call (954) 784-3439.", ages: "Ages 6-17", link: "https://lhp.recdesk.com" },
+  { id: 29, title: "Summer Adult Kickball League", org: "LHP Recreation", category: ["fitness", "community"], date: "Registration opens May 11 · Jun 6 - Jul 23", time: "Thursday nights", location: "Lighthouse Point", price: "See flyer", color: "#52B788", tags: ["kickball", "adult", "league", "summer"], note: "Registration opens May 11 at 9 AM", ages: "Adults", link: "https://lhp.recdesk.com" },
+  { id: 30, title: "Fall Coed Youth Soccer", org: "LHP Recreation", category: ["fitness", "families"], date: "Registration opens May 18 · Season starts August", time: "See schedule", location: "Lighthouse Point", price: "See lhp.recdesk.com", color: "#0077B6", tags: ["soccer", "kids", "fall", "registration"], note: "LHP residents first! Divisions: 6U, 8U, 10U, 13U", ages: "6U-13U", link: "https://lhp.recdesk.com" },
+  { id: 31, title: "LHP Tennis Center Summer Camp", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness", "families"], date: "Jun 8 - Aug 7", time: "Flexible day or weekly", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "kids", "summer-camp"], note: null, ages: "Ages 5+", link: "https://lhp.recdesk.com" },
+  { id: "tc1", title: "Cardio Tennis 2.0+", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Monday", time: "9:00 - 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "cardio", "weekly", "adult"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.0+ level", link: null },
+  { id: "tc2", title: "Adult Intermediate Tennis Clinic", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Monday", time: "6:30 - 8:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "intermediate", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "Intermediate level", link: null },
+  { id: "tc3", title: "Advanced LiveBall Tennis 3.5+", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Tuesday", time: "7:00 - 8:30 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "advanced", "liveball", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.5+ level", link: null },
+  { id: "tc4", title: "LiveBall Tennis 2.5+", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Wednesday", time: "6:30 - 8:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.5+ level", link: null },
+  { id: "tc5", title: "Advanced LiveBall Tennis 3.5+", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Thursday", time: "6:30 - 8:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "advanced", "liveball", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.5+ level", link: null },
+  { id: "tc6", title: "Beginners Tennis 0-1.8", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Thursday", time: "6:30 - 8:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#0096C7", tags: ["tennis", "beginners", "weekly", "adult", "evening"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "Beginners 0-1.8", link: null },
+  { id: "tc7", title: "LiveBall Tennis 2.5+", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Friday", time: "8:30 - 10:00 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "adult", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.5+ level", link: null },
+  { id: "tc8", title: "LiveBall Tennis 3.0+", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Friday", time: "10:00 - 11:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "adult", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.0+ level", link: null },
+  { id: "tc9", title: "Beginners Tennis 0-1.8", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Saturday", time: "8:00 - 9:00 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#0096C7", tags: ["tennis", "beginners", "weekly", "saturday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "Beginners 0-1.8", link: null },
+  { id: "tc10", title: "Intermediate Tennis 2.0-2.5", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Saturday", time: "9:00 - 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "intermediate", "weekly", "saturday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.0-2.5 level", link: null },
+  { id: "tc11", thisWeek: true, title: "Advanced LiveBall Tennis 3.5+", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Saturday", time: "9:00 - 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "advanced", "liveball", "weekly", "saturday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.5+ level", link: null },
+  { id: "tc12", title: "LiveBall Tennis 2.5+", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Sunday", time: "9:00 - 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "sunday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.5+ level", link: null },
+  { id: 13, title: "Baton Twirling Classes", org: "John Trudel Community Center", category: ["families"], date: "Mondays", time: "4:30-6:30 PM (varies by age)", location: "John Trudel Community Center", price: "$65/mo or $45 one-time", color: "#48CAE4", tags: ["kids", "performance", "weekly"], note: null, ages: "Ages 5-14", link: "https://lhp.recdesk.com" },
+  { id: 14, thisWeek: true, title: "Robotics Class", org: "John Trudel Community Center", category: ["families"], date: "Thursdays - ends May 21", time: "4:00-6:00 PM", location: "John Trudel Community Center", price: "$270 res / $297 non-res", color: "#0077B6", tags: ["STEM", "robotics", "kids"], note: "Trial class available", ages: "K-4th grade", link: "https://lhp.recdesk.com" },
+  { id: 15, title: "Miss Wendy's Wiggles & Giggles", org: "John Trudel Community Center", category: ["families"], date: "Wednesdays - 8-week session", time: "9:30 - 10:15 AM", location: "John Trudel Community Center", price: "$200 res / $240 non-res", color: "#0096C7", tags: ["toddlers", "movement", "play"], note: null, ages: "Crawlers - Age 3", link: "https://lhp.recdesk.com" },
+  { id: 18, thisWeek: true, title: "Flower Power Floral Arranging", org: "John Trudel Community Center", category: ["arts", "seniors"], date: "Wed, May 6", time: "6:00 - 8:00 PM", location: "John Trudel Community Center", price: "$50", color: "#48CAE4", tags: ["floral", "art", "workshop"], note: null, ages: null, link: "https://lhp.recdesk.com" },
+  { id: 19, title: "artNest: Fidget Making", org: "John Trudel Community Center", category: ["arts", "families"], date: "Wed, May 13", time: "4:00 - 5:00 PM", location: "John Trudel Community Center", price: "$35", color: "#48CAE4", tags: ["art", "kids", "craft"], note: null, ages: "Ages 5+", link: "https://lhp.recdesk.com" },
+  { id: 20, title: "Custom Summer Doormat Workshop", org: "John Trudel Community Center", category: ["arts"], date: "Wed, May 13", time: "6:00 - 8:00 PM", location: "John Trudel Community Center", price: "$54", color: "#48CAE4", tags: ["craft", "workshop", "adults"], note: null, ages: null, link: "https://lhp.recdesk.com" },
+  { id: 21, title: "Creative Writing Workshop", org: "John Trudel Community Center", category: ["arts", "seniors"], date: "Tue, May 19", time: "10:00 AM - 12:00 PM", location: "John Trudel Community Center", price: "Free", color: "#48CAE4", tags: ["writing", "workshop", "free"], note: null, ages: "Adults & Seniors", link: "https://lhp.recdesk.com" },
+  { id: 22, title: "Sea Turtle & Manatee Talk", org: "John Trudel Community Center", category: ["families", "community"], date: "Wed, May 27", time: "1:00 - 2:00 PM", location: "John Trudel Community Center", price: "Free", color: "#52B788", tags: ["nature", "coastal", "educational", "free"], note: null, ages: "Ages 2-6", link: "https://lhp.recdesk.com" },
+  { id: 23, title: "Pottery Class: Trinket Dishes", org: "John Trudel Community Center", category: ["arts", "families"], date: "Thu, May 28", time: "4:30 - 5:30 PM", location: "John Trudel Community Center", price: "$55", color: "#48CAE4", tags: ["pottery", "art", "hands-on"], note: null, ages: "Ages 7-11", link: "https://lhp.recdesk.com" },
+  { id: 24, title: "artNest: Play Dough Worlds (Parent & Me)", org: "John Trudel Community Center", category: ["arts", "families"], date: "Wed, May 28", time: "10:00 - 11:00 AM", location: "John Trudel Community Center", price: "$35", color: "#48CAE4", tags: ["toddlers", "art", "parent-child"], note: null, ages: "Ages 1-5", link: "https://lhp.recdesk.com" },
+  { id: 26, title: "Mahjong Instructional & Open Play", org: "John Trudel Community Center", category: ["seniors", "community", "social"], date: "Mondays - May 4, 11, 18", time: "6:00 - 8:00 PM", location: "John Trudel Community Center", price: "Free", color: "#00B4A6", tags: ["mahjong", "games", "free"], note: null, ages: null, link: "https://lhp.recdesk.com" },
+  { id: 32, title: "May City Commission Meetings", org: "City of Lighthouse Point - Fletcher Hall", category: ["community"], date: "Tue May 12 & Tue May 26", time: "6:30 PM", location: "Fletcher Hall, 2200 NE 38th St", price: "Free · Open to public", color: "#023E8A", tags: ["government", "civic", "public-meeting"], note: "Instructions posted on City website the Friday before", ages: null, link: "https://www.lighthousepointfl.gov" },
+  { id: 33, title: "Compost Pilot Program - Limited Spots!", org: "City of Lighthouse Point x Filthy Organics", category: ["community"], date: "Apply now - first come, first served", time: "Ongoing", location: "Citywide", price: "Free · First 50 residents", color: "#52B788", tags: ["sustainability", "composting", "free"], note: "5-gallon compost bucket + twice-weekly drop-off access", ages: null, link: "https://www.lighthousepointfl.gov/369/Composting" },
+  { id: "sale1", title: "Submit Your Garage or Yard Sale", org: "LHP Community Guide", category: ["sales"], date: "Ongoing - submit anytime", time: "Varies", location: "Lighthouse Point & surrounding area", price: "Free to list", color: "#E07A1F", tags: ["garage-sale", "yard-sale", "deals", "local", "free"], note: "Have a sale coming up? Submit it free and let your neighbors find it!", ages: null, link: "https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" },
 ];
 
-// ✅ allEvents does NOT contain byteEvents — they are rendered separately only in the social section
 const allEvents = [...events];
 
 export default function LHPApp() {
@@ -226,7 +217,6 @@ export default function LHPApp() {
   const [search, setSearch] = useState("");
   const [musicVenue, setMusicVenue] = useState("all");
 
-  // Sort priority: 1 = LHP Rec / John Trudel, 2 = Library, 3 = everything else
   const eventPriority = (e) => {
     const org = e.org.toLowerCase();
     if (org.includes("john trudel") || org.includes("lhp rec") || org.includes("lhp recreation") || org.includes("lhp tennis") || org.includes("dan witt") || org.includes("city of lighthouse point") || org.includes("fletcher hall")) return 1;
@@ -250,12 +240,12 @@ export default function LHPApp() {
     );
 
   const showByte = activeCategory === "social";
- const showMusic = !activeCategory || activeCategory === "nightlife";
-const [nightlifeTab, setNightlifeTab] = useState("music");
-const showHappyHour = !activeCategory || activeCategory === "nightlife";
- const showSales = !activeCategory || activeCategory === "sales";
-const [showThisWeek, setShowThisWeek] = useState(false);
-const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek);
+  const showMusic = !activeCategory || activeCategory === "nightlife";
+  const [nightlifeTab, setNightlifeTab] = useState("music");
+  const showHappyHour = !activeCategory || activeCategory === "nightlife";
+  const showSales = !activeCategory || activeCategory === "sales";
+  const [showThisWeek, setShowThisWeek] = useState(false);
+  const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek);
 
   const visibleMusic = showMusic
     ? musicVenue === "all" ? featuredEvents : featuredEvents.filter(e => e.venue === musicVenue)
@@ -265,7 +255,6 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
 
   return (
     <div style={styles.root}>
-      {/* Header */}
       <div style={styles.header}>
         <div style={styles.waveBg} />
         <div style={styles.headerInner}>
@@ -299,7 +288,6 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
         <div style={styles.tagline}>🌊 Real events, programs & news from your city</div>
       </div>
 
-      {/* Search — live filtering, shows result count when active */}
       <div style={styles.searchWrap}>
         <span style={styles.searchIcon}>🔍</span>
         <input
@@ -310,39 +298,39 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
         />
         {search && <button style={styles.clearBtn} onClick={() => setSearch("")}>✕</button>}
       </div>
-      {/* THIS WEEK BANNER */}
-<div style={styles.thisWeekWrap}>
-  <button
-    onClick={() => setShowThisWeek(!showThisWeek)}
-    style={{ ...styles.thisWeekBtn, background: showThisWeek ? "#0077B6" : "#E8F4FD", color: showThisWeek ? "#fff" : "#0077B6" }}>
-    📅 {showThisWeek ? "← Back to All" : "Happening This Week →"}
-  </button>
-  {showThisWeek && (
-    <div style={styles.thisWeekList}>
-      <div style={styles.thisWeekLabel}>May 6 – 15 · This Week in LHP</div>
-      {thisWeekEvents.map((ev) => (
-        <div key={ev.id} style={{ ...styles.musicCard, borderLeft: `4px solid ${ev.color}` }}>
-          <div style={styles.musicLeft}>
-            <div style={styles.musicEmoji}>{ev.emoji || "📅"}</div>
-            <div style={{ flex: 1 }}>
-              <div style={styles.musicTitle}>{ev.title}</div>
-              <div style={styles.musicOrg}>{ev.org}</div>
-              <div style={styles.musicMeta}><span>📅 {ev.date}</span><span>⏰ {ev.time}</span></div>
-              {ev.price && <div style={{ ...styles.musicPrice, color: ev.color }}>🎟 {ev.price}</div>}
-            </div>
+
+      <div style={styles.thisWeekWrap}>
+        <button
+          onClick={() => setShowThisWeek(!showThisWeek)}
+          style={{ ...styles.thisWeekBtn, background: showThisWeek ? "#0077B6" : "#E8F4FD", color: showThisWeek ? "#fff" : "#0077B6" }}>
+          📅 {showThisWeek ? "← Back to All" : "Happening This Week →"}
+        </button>
+        {showThisWeek && (
+          <div style={styles.thisWeekList}>
+            <div style={styles.thisWeekLabel}>May 6 - 15 · This Week in LHP</div>
+            {thisWeekEvents.map((ev) => (
+              <div key={ev.id} style={{ ...styles.musicCard, borderLeft: `4px solid ${ev.color}` }}>
+                <div style={styles.musicLeft}>
+                  <div style={styles.musicEmoji}>{ev.emoji || "📅"}</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={styles.musicTitle}>{ev.title}</div>
+                    <div style={styles.musicOrg}>{ev.org}</div>
+                    <div style={styles.musicMeta}><span>📅 {ev.date}</span><span>⏰ {ev.time}</span></div>
+                    {ev.price && <div style={{ ...styles.musicPrice, color: ev.color }}>🎟 {ev.price}</div>}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      ))}
-    </div>
-  )}
-</div>
+        )}
+      </div>
+
       {search && (
         <div style={styles.searchResultNote}>
           {filtered.length} result{filtered.length !== 1 ? "s" : ""} for "<strong>{search}</strong>"
         </div>
       )}
 
-      {/* Category Grid */}
       <div style={styles.section}>
         <div style={styles.sectionLabel}>Browse by category</div>
         <div style={styles.categoryGrid}>
@@ -359,7 +347,6 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
         </div>
       </div>
 
-      {/* Tab Bar */}
       <div style={styles.tabBarWrap}>
         <div style={styles.tabBar}>
           {sections.map((tab) => (
@@ -371,7 +358,6 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
         </div>
       </div>
 
-      {/* Register banner */}
       <div style={styles.registerBanner}>
         <span style={styles.registerText}>📋 Registration required for Library & Recreation programs</span>
         <div style={styles.registerLinks}>
@@ -380,10 +366,9 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
         </div>
       </div>
 
-      {/* BYTE & COFFEE — only when Games & Social is explicitly active */}
       {showByte && <div style={styles.byteWrap}>
         <div style={styles.byteHeader}>
-          <div style={styles.byteTitle}>☕ Byte & Coffee — Weekly Games</div>
+          <div style={styles.byteTitle}>☕ Byte & Coffee - Weekly Games</div>
           <a href="https://bytencoffee.com/events/" target="_blank" rel="noreferrer" style={styles.byteLink}>All events →</a>
         </div>
         <div style={styles.byteSub}>2424 N Federal Hwy · Coffee shop by day, game nights by evening</div>
@@ -404,35 +389,35 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
           ))}
         </div>
       </div>}
-{/* HAPPY HOUR — shows on All and Nightlife views */}
-{showHappyHour && (
-  <div style={styles.happyWrap}>
-    <div style={styles.happyHeader}>
-      <div style={styles.happyTitle}>🍹 Happy Hour Specials</div>
-      <span style={styles.happyBadge}>5 venues</span>
-    </div>
-    <div style={styles.happySub}>Local deals · Updated monthly · Free to list yours</div>
-    <div style={styles.happyList}>
-      {happyHours.map((hh) => (
-        <div key={hh.id} style={{ ...styles.happyCard, borderLeft: `4px solid ${hh.color}` }}>
-          <div style={styles.happyEmoji}>{hh.emoji}</div>
-          <div style={{ flex: 1 }}>
-            <div style={styles.happyName}>{hh.name}</div>
-            <div style={styles.happyMeta}>{hh.days} · {hh.time}</div>
-            {hh.deals.map((deal, i) => (
-              <div key={i} style={styles.happyDeal}>✓ {deal}</div>
+
+      {showHappyHour && (
+        <div style={styles.happyWrap}>
+          <div style={styles.happyHeader}>
+            <div style={styles.happyTitle}>🍹 Happy Hour Specials</div>
+            <span style={styles.happyBadge}>5 venues</span>
+          </div>
+          <div style={styles.happySub}>Local deals · Updated monthly · Free to list yours</div>
+          <div style={styles.happyList}>
+            {happyHours.map((hh) => (
+              <div key={hh.id} style={{ ...styles.happyCard, borderLeft: `4px solid ${hh.color}` }}>
+                <div style={styles.happyEmoji}>{hh.emoji}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={styles.happyName}>{hh.name}</div>
+                  <div style={styles.happyMeta}>{hh.days} · {hh.time}</div>
+                  {hh.deals.map((deal, i) => (
+                    <div key={i} style={styles.happyDeal}>✓ {deal}</div>
+                  ))}
+                </div>
+                <span style={{ ...styles.happyLoc, color: hh.color, background: hh.color + "15" }}>{hh.location}</span>
+              </div>
             ))}
           </div>
-          <span style={{ ...styles.happyLoc, color: hh.color, background: hh.color + "15" }}>{hh.location}</span>
+          <div style={styles.happyFooter}>
+            Own a bar or restaurant? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={styles.happySubmit}>Submit your specials free →</a>
+          </div>
         </div>
-      ))}
-    </div>
-    <div style={styles.happyFooter}>
-      Own a bar or restaurant? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={styles.happySubmit}>Submit your specials free →</a>
-    </div>
-  </div>
-)}
-      {/* LIVE MUSIC — only on All and Nightlife views */}
+      )}
+
       {showMusic && <div style={styles.featuredWrap}>
         <div style={styles.featuredHeader}>
           <div style={styles.featuredLabel}>🎶 LIVE MUSIC IN MAY</div>
@@ -445,8 +430,8 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
             ))}
           </div>
         </div>
-        {musicVenue === "papas" && <div style={styles.venueInfo}>🦞 <strong>Papa's Raw Bar</strong> — 4610 N Federal Hwy · Fri/Sat 7–10 PM · Sun 1–4 PM</div>}
-        {musicVenue === "nautidawg" && <div style={styles.venueInfo}>⚓ <strong>The Nauti Dawg Marina Cafe</strong> — B Dock · Fri & Sun 5:30–9:30 PM</div>}
+        {musicVenue === "papas" && <div style={styles.venueInfo}>🦞 <strong>Papa's Raw Bar</strong> — 4610 N Federal Hwy · Fri/Sat 7-10 PM · Sun 1-4 PM</div>}
+        {musicVenue === "nautidawg" && <div style={styles.venueInfo}>⚓ <strong>The Nauti Dawg Marina Cafe</strong> — B Dock · Fri & Sun 5:30-9:30 PM</div>}
         {musicVenue === "packys" && <div style={styles.venueInfo}>🍺 <strong>Packy's Sports Pub</strong> — Lighthouse Point · Live music nights vary</div>}
         {musicVenue === "galuppis" && <div style={styles.venueInfo}>🎸 <strong>Galuppi's</strong> — Pompano Beach · <a href="https://www.galuppis.com/live-music-schedule/" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>Full schedule →</a></div>}
         {musicVenue === "cove" && <div style={styles.venueInfo}>🍻 <strong>Cove Brewery</strong> — 1500 SE 3rd Ct, Deerfield Beach · Craft beer, live music & weekly events</div>}
@@ -474,7 +459,6 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
         </div>
       </div>}
 
-      {/* GARAGE & YARD SALES SECTION */}
       {showSales && (
         <div style={styles.salesWrap}>
           <div style={styles.salesHeader}>
@@ -493,15 +477,10 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
         </div>
       )}
 
-      {/* Events List */}
       <div style={styles.section}>
         <div style={styles.eventsHeader}>
           <div style={styles.sectionLabel}>
-            {activeCategory
-              ? activeCat?.label
-              : search
-              ? "Search Results"
-              : "All Events & Programs"}
+            {activeCategory ? activeCat?.label : search ? "Search Results" : "All Events & Programs"}
           </div>
           <div style={styles.eventCount}>{filtered.length} found</div>
         </div>
@@ -536,7 +515,6 @@ const thisWeekEvents = [...allEvents, ...featuredEvents].filter(e => e.thisWeek)
         </div>
       </div>
 
-      {/* Footer */}
       <div style={styles.footer}>
         <div style={styles.footerIcon}>📚</div>
         <div style={styles.footerText}>Lighthouse Point Library</div>
@@ -646,23 +624,23 @@ const styles = {
   tag: { background: "#E8F4FD", color: "#0096C7", fontSize: 10, fontWeight: 700, borderRadius: 6, padding: "2px 7px" },
   ctaBtn: { display: "inline-block", color: "#fff", borderRadius: 10, padding: "7px 14px", fontSize: 12, fontWeight: 800, cursor: "pointer", textDecoration: "none" },
   happyWrap: { margin: "16px 16px 0", background: "#fff", borderRadius: 18, padding: "16px", boxShadow: "0 2px 14px rgba(230,150,0,0.10)", border: "2px solid #FFF3E0" },
-happyHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 },
-happyTitle: { fontWeight: 900, fontSize: 15, color: "#E07A1F" },
-happyBadge: { background: "#FEF3E7", color: "#E07A1F", fontSize: 11, fontWeight: 700, borderRadius: 10, padding: "3px 10px" },
-happySub: { fontSize: 11, color: "#aaa", fontWeight: 500, marginBottom: 12 },
-happyList: { display: "flex", flexDirection: "column", gap: 10 },
-happyCard: { background: "#FAFAFA", borderRadius: 12, padding: "12px", display: "flex", gap: 10, alignItems: "flex-start" },
-happyEmoji: { fontSize: 22, flexShrink: 0, marginTop: 2 },
-happyName: { fontWeight: 800, fontSize: 13, color: "#023E8A", marginBottom: 2 },
-happyMeta: { fontSize: 11, color: "#7aabb8", fontWeight: 600, marginBottom: 5 },
-happyDeal: { fontSize: 12, color: "#444", fontWeight: 600, marginBottom: 2 },
-happyLoc: { fontSize: 10, fontWeight: 700, borderRadius: 8, padding: "3px 8px", whiteSpace: "nowrap", alignSelf: "flex-start", marginTop: 2 },
-happyFooter: { marginTop: 12, fontSize: 11, color: "#aaa", textAlign: "center" },
-happySubmit: { color: "#E07A1F", fontWeight: 800, textDecoration: "none" },
+  happyHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 },
+  happyTitle: { fontWeight: 900, fontSize: 15, color: "#E07A1F" },
+  happyBadge: { background: "#FEF3E7", color: "#E07A1F", fontSize: 11, fontWeight: 700, borderRadius: 10, padding: "3px 10px" },
+  happySub: { fontSize: 11, color: "#aaa", fontWeight: 500, marginBottom: 12 },
+  happyList: { display: "flex", flexDirection: "column", gap: 10 },
+  happyCard: { background: "#FAFAFA", borderRadius: 12, padding: "12px", display: "flex", gap: 10, alignItems: "flex-start" },
+  happyEmoji: { fontSize: 22, flexShrink: 0, marginTop: 2 },
+  happyName: { fontWeight: 800, fontSize: 13, color: "#023E8A", marginBottom: 2 },
+  happyMeta: { fontSize: 11, color: "#7aabb8", fontWeight: 600, marginBottom: 5 },
+  happyDeal: { fontSize: 12, color: "#444", fontWeight: 600, marginBottom: 2 },
+  happyLoc: { fontSize: 10, fontWeight: 700, borderRadius: 8, padding: "3px 8px", whiteSpace: "nowrap", alignSelf: "flex-start", marginTop: 2 },
+  happyFooter: { marginTop: 12, fontSize: 11, color: "#aaa", textAlign: "center" },
+  happySubmit: { color: "#E07A1F", fontWeight: 800, textDecoration: "none" },
   thisWeekWrap: { margin: "12px 16px 0" },
-thisWeekBtn: { border: "none", borderRadius: 20, padding: "9px 20px", fontSize: 13, fontWeight: 800, cursor: "pointer", width: "100%", transition: "all 0.15s" },
-thisWeekList: { marginTop: 12 },
-thisWeekLabel: { fontSize: 11, fontWeight: 900, color: "#0077B6", letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 10 },
+  thisWeekBtn: { border: "none", borderRadius: 20, padding: "9px 20px", fontSize: 13, fontWeight: 800, cursor: "pointer", width: "100%", transition: "all 0.15s" },
+  thisWeekList: { marginTop: 12 },
+  thisWeekLabel: { fontSize: 11, fontWeight: 900, color: "#0077B6", letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 10 },
   footer: { margin: "24px 16px 0", background: "linear-gradient(135deg, #023E8A 0%, #0096C7 100%)", borderRadius: 20, padding: "22px 20px", textAlign: "center" },
   footerIcon: { fontSize: 28, marginBottom: 6 },
   footerText: { color: "#fff", fontSize: 15, fontWeight: 800, marginBottom: 4 },
