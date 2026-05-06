@@ -174,6 +174,9 @@ const events = [
   { id: 2, title: "OneBlood Mobile Blood Drive", org: "Dan Witt Park", category: ["community"], date: "Sat, May 16", time: "8:30 – 11:30 AM", location: "Dan Witt Park", price: "Free · Donors get $20 e-gift card + Sunshade + Wellness Check", color: "#0077B6", tags: ["community", "volunteer", "free"], note: "Appointments preferred, walk-ins welcome", ages: null, link: null },
   { id: 3, title: "Farmers Market at Dan Witt Park", org: "City of Lighthouse Point", category: ["families", "community", "seniors"], date: "Sun, May 17", time: "9:00 AM – 12:30 PM", location: "Dan Witt Park", price: "Free", color: "#52B788", tags: ["food", "outdoor", "community", "free"], note: "Limited parking · No dogs in park", ages: null, link: null },
   { id: 4, title: "Tip-A-Cop", org: "Bonefish Mac's Sports Grille", category: ["community", "families"], date: "Tue, May 19", time: "4:00 – 9:00 PM", location: "Bonefish Mac's Sports Grille", price: "Dine out & support Special Olympics", color: "#0096C7", tags: ["dining", "fundraiser", "community"], note: null, ages: null, link: null },
+  { id: "sale1", title: "Submit Your Garage or Yard Sale 🏡", ...},
+{ id: "bingo1", title: "Norcrest PTA Bingo Night 🎱", ...},
+];
   // FITNESS
   { id: 8, title: "Mat Yogalates (Weekly)", org: "John Trudel Community Center", category: ["fitness", "seniors"], date: "Tuesdays & Fridays", time: "9:00 – 10:00 AM", location: "John Trudel Community Center", price: "$10/class", color: "#52B788", tags: ["yoga", "pilates", "weekly"], note: null, ages: null, link: "https://lhp.recdesk.com" },
   { id: 9, title: "Chair Yoga (Weekly)", org: "John Trudel Community Center", category: ["fitness", "seniors"], date: "Wednesdays & Fridays", time: "10:30 – 11:30 AM", location: "John Trudel Community Center", price: "$10 res / $20 non-res", color: "#52B788", tags: ["yoga", "seniors", "weekly"], note: null, ages: null, link: "https://lhp.recdesk.com" },
