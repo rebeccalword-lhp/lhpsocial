@@ -134,7 +134,7 @@ const featuredEvents = [
   { id: "cove9", venue: "cove", title: "Cinco at the Cove — All Day Celebration", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Tue, May 5", time: "All Day", price: "Specials all day", emoji: "🎉", note: "Cinco de Mayo all day celebration", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "community"] },
   { id: "cove10", venue: "cove", title: "Mother's Day Brunch & Blooms", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Sat, May 9", time: "12:00 PM", price: "See website", emoji: "🌸", note: "Special Mother's Day brunch with blooms — treat mom to something special!", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "families", "seniors"] },
   { id: "cove11", venue: "cove", title: "Cove Brewery x Won-Tom's — 5 Course Dinner Pairing", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Wed, May 13", time: "6:30 PM", price: "Ticketed — see website", emoji: "🍽️", note: "5 course dinner paired with Cove beers in collaboration with Won-Tom's", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "seniors"] },
-];
+{ id: "elks1", venue: "all", title: "Live Music by Sherlock Homies 🎸", org: "Pompano Beach Elks Lodge · 4000 NE 10th Way, Pompano Beach", date: "Thu, May 8", time: "6:00 PM", price: "Free", emoji: "🎸", note: "Acoustic music by Sherlock Homies & friends — Jay Marienthal, Lyla Marienthal, Craig Pugatch", link: null, color: "#52B788", category: ["nightlife"] },];
 
 // ✅ Byte & Coffee events are SEPARATE — NOT in allEvents
 // They only appear in the dedicated Byte & Coffee block, which shows only when social is active
