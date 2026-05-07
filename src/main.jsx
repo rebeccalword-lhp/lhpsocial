@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import LHPApp from './LHPApp'
+import LHPApp from './lhp-app'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
