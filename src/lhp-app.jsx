@@ -242,6 +242,7 @@ export default function LHPApp() {
   const [installPrompt, setInstallPrompt] = useState(null);
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [installed, setInstalled] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -558,7 +559,34 @@ export default function LHPApp() {
         <div style={styles.footerDivider} />
         <div style={styles.footerText2}>Own a local business? List your events & deals.</div>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={{ ...styles.footerBtn2, display: "block", textDecoration: "none", textAlign: "center" }}>+ Submit an Event or Special</a>
+        <div style={styles.footerDivider} />
+        <div style={styles.footerDisclaimer}>
+          LHP Social is an independent community platform and is not affiliated with or operated by the City of Lighthouse Point.
+        </div>
+        <button onClick={() => setShowPrivacy(true)} style={styles.privacyLink}>Privacy Policy</button>
+        <div style={styles.footerCopyright}>© 2026 lhpsocial.com</div>
       </div>
+
+      {showPrivacy && (
+        <div style={styles.modalOverlay} onClick={() => setShowPrivacy(false)}>
+          <div style={styles.modalBox} onClick={(e) => e.stopPropagation()}>
+            <div style={styles.modalHeader}>
+              <div style={styles.modalTitle}>Privacy Policy</div>
+              <button style={styles.modalClose} onClick={() => setShowPrivacy(false)}>✕</button>
+            </div>
+            <div style={styles.modalBody}>
+              <p style={styles.modalSection}>LHP Social respects your privacy.</p>
+              <p style={styles.modalSection}>Information submitted through contact forms or event submissions may include names, email addresses, event details, or other information voluntarily provided by users. This information is used only for reviewing event submissions, responding to inquiries, and communicating about posted events or updates.</p>
+              <p style={styles.modalSection}>LHP Social does not sell personal information to third parties.</p>
+              <p style={styles.modalSection}>Basic website analytics (Google Analytics) may be used to understand website traffic and improve the user experience.</p>
+              <p style={styles.modalSection}>Users should avoid submitting sensitive personal information through forms on this website.</p>
+              <div style={styles.modalDivider} />
+              <p style={styles.modalDisclaimer}>LHP Social is an independent community platform and is not affiliated with or operated by the City of Lighthouse Point. While we try to keep information accurate and current, event details may change. Visitors should confirm dates, times, and locations directly with event organizers.</p>
+              <p style={styles.modalContact}>Questions? Contact: <a href="mailto:hello@lhpsocial.com" style={{ color: "#0096C7", fontWeight: 700 }}>hello@lhpsocial.com</a></p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -662,6 +690,19 @@ const styles = {
   footerDivider: { height: 1, background: "rgba(255,255,255,0.15)", margin: "14px 0" },
   footerText2: { color: "rgba(255,255,255,0.8)", fontSize: 13, fontWeight: 600, marginBottom: 10, marginTop: 4 },
   footerBtn2: { background: "rgba(255,255,255,0.15)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 12, padding: "10px 24px", fontWeight: 800, fontSize: 13, cursor: "pointer", width: "100%" },
+  footerDisclaimer: { color: "rgba(255,255,255,0.6)", fontSize: 11, fontWeight: 500, lineHeight: 1.5, marginTop: 4, padding: "0 4px" },
+  privacyLink: { background: "none", border: "none", color: "rgba(255,255,255,0.55)", fontSize: 11, fontWeight: 700, cursor: "pointer", textDecoration: "underline", marginTop: 8, padding: 0 },
+  footerCopyright: { color: "rgba(255,255,255,0.4)", fontSize: 10, marginTop: 6 },
+  modalOverlay: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "flex-end", justifyContent: "center" },
+  modalBox: { background: "#fff", borderRadius: "20px 20px 0 0", width: "100%", maxWidth: 480, maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" },
+  modalHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 20px 14px", borderBottom: "1px solid #E8F4FD" },
+  modalTitle: { fontWeight: 900, fontSize: 16, color: "#023E8A" },
+  modalClose: { background: "none", border: "none", fontSize: 18, color: "#aaa", cursor: "pointer", padding: 4 },
+  modalBody: { overflowY: "auto", padding: "16px 20px 32px" },
+  modalSection: { fontSize: 13, color: "#444", lineHeight: 1.6, marginBottom: 12 },
+  modalDivider: { height: 1, background: "#E8F4FD", margin: "14px 0" },
+  modalDisclaimer: { fontSize: 12, color: "#7aabb8", fontStyle: "italic", lineHeight: 1.6, marginBottom: 10 },
+  modalContact: { fontSize: 12, color: "#555", marginTop: 8 },
   installBanner: { margin: "12px 16px 0", background: "#fff", borderRadius: 14, padding: "12px 14px", boxShadow: "0 2px 16px rgba(0,80,140,0.12)", border: "1.5px solid #E0F4FB", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 },
   installBannerLeft: { display: "flex", alignItems: "center", gap: 10, flex: 1 },
   installIcon: { width: 40, height: 40, borderRadius: 11, background: "linear-gradient(135deg, #023E8A, #0096C7)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 },
