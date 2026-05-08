@@ -75,7 +75,6 @@ const venues = [
   { id: "dangminds", label: "🧠 Dangerous Minds" },
 ];
 
-
 const featuredEvents = [
   { id: "pk1", venue: "packys", title: "South58 @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP · 954-657-8423", date: "Fri, May 1", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
   { id: "pk2", venue: "packys", title: "Havoc 305 @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 2", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
@@ -141,8 +140,6 @@ const featuredEvents = [
   { id: "dm10", venue: "dangminds", title: "Tim Solo @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Sun, May 31", time: "4:00 – 7:00 PM", price: "Free", emoji: "🎵", note: null, link: "https://dangerousmindsbrewing.com/event/1942", color: "#52B788", category: ["nightlife"] },
 ];
 
-// ✅ Byte & Coffee events are SEPARATE — NOT in allEvents
-// They only appear in the dedicated Byte & Coffee block, which shows only when social is active
 const byteEvents = [
   { id: "b1", title: "Backgammon Night ♟️", org: "Byte & Coffee · 2424 N Federal Hwy, Lighthouse Point", category: ["social"], date: "Every Friday", time: "6:00 – 9:00 PM", location: "Byte & Coffee, Lighthouse Point", price: "Free · Food & drinks available", color: "#48CAE4", tags: ["backgammon", "games", "weekly", "social"], note: "All skill levels welcome. Casual evening of backgammon, drinks & good vibes.", ages: null, link: "https://bytencoffee.com/events/" },
   { id: "b2", title: "Board Game Night 🎲", org: "Byte & Coffee · 2424 N Federal Hwy, Lighthouse Point", category: ["social"], date: "Every Friday", time: "6:00 – 9:00 PM", location: "Byte & Coffee, Lighthouse Point", price: "Free · 10% off drinks while you play", color: "#48CAE4", tags: ["board-games", "games", "weekly", "social"], note: "Grab a seat, choose a game, enjoy 10% off drinks!", ages: null, link: "https://bytencoffee.com/events/" },
@@ -222,11 +219,10 @@ const events = [
   { id: "dm_din1", title: "Special Dinner: Hearty Vegetable Goulash 🍲", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["nightlife", "community"], date: "Wed, May 13", time: "6:00 – 9:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "$18 · Reservations required — call (954) 520-3000", color: "#0096C7", tags: ["dinner", "food", "special", "reservations"], note: "Hungarian-inspired tomato & paprika stew with beans & vegetables, served with spent grain bread. Add crispy pork cutlet for $5.", ages: null, link: "https://dangerousmindsbrewing.com/event/1978" },
   { id: "dm_din2", title: "Special Dinner: Buffalo Chicken Pizza Sandwich 🍗", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["nightlife", "community"], date: "Wed, May 20", time: "6:00 – 9:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "$16 · While supplies last", color: "#0096C7", tags: ["dinner", "food", "special"], note: "Crispy fried chicken, banana peppers & buffalo sauce with Gorgonzola & mozzarella stuffed in pizza dough. Served with celery & kettle chips.", ages: null, link: "https://dangerousmindsbrewing.com/event/1976" },
   { id: "dm_din3", title: "Special Dinner: Goan Fish Curry 🍛", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["nightlife", "community"], date: "Wed, May 27", time: "6:00 – 9:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "$24 · Reservations required — call (954) 520-3000", color: "#0096C7", tags: ["dinner", "food", "special", "reservations"], note: "Coastal Indian curry with Mahi Mahi, coconut cream & toasted spices. Served with basmati rice & garlic naan.", ages: null, link: "https://dangerousmindsbrewing.com/event/1977" },
-  // ✅ NEW: Garage & Yard Sales
+  // GARAGE & YARD SALES
   { id: "sale1", title: "Submit Your Garage or Yard Sale 🏡", org: "LHP Community Guide", category: ["sales"], date: "Ongoing — submit anytime", time: "Varies", location: "Lighthouse Point & surrounding area", price: "Free to list", color: "#E07A1F", tags: ["garage-sale", "yard-sale", "deals", "local", "free"], note: "Have a sale coming up? Submit it free and let your neighbors find it!", ages: null, link: "https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" },
 ];
 
-// ✅ allEvents does NOT contain byteEvents — they are rendered separately only in the social section
 const allEvents = [...events];
 
 export default function LHPApp() {
@@ -247,20 +243,16 @@ export default function LHPApp() {
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [installed, setInstalled] = useState(false);
 
-  // Register service worker & capture install prompt
   useEffect(() => {
-    // Register the service worker
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/service-worker.js").catch(() => {});
     }
-    // Capture the browser's install prompt event
     const handler = (e) => {
       e.preventDefault();
       setInstallPrompt(e);
       setShowInstallBanner(true);
     };
     window.addEventListener("beforeinstallprompt", handler);
-    // Detect if already installed
     if (window.matchMedia("(display-mode: standalone)").matches) {
       setInstalled(true);
     }
@@ -278,7 +270,6 @@ export default function LHPApp() {
     setInstallPrompt(null);
   };
 
-  // Sort priority: 1 = LHP Rec / John Trudel, 2 = Library, 3 = everything else
   const eventPriority = (e) => {
     const org = e.org.toLowerCase();
     if (org.includes("john trudel") || org.includes("lhp rec") || org.includes("lhp recreation") || org.includes("lhp tennis") || org.includes("dan witt") || org.includes("city of lighthouse point") || org.includes("fletcher hall")) return 1;
@@ -313,7 +304,6 @@ export default function LHPApp() {
 
   return (
     <div style={styles.root}>
-      {/* Header */}
       <div style={styles.header}>
         <div style={styles.waveBg} />
         <div style={styles.headerInner}>
@@ -347,7 +337,6 @@ export default function LHPApp() {
         <div style={styles.tagline}>🌊 Real events, programs & news from your city</div>
       </div>
 
-      {/* PWA Install Banner */}
       {showInstallBanner && !installed && (
         <div style={styles.installBanner}>
           <div style={styles.installBannerLeft}>
@@ -366,7 +355,6 @@ export default function LHPApp() {
         </div>
       )}
 
-      {/* Search — live filtering, shows result count when active */}
       <div style={styles.searchWrap}>
         <span style={styles.searchIcon}>🔍</span>
         <input
@@ -383,16 +371,17 @@ export default function LHPApp() {
         </div>
       )}
 
-      {/* Category Grid */}
       <div style={styles.section}>
         <div style={styles.sectionLabel}>Browse by category</div>
         <div style={styles.categoryGrid}>
           {categories.map((cat) => (
-            <button key={cat.id} onClick={() => {
-  const newCat = activeCategory === cat.id ? null : cat.id;
-  trackCategoryClick(newCat || "all");
-  setActiveCategory(newCat);
-}}
+            <button
+              key={cat.id}
+              onClick={() => {
+                const newCat = activeCategory === cat.id ? null : cat.id;
+                trackCategoryClick(newCat || "all");
+                setActiveCategory(newCat);
+              }}
               style={{ ...styles.categoryCard, background: activeCategory === cat.id ? cat.color : cat.bg, border: `2.5px solid ${activeCategory === cat.id ? cat.color : "transparent"}`, transform: activeCategory === cat.id ? "scale(1.04)" : "scale(1)", boxShadow: activeCategory === cat.id ? `0 6px 20px ${cat.color}40` : "0 2px 8px rgba(0,100,160,0.07)" }}>
               <div style={{ marginBottom: 6 }}>
                 <CatIcon id={cat.id} color={activeCategory === cat.id ? "rgba(255,255,255,0.95)" : cat.color} size={26} />
@@ -404,15 +393,16 @@ export default function LHPApp() {
         </div>
       </div>
 
-      {/* Tab Bar */}
       <div style={styles.tabBarWrap}>
         <div style={styles.tabBar}>
           {sections.map((tab) => (
-            <button key={tab.id} onClick={() => {
-  const newCat = tab.id === "all" ? null : tab.id;
-  trackCategoryClick(tab.id);
-  setActiveCategory(newCat);
-}}
+            <button
+              key={tab.id}
+              onClick={() => {
+                const newCat = tab.id === "all" ? null : tab.id;
+                trackCategoryClick(tab.id);
+                setActiveCategory(newCat);
+              }}
               style={{ ...styles.tab, background: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? "#0077B6" : "#E8F4FD", color: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? "#fff" : "#0077B6", fontWeight: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? 800 : 600 }}>
               {tab.label}
             </button>
@@ -420,7 +410,6 @@ export default function LHPApp() {
         </div>
       </div>
 
-      {/* Register banner */}
       <div style={styles.registerBanner}>
         <span style={styles.registerText}>📋 Registration required for Library & Recreation programs</span>
         <div style={styles.registerLinks}>
@@ -429,75 +418,78 @@ export default function LHPApp() {
         </div>
       </div>
 
-      {/* BYTE & COFFEE — only when Games & Social is explicitly active */}
-      {showByte && <div style={styles.byteWrap}>
-        <div style={styles.byteHeader}>
-          <div style={styles.byteTitle}>☕ Byte & Coffee — Weekly Games</div>
-          <a href="https://bytencoffee.com/events/" target="_blank" rel="noreferrer" style={styles.byteLink}>All events →</a>
-        </div>
-        <div style={styles.byteSub}>2424 N Federal Hwy · Coffee shop by day, game nights by evening</div>
-        <div style={styles.byteCards}>
-          {byteEvents.map((ev) => (
-            <div key={ev.id} style={styles.byteCard}>
-              <div style={styles.byteCardEmoji}>{ev.id === "b3" ? "🀄" : ev.id === "b1" ? "♟️" : "🎲"}</div>
-              <div style={{ flex: 1 }}>
-                <div style={styles.byteCardTitle}>{ev.title}</div>
-                <div style={styles.byteCardTime}>{ev.date} · {ev.time}</div>
-                <div style={styles.byteCardNote}>{ev.note}</div>
-                <div style={{ ...styles.byteCardPrice, color: ev.color }}>🎟 {ev.price}</div>
+      {showByte && (
+        <div style={styles.byteWrap}>
+          <div style={styles.byteHeader}>
+            <div style={styles.byteTitle}>☕ Byte & Coffee — Weekly Games</div>
+            <a href="https://bytencoffee.com/events/" target="_blank" rel="noreferrer" style={styles.byteLink}>All events →</a>
+          </div>
+          <div style={styles.byteSub}>2424 N Federal Hwy · Coffee shop by day, game nights by evening</div>
+          <div style={styles.byteCards}>
+            {byteEvents.map((ev) => (
+              <div key={ev.id} style={styles.byteCard}>
+                <div style={styles.byteCardEmoji}>{ev.id === "b3" ? "🀄" : ev.id === "b1" ? "♟️" : "🎲"}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={styles.byteCardTitle}>{ev.title}</div>
+                  <div style={styles.byteCardTime}>{ev.date} · {ev.time}</div>
+                  <div style={styles.byteCardNote}>{ev.note}</div>
+                  <div style={{ ...styles.byteCardPrice, color: ev.color }}>🎟 {ev.price}</div>
+                </div>
+                <button onClick={() => toggleSave(ev.id)} style={{ ...styles.byteCardSave, color: savedEvents.includes(ev.id) ? ev.color : "#ddd" }}>
+                  {savedEvents.includes(ev.id) ? "♥" : "♡"}
+                </button>
               </div>
-              <button onClick={() => toggleSave(ev.id)} style={{ ...styles.byteCardSave, color: savedEvents.includes(ev.id) ? ev.color : "#ddd" }}>
-                {savedEvents.includes(ev.id) ? "♥" : "♡"}
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>}
-
-      {/* LIVE MUSIC — only on All and Nightlife views */}
-      {showMusic && <div style={styles.featuredWrap}>
-        <div style={styles.featuredHeader}>
-          <div style={styles.featuredLabel}>🎶 LIVE MUSIC IN MAY</div>
-          <div style={styles.venueToggle}>
-            {venues.map(({ id, label }) => (
-              <button key={id} onClick={() => setMusicVenue(id)}
-                style={{ ...styles.venueBtn, background: musicVenue === id ? "#0077B6" : "#E8F4FD", color: musicVenue === id ? "#fff" : "#0077B6", fontWeight: musicVenue === id ? 800 : 600 }}>
-                {label}
-              </button>
             ))}
           </div>
         </div>
-        {musicVenue === "papas" && <div style={styles.venueInfo}>🦞 <strong>Papa's Raw Bar</strong> — 4610 N Federal Hwy · Fri/Sat 7–10 PM · Sun 1–4 PM</div>}
-        {musicVenue === "nautidawg" && <div style={styles.venueInfo}>⚓ <strong>The Nauti Dawg Marina Cafe</strong> — B Dock · Fri & Sun 5:30–9:30 PM</div>}
-        {musicVenue === "packys" && <div style={styles.venueInfo}>🍺 <strong>Packy's Sports Pub</strong> — Lighthouse Point · Live music nights vary</div>}
-        {musicVenue === "galuppis" && <div style={styles.venueInfo}>🎸 <strong>Galuppi's</strong> — Pompano Beach · <a href="https://www.galuppis.com/live-music-schedule/" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>Full schedule →</a></div>}
-        {musicVenue === "cove" && <div style={styles.venueInfo}>🍻 <strong>Cove Brewery</strong> — 1500 SE 3rd Ct, Deerfield Beach · Craft beer, live music & weekly events</div>}
-        {musicVenue === "dangminds" && <div style={styles.venueInfo}>🧠 <strong>Dangerous Minds Brewing</strong> — 1901 N Federal Hwy, Pompano Beach · Tue–Sun 1–10 PM · <a href="https://dangerousmindsbrewing.com" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>dangerousmindsbrewing.com →</a></div>}
-        <div style={styles.musicList}>
-          {visibleMusic.map((ev) => (
-            <div key={ev.id} style={{ ...styles.musicCard, borderLeft: `4px solid ${ev.color}` }}>
-              <div style={styles.musicLeft}>
-                <div style={styles.musicEmoji}>{ev.emoji}</div>
-                <div style={{ flex: 1 }}>
-                  <div style={styles.musicTitle}>{ev.title}</div>
-                  <div style={styles.musicOrg}>{ev.org}</div>
-                  <div style={styles.musicMeta}><span>📅 {ev.date}</span><span>⏰ {ev.time}</span></div>
-                  {ev.note && <div style={styles.musicNote}>ℹ️ {ev.note}</div>}
-                  <div style={styles.musicBottom}>
-                    <span style={{ ...styles.musicPrice, color: ev.color }}>🎟 {ev.price}</span>
-                    {ev.link && <a href={ev.link} target="_blank" rel="noreferrer" style={{ ...styles.musicLink, color: ev.color }}>More Info →</a>}
+      )}
+
+      {showMusic && (
+        <div style={styles.featuredWrap}>
+          <div style={styles.featuredHeader}>
+            <div style={styles.featuredLabel}>🎶 LIVE MUSIC IN MAY</div>
+            <div style={styles.venueToggle}>
+              {venues.map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => setMusicVenue(id)}
+                  style={{ ...styles.venueBtn, background: musicVenue === id ? "#0077B6" : "#E8F4FD", color: musicVenue === id ? "#fff" : "#0077B6", fontWeight: musicVenue === id ? 800 : 600 }}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          {musicVenue === "papas" && <div style={styles.venueInfo}>🦞 <strong>Papa's Raw Bar</strong> — 4610 N Federal Hwy · Fri/Sat 7–10 PM · Sun 1–4 PM</div>}
+          {musicVenue === "nautidawg" && <div style={styles.venueInfo}>⚓ <strong>The Nauti Dawg Marina Cafe</strong> — B Dock · Fri & Sun 5:30–9:30 PM</div>}
+          {musicVenue === "packys" && <div style={styles.venueInfo}>🍺 <strong>Packy's Sports Pub</strong> — Lighthouse Point · Live music nights vary</div>}
+          {musicVenue === "galuppis" && <div style={styles.venueInfo}>🎸 <strong>Galuppi's</strong> — Pompano Beach · <a href="https://www.galuppis.com/live-music-schedule/" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>Full schedule →</a></div>}
+          {musicVenue === "cove" && <div style={styles.venueInfo}>🍻 <strong>Cove Brewery</strong> — 1500 SE 3rd Ct, Deerfield Beach · Craft beer, live music & weekly events</div>}
+          {musicVenue === "dangminds" && <div style={styles.venueInfo}>🧠 <strong>Dangerous Minds Brewing</strong> — 1901 N Federal Hwy, Pompano Beach · Tue–Sun 1–10 PM · <a href="https://dangerousmindsbrewing.com" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>dangerousmindsbrewing.com →</a></div>}
+          <div style={styles.musicList}>
+            {visibleMusic.map((ev) => (
+              <div key={ev.id} style={{ ...styles.musicCard, borderLeft: `4px solid ${ev.color}` }}>
+                <div style={styles.musicLeft}>
+                  <div style={styles.musicEmoji}>{ev.emoji}</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={styles.musicTitle}>{ev.title}</div>
+                    <div style={styles.musicOrg}>{ev.org}</div>
+                    <div style={styles.musicMeta}><span>📅 {ev.date}</span><span>⏰ {ev.time}</span></div>
+                    {ev.note && <div style={styles.musicNote}>ℹ️ {ev.note}</div>}
+                    <div style={styles.musicBottom}>
+                      <span style={{ ...styles.musicPrice, color: ev.color }}>🎟 {ev.price}</span>
+                      {ev.link && <a href={ev.link} target="_blank" rel="noreferrer" style={{ ...styles.musicLink, color: ev.color }}>More Info →</a>}
+                    </div>
                   </div>
                 </div>
+                <button onClick={() => toggleSave(ev.id)} style={{ ...styles.musicSave, color: savedEvents.includes(ev.id) ? ev.color : "#cce4f0" }}>
+                  {savedEvents.includes(ev.id) ? "♥" : "♡"}
+                </button>
               </div>
-              <button onClick={() => toggleSave(ev.id)} style={{ ...styles.musicSave, color: savedEvents.includes(ev.id) ? ev.color : "#cce4f0" }}>
-                {savedEvents.includes(ev.id) ? "♥" : "♡"}
-              </button>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>}
+      )}
 
-      {/* GARAGE & YARD SALES SECTION */}
       {showSales && (
         <div style={styles.salesWrap}>
           <div style={styles.salesHeader}>
@@ -516,15 +508,10 @@ export default function LHPApp() {
         </div>
       )}
 
-      {/* Events List */}
       <div style={styles.section}>
         <div style={styles.eventsHeader}>
           <div style={styles.sectionLabel}>
-            {activeCategory
-              ? activeCat?.label
-              : search
-              ? "Search Results"
-              : "All Events & Programs"}
+            {activeCategory ? activeCat?.label : search ? "Search Results" : "All Events & Programs"}
           </div>
           <div style={styles.eventCount}>{filtered.length} found</div>
         </div>
@@ -559,7 +546,6 @@ export default function LHPApp() {
         </div>
       </div>
 
-      {/* Footer */}
       <div style={styles.footer}>
         <div style={styles.footerIcon}>📚</div>
         <div style={styles.footerText}>Lighthouse Point Library</div>
@@ -571,7 +557,7 @@ export default function LHPApp() {
         <a href="https://lhp.recdesk.com/Community/Home" target="_blank" rel="noreferrer" style={{ ...styles.footerBtn, background: "rgba(255,255,255,0.15)", border: "1.5px solid rgba(255,255,255,0.3)" }}>Register at lhp.recdesk.com →</a>
         <div style={styles.footerDivider} />
         <div style={styles.footerText2}>Own a local business? List your events & deals.</div>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={{...styles.footerBtn2, display: "block", textDecoration: "none", textAlign: "center"}}>+ Submit an Event or Special</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={{ ...styles.footerBtn2, display: "block", textDecoration: "none", textAlign: "center" }}>+ Submit an Event or Special</a>
       </div>
     </div>
   );
