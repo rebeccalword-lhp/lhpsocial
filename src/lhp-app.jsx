@@ -243,6 +243,7 @@ export default function LHPApp() {
   const [showInstallBanner, setShowInstallBanner] = useState(false);
   const [installed, setInstalled] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -563,7 +564,11 @@ export default function LHPApp() {
         <div style={styles.footerDisclaimer}>
           LHP Social is an independent community platform and is not affiliated with or operated by the City of Lighthouse Point.
         </div>
-        <button onClick={() => setShowPrivacy(true)} style={styles.privacyLink}>Privacy Policy</button>
+        <div style={styles.footerLinkRow}>
+          <button onClick={() => setShowAbout(true)} style={styles.privacyLink}>About</button>
+          <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 11 }}>·</span>
+          <button onClick={() => setShowPrivacy(true)} style={styles.privacyLink}>Privacy Policy</button>
+        </div>
         <div style={styles.footerCopyright}>© 2026 lhpsocial.com</div>
       </div>
 
@@ -583,6 +588,28 @@ export default function LHPApp() {
               <div style={styles.modalDivider} />
               <p style={styles.modalDisclaimer}>LHP Social is an independent community platform and is not affiliated with or operated by the City of Lighthouse Point. While we try to keep information accurate and current, event details may change. Visitors should confirm dates, times, and locations directly with event organizers.</p>
               <p style={styles.modalContact}>Questions? Contact: <a href="mailto:hello@lhpsocial.com" style={{ color: "#0096C7", fontWeight: 700 }}>hello@lhpsocial.com</a></p>
+            </div>
+          </div>
+        </div>
+      )}
+      {showAbout && (
+        <div style={styles.modalOverlay} onClick={() => setShowAbout(false)}>
+          <div style={styles.modalBox} onClick={(e) => e.stopPropagation()}>
+            <div style={styles.modalHeader}>
+              <div style={styles.modalTitle}>About LHP Social</div>
+              <button style={styles.modalClose} onClick={() => setShowAbout(false)}>✕</button>
+            </div>
+            <div style={styles.modalBody}>
+              <p style={styles.modalSection}>LHP Social was created to help residents stay connected to what's happening in Lighthouse Point.</p>
+              <p style={styles.modalSection}>The site shares local events, programs, activities, community happenings, and information from organizations serving the Lighthouse Point area.</p>
+              <p style={styles.modalSection}><strong style={{ color: "#023E8A" }}>The goal is simple:</strong> Make it easier for residents and families to find things to do, support local programs, and stay involved in the community.</p>
+              <p style={styles.modalSection}>Events and information may come from public sources, local organizations, businesses, schools, nonprofits, community groups, and resident submissions.</p>
+              <div style={styles.modalDivider} />
+              <p style={styles.modalDisclaimer}>LHP Social is independently operated and is not affiliated with or operated by the City of Lighthouse Point. While we try to keep information accurate and current, event details may change. Visitors should confirm dates, times, and locations directly with event organizers when possible.</p>
+              <div style={styles.modalDivider} />
+              <p style={styles.modalSection} style={{ fontWeight: 700, color: "#023E8A", fontSize: 13 }}>Have an event to share?</p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={{ ...styles.ctaBtn, background: "#0077B6", display: "inline-block", marginBottom: 12 }}>+ Submit an Event →</a>
+              <p style={styles.modalContact}>Questions? Contact: <span style={{ color: "#0096C7", fontWeight: 700 }}>hello@lhpsocial.com</span></p>
             </div>
           </div>
         </div>
@@ -693,6 +720,7 @@ const styles = {
   footerDisclaimer: { color: "rgba(255,255,255,0.6)", fontSize: 11, fontWeight: 500, lineHeight: 1.5, marginTop: 4, padding: "0 4px" },
   privacyLink: { background: "none", border: "none", color: "rgba(255,255,255,0.55)", fontSize: 11, fontWeight: 700, cursor: "pointer", textDecoration: "underline", marginTop: 8, padding: 0 },
   footerCopyright: { color: "rgba(255,255,255,0.4)", fontSize: 10, marginTop: 6 },
+  footerLinkRow: { display: "flex", justifyContent: "center", alignItems: "center", gap: 8, marginTop: 10 },
   modalOverlay: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "flex-end", justifyContent: "center" },
   modalBox: { background: "#fff", borderRadius: "20px 20px 0 0", width: "100%", maxWidth: 480, maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" },
   modalHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 20px 14px", borderBottom: "1px solid #E8F4FD" },
