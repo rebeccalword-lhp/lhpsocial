@@ -67,12 +67,12 @@ const sections = [
 
 const venues = [
   { id: "all", label: "All Venues" },
-  { id: "cove", label: "🍻 Cove Brewery" },
-  { id: "dangminds", label: "🧠 Dangerous Minds" },
-  { id: "papas", label: "🦞 Papa's Raw Bar" },
   { id: "packys", label: "🍺 Packy's" },
   { id: "nautidawg", label: "⚓ Nauti Dawg" },
+  { id: "papas", label: "🦞 Papa's Raw Bar" },
   { id: "galuppis", label: "🎸 Galuppi's" },
+  { id: "cove", label: "🍻 Cove Brewery" },
+  { id: "dangminds", label: "🧠 Dangerous Minds" },
 ];
 
 const featuredEvents = [
