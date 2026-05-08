@@ -75,6 +75,7 @@ const venues = [
   { id: "dangminds", label: "🧠 Dangerous Minds" },
 ];
 
+
 const featuredEvents = [
   { id: "pk1", venue: "packys", title: "South58 @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP · 954-657-8423", date: "Fri, May 1", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
   { id: "pk2", venue: "packys", title: "Havoc 305 @ Packy's", org: "Packy's Sports Pub · 4480 N Federal Hwy, LHP", date: "Sat, May 2", time: "8:00 PM – 12:00 AM", price: "Free · Kitchen open late · Free parking", emoji: "🎸", note: null, link: "https://www.packyslhp.com", color: "#0077B6", category: ["nightlife"] },
