@@ -54,25 +54,25 @@ const categories = [
 
 const sections = [
   { id: "all", label: "All" },
-  { id: "nightlife", label: "Music" },
-  { id: "social", label: "Games" },
-  { id: "sales", label: "Sales" },
-  { id: "spirit", label: "Spirit" },
-  { id: "library", label: "Library" },
+  { id: "community", label: "Community" },
   { id: "families", label: "Families" },
-  { id: "seniors", label: "Seniors" },
   { id: "fitness", label: "Fitness" },
   { id: "arts", label: "Arts" },
-  { id: "community", label: "Community" },
+  { id: "social", label: "Games" },
+  { id: "nightlife", label: "Music" },
+  { id: "sales", label: "Sales" },
+  { id: "library", label: "Library" },
+  { id: "seniors", label: "Seniors" },
 ];
 
 const venues = [
   { id: "all", label: "All Venues" },
+  { id: "cove", label: "🍻 Cove Brewery" },
+  { id: "dangminds", label: "🧠 Dangerous Minds" }
+  { id: "papas", label: "🦞 Papa's Raw Bar" },
   { id: "packys", label: "🍺 Packy's" },
   { id: "nautidawg", label: "⚓ Nauti Dawg" },
-  { id: "papas", label: "🦞 Papa's Raw Bar" },
   { id: "galuppis", label: "🎸 Galuppi's" },
-  { id: "cove", label: "🍻 Cove Brewery" },
 ];
 
 const featuredEvents = [
@@ -128,6 +128,16 @@ const featuredEvents = [
   { id: "cove9", venue: "cove", title: "Cinco at the Cove — All Day Celebration", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Tue, May 5", time: "All Day", price: "Specials all day", emoji: "🎉", note: "Cinco de Mayo all day celebration", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "community"] },
   { id: "cove10", venue: "cove", title: "Mother's Day Brunch & Blooms", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Sat, May 9", time: "12:00 PM", price: "See website", emoji: "🌸", note: "Special Mother's Day brunch with blooms — treat mom to something special!", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "families", "seniors"] },
   { id: "cove11", venue: "cove", title: "Cove Brewery x Won-Tom's — 5 Course Dinner Pairing", org: "Cove Brewery · 1500 SE 3rd Ct, Deerfield Beach", date: "Wed, May 13", time: "6:30 PM", price: "Ticketed — see website", emoji: "🍽️", note: "5 course dinner paired with Cove beers in collaboration with Won-Tom's", link: "https://goo.gl/maps/Mpr4SUYa3r8KYwG88", color: "#52B788", category: ["nightlife", "seniors"] },
+  { id: "dm1", venue: "dangminds", title: "Leah Simmons @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Fri, May 8", time: "7:00 – 10:00 PM", price: "Free", emoji: "🎵", note: "Singer-songwriter & guitarist", link: "https://dangerousmindsbrewing.com/event/1935", color: "#52B788", category: ["nightlife"] },
+  { id: "dm2", venue: "dangminds", title: "Shannon Battle @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Sat, May 9", time: "7:00 – 10:00 PM", price: "Free", emoji: "🎵", note: "Mellow & eclectic mix of rock classics and originals", link: "https://dangerousmindsbrewing.com/event/1936", color: "#52B788", category: ["nightlife"] },
+  { id: "dm3", venue: "dangminds", title: "Travis Williamson @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Fri, May 15", time: "7:00 – 10:00 PM", price: "Free", emoji: "🎵", note: "Original songs & popular covers — one-man band", link: "https://dangerousmindsbrewing.com/event/1937", color: "#52B788", category: ["nightlife"] },
+  { id: "dm4", venue: "dangminds", title: "North End Rockers @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Sat, May 16", time: "7:00 – 10:00 PM", price: "Free", emoji: "🎸", note: "From Neil Diamond to Metallica — order their pizza, get a free sticker!", link: "https://dangerousmindsbrewing.com/event/1938", color: "#52B788", category: ["nightlife"] },
+  { id: "dm5", venue: "dangminds", title: "Rich Tench @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Sun, May 17", time: "4:00 – 7:00 PM", price: "Free", emoji: "🎵", note: "Blues, rock & pop — loop pedal one-man band", link: "https://dangerousmindsbrewing.com/event/1939", color: "#52B788", category: ["nightlife"] },
+  { id: "dm6", venue: "dangminds", title: "Manny Estrella @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Fri, May 22", time: "7:00 – 10:00 PM", price: "Free", emoji: "🎵", note: "Fun variety music — pairs great with artisanal pizza!", link: "https://dangerousmindsbrewing.com/event/1940", color: "#52B788", category: ["nightlife"] },
+  { id: "dm7", venue: "dangminds", title: "Spare Change @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Sat, May 23", time: "7:00 – 10:00 PM", price: "Free", emoji: "🎸", note: "Classic rock & country favorites — 30 years on the South Florida scene", link: "https://dangerousmindsbrewing.com/event/1941", color: "#52B788", category: ["nightlife"] },
+  { id: "dm8", venue: "dangminds", title: "Rockin' Jake & Raiford Starke Duo @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Fri, May 29", time: "7:00 – 10:00 PM", price: "Free", emoji: "🎸", note: "Blues, swamp funk & outlaw country — high energy!", link: "https://dangerousmindsbrewing.com/event/1962", color: "#52B788", category: ["nightlife"] },
+  { id: "dm9", venue: "dangminds", title: "Nightjar The Band @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Sat, May 30", time: "7:00 – 10:00 PM", price: "Free", emoji: "🎸", note: "Classic rock, blues & modern hits — acoustic-electric duo", link: "https://dangerousmindsbrewing.com/event/1963", color: "#52B788", category: ["nightlife"] },
+  { id: "dm10", venue: "dangminds", title: "Tim Solo @ Dangerous Minds", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach", date: "Sun, May 31", time: "4:00 – 7:00 PM", price: "Free", emoji: "🎵", note: null, link: "https://dangerousmindsbrewing.com/event/1942", color: "#52B788", category: ["nightlife"] },
 ];
 
 // ✅ Byte & Coffee events are SEPARATE — NOT in allEvents
@@ -204,6 +214,13 @@ const events = [
   { id: 26, title: "Mahjong Instructional & Open Play", org: "John Trudel Community Center", category: ["seniors", "community", "social"], date: "Mondays — May 4, 11, 18", time: "6:00 – 8:00 PM", location: "John Trudel Community Center", price: "Free", color: "#00B4A6", tags: ["mahjong", "games", "free"], note: null, ages: null, link: "https://lhp.recdesk.com" },
   { id: 32, title: "May City Commission Meetings", org: "City of Lighthouse Point — Fletcher Hall", category: ["community"], date: "Tue May 12 & Tue May 26", time: "6:30 PM", location: "Fletcher Hall, 2200 NE 38th St", price: "Free · Open to public", color: "#023E8A", tags: ["government", "civic", "public-meeting"], note: "Instructions posted on City website the Friday before", ages: null, link: "https://www.lighthousepointfl.gov" },
   { id: 33, title: "Compost Pilot Program — Limited Spots!", org: "City of Lighthouse Point × Filthy Organics", category: ["community"], date: "Apply now — first come, first served", time: "Ongoing", location: "Citywide", price: "Free · First 50 residents", color: "#52B788", tags: ["sustainability", "composting", "free"], note: "5-gallon compost bucket + twice-weekly drop-off access", ages: null, link: "https://www.lighthousepointfl.gov/369/Composting" },
+  // DANGEROUS MINDS BREWING
+  { id: "dm_run", title: "Run to Hops 🏃", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["fitness", "social", "community"], date: "Every Tuesday", time: "6:30 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "Free · 15% off food & beer after", color: "#52B788", tags: ["running", "fitness", "social", "weekly", "beer"], note: "2 or 4 mile run with @team_fortlauderdale. All participants get 15% off food & craft beer!", ages: null, link: "https://dangerousmindsbrewing.com/event/1968" },
+  { id: "dm_crok", title: "Crokinole Night 🟢", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["social"], date: "Every Tuesday", time: "7:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "Free", color: "#48CAE4", tags: ["crokinole", "games", "social", "weekly", "free"], note: "Flick wooden discs, rack up points, knock opponents off the board. No experience needed — beginners always welcome!", ages: null, link: "https://dangerousmindsbrewing.com/event/1972" },
+  { id: "dm_triv1", title: "Trivia Night 🎯", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["social"], date: "Thu, May 14 · Thu, May 21 · Thu, May 28", time: "7:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "Free · Prizes for top teams", color: "#48CAE4", tags: ["trivia", "games", "social", "free", "prizes"], note: "Free to play — top teams each night win prizes!", ages: null, link: "https://dangerousmindsbrewing.com/event/1965" },
+  { id: "dm_din1", title: "Special Dinner: Hearty Vegetable Goulash 🍲", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["nightlife", "community"], date: "Wed, May 13", time: "6:00 – 9:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "$18 · Reservations required — call (954) 520-3000", color: "#0096C7", tags: ["dinner", "food", "special", "reservations"], note: "Hungarian-inspired tomato & paprika stew with beans & vegetables, served with spent grain bread. Add crispy pork cutlet for $5.", ages: null, link: "https://dangerousmindsbrewing.com/event/1978" },
+  { id: "dm_din2", title: "Special Dinner: Buffalo Chicken Pizza Sandwich 🍗", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["nightlife", "community"], date: "Wed, May 20", time: "6:00 – 9:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "$16 · While supplies last", color: "#0096C7", tags: ["dinner", "food", "special"], note: "Crispy fried chicken, banana peppers & buffalo sauce with Gorgonzola & mozzarella stuffed in pizza dough. Served with celery & kettle chips.", ages: null, link: "https://dangerousmindsbrewing.com/event/1976" },
+  { id: "dm_din3", title: "Special Dinner: Goan Fish Curry 🍛", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["nightlife", "community"], date: "Wed, May 27", time: "6:00 – 9:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "$24 · Reservations required — call (954) 520-3000", color: "#0096C7", tags: ["dinner", "food", "special", "reservations"], note: "Coastal Indian curry with Mahi Mahi, coconut cream & toasted spices. Served with basmati rice & garlic naan.", ages: null, link: "https://dangerousmindsbrewing.com/event/1977" },
   // ✅ NEW: Garage & Yard Sales
   { id: "sale1", title: "Submit Your Garage or Yard Sale 🏡", org: "LHP Community Guide", category: ["sales"], date: "Ongoing — submit anytime", time: "Varies", location: "Lighthouse Point & surrounding area", price: "Free to list", color: "#E07A1F", tags: ["garage-sale", "yard-sale", "deals", "local", "free"], note: "Have a sale coming up? Submit it free and let your neighbors find it!", ages: null, link: "https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" },
 ];
@@ -212,6 +229,15 @@ const events = [
 const allEvents = [...events];
 
 export default function LHPApp() {
+  const trackCategoryClick = (label) => {
+    if (typeof window !== "undefined" && window.gtag) {
+      window.gtag("event", "category_click", {
+        event_category: "navigation",
+        event_label: label,
+      });
+    }
+  };
+
   const [activeCategory, setActiveCategory] = useState(null);
   const [savedEvents, setSavedEvents] = useState([]);
   const [search, setSearch] = useState("");
@@ -361,7 +387,11 @@ export default function LHPApp() {
         <div style={styles.sectionLabel}>Browse by category</div>
         <div style={styles.categoryGrid}>
           {categories.map((cat) => (
-            <button key={cat.id} onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+            <button key={cat.id} onClick={() => {
+  const newCat = activeCategory === cat.id ? null : cat.id;
+  trackCategoryClick(newCat || "all");
+  setActiveCategory(newCat);
+}}
               style={{ ...styles.categoryCard, background: activeCategory === cat.id ? cat.color : cat.bg, border: `2.5px solid ${activeCategory === cat.id ? cat.color : "transparent"}`, transform: activeCategory === cat.id ? "scale(1.04)" : "scale(1)", boxShadow: activeCategory === cat.id ? `0 6px 20px ${cat.color}40` : "0 2px 8px rgba(0,100,160,0.07)" }}>
               <div style={{ marginBottom: 6 }}>
                 <CatIcon id={cat.id} color={activeCategory === cat.id ? "rgba(255,255,255,0.95)" : cat.color} size={26} />
@@ -377,7 +407,11 @@ export default function LHPApp() {
       <div style={styles.tabBarWrap}>
         <div style={styles.tabBar}>
           {sections.map((tab) => (
-            <button key={tab.id} onClick={() => setActiveCategory(tab.id === "all" ? null : tab.id)}
+            <button key={tab.id} onClick={() => {
+  const newCat = tab.id === "all" ? null : tab.id;
+  trackCategoryClick(tab.id);
+  setActiveCategory(newCat);
+}}}
               style={{ ...styles.tab, background: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? "#0077B6" : "#E8F4FD", color: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? "#fff" : "#0077B6", fontWeight: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? 800 : 600 }}>
               {tab.label}
             </button>
@@ -437,6 +471,7 @@ export default function LHPApp() {
         {musicVenue === "packys" && <div style={styles.venueInfo}>🍺 <strong>Packy's Sports Pub</strong> — Lighthouse Point · Live music nights vary</div>}
         {musicVenue === "galuppis" && <div style={styles.venueInfo}>🎸 <strong>Galuppi's</strong> — Pompano Beach · <a href="https://www.galuppis.com/live-music-schedule/" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>Full schedule →</a></div>}
         {musicVenue === "cove" && <div style={styles.venueInfo}>🍻 <strong>Cove Brewery</strong> — 1500 SE 3rd Ct, Deerfield Beach · Craft beer, live music & weekly events</div>}
+        {musicVenue === "dangminds" && <div style={styles.venueInfo}>🧠 <strong>Dangerous Minds Brewing</strong> — 1901 N Federal Hwy, Pompano Beach · Tue–Sun 1–10 PM · <a href="https://dangerousmindsbrewing.com" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>dangerousmindsbrewing.com →</a></div>}
         <div style={styles.musicList}>
           {visibleMusic.map((ev) => (
             <div key={ev.id} style={{ ...styles.musicCard, borderLeft: `4px solid ${ev.color}` }}>
