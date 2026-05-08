@@ -412,7 +412,7 @@ export default function LHPApp() {
   const newCat = tab.id === "all" ? null : tab.id;
   trackCategoryClick(tab.id);
   setActiveCategory(newCat);
-}}}
+}}
               style={{ ...styles.tab, background: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? "#0077B6" : "#E8F4FD", color: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? "#fff" : "#0077B6", fontWeight: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? 800 : 600 }}>
               {tab.label}
             </button>
