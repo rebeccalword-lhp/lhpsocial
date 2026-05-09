@@ -335,13 +335,16 @@ export default function LHPApp() {
             </div>
             <div>
               <div style={styles.appName}>LHP Social</div>
-              <div style={styles.appSub}>May 2026 · Lighthouse Point</div>
-              <div style={styles.appSub2}>Community Guide</div>
+              <div style={styles.appSub}>Lighthouse Point, FL 33064</div>
+              <div style={styles.appSub2}>May 2026 · Community Events Guide</div>
             </div>
           </div>
-          <button onClick={() => setShowSaved(true)} style={styles.savedBadge}>♡ {savedEvents.length}</button>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+            <button onClick={() => setShowSaved(true)} style={styles.savedBadge}>♡ {savedEvents.length}</button>
+            <span style={{ fontSize: 9, color: "rgba(255,255,255,0.5)", fontWeight: 600, letterSpacing: 0.3 }}>this device only</span>
+          </div>
         </div>
-        <div style={styles.tagline}>🌊 Real events, programs & news from your city</div>
+        <div style={styles.tagline}>🌊 Real events, programs & news from Lighthouse Point, South Florida</div>
       </div>
 
       {showInstallBanner && !installed && (
@@ -451,52 +454,6 @@ export default function LHPApp() {
         </div>
       )}
 
-      {showMusic && (
-        <div style={styles.featuredWrap}>
-          <div style={styles.featuredHeader}>
-            <div style={styles.featuredLabel}>🎶 LIVE MUSIC IN MAY</div>
-            <div style={styles.venueToggle}>
-              {venues.map(({ id, label }) => (
-                <button
-                  key={id}
-                  onClick={() => setMusicVenue(id)}
-                  style={{ ...styles.venueBtn, background: musicVenue === id ? "#0077B6" : "#E8F4FD", color: musicVenue === id ? "#fff" : "#0077B6", fontWeight: musicVenue === id ? 800 : 600 }}>
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-          {musicVenue === "papas" && <div style={styles.venueInfo}>🦞 <strong>Papa's Raw Bar</strong> — 4610 N Federal Hwy · Fri/Sat 7–10 PM · Sun 1–4 PM</div>}
-          {musicVenue === "nautidawg" && <div style={styles.venueInfo}>⚓ <strong>The Nauti Dawg Marina Cafe</strong> — B Dock · Fri & Sun 5:30–9:30 PM</div>}
-          {musicVenue === "packys" && <div style={styles.venueInfo}>🍺 <strong>Packy's Sports Pub</strong> — Lighthouse Point · Live music nights vary</div>}
-          {musicVenue === "galuppis" && <div style={styles.venueInfo}>🎸 <strong>Galuppi's</strong> — Pompano Beach · <a href="https://www.galuppis.com/live-music-schedule/" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>Full schedule →</a></div>}
-          {musicVenue === "cove" && <div style={styles.venueInfo}>🍻 <strong>Cove Brewery</strong> — 1500 SE 3rd Ct, Deerfield Beach · Craft beer, live music & weekly events</div>}
-          {musicVenue === "dangminds" && <div style={styles.venueInfo}>🧠 <strong>Dangerous Minds Brewing</strong> — 1901 N Federal Hwy, Pompano Beach · Tue–Sun 1–10 PM · <a href="https://dangerousmindsbrewing.com" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>dangerousmindsbrewing.com →</a></div>}
-          <div style={styles.musicList}>
-            {visibleMusic.map((ev) => (
-              <div key={ev.id} style={{ ...styles.musicCard, borderLeft: `4px solid ${ev.color}` }}>
-                <div style={styles.musicLeft}>
-                  <div style={styles.musicEmoji}>{ev.emoji}</div>
-                  <div style={{ flex: 1 }}>
-                    <div style={styles.musicTitle}>{ev.title}</div>
-                    <div style={styles.musicOrg}>{ev.org}</div>
-                    <div style={styles.musicMeta}><span>📅 {ev.date}</span><span>⏰ {ev.time}</span></div>
-                    {ev.note && <div style={styles.musicNote}>ℹ️ {ev.note}</div>}
-                    <div style={styles.musicBottom}>
-                      <span style={{ ...styles.musicPrice, color: ev.color }}>🎟 {ev.price}</span>
-                      {ev.link && <a href={ev.link} target="_blank" rel="noreferrer" style={{ ...styles.musicLink, color: ev.color }}>More Info →</a>}
-                    </div>
-                  </div>
-                </div>
-                <button onClick={() => toggleSave(ev.id)} style={{ ...styles.musicSave, color: savedEvents.includes(ev.id) ? ev.color : "#cce4f0" }}>
-                  {savedEvents.includes(ev.id) ? "♥" : "♡"}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
       {showSales && (
         <div style={styles.salesWrap}>
           <div style={styles.salesHeader}>
@@ -552,6 +509,55 @@ export default function LHPApp() {
           ))}
         </div>
       </div>
+
+      {showMusic && (
+        <div style={styles.featuredWrap}>
+          <div style={styles.featuredHeader}>
+            <div style={styles.featuredLabel}>🎶 LIVE MUSIC IN MAY</div>
+          </div>
+          <div style={styles.venueFilterRow}>
+            <span style={styles.venueFilterLabel}>Filter by venue:</span>
+            <div style={styles.venueToggle}>
+              {venues.map(({ id, label }) => (
+                <button
+                  key={id}
+                  onClick={() => setMusicVenue(id)}
+                  style={{ ...styles.venueBtn, background: musicVenue === id ? "#0077B6" : "#E8F4FD", color: musicVenue === id ? "#fff" : "#0077B6", fontWeight: musicVenue === id ? 800 : 600 }}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          {musicVenue === "papas" && <div style={styles.venueInfo}>🦞 <strong>Papa's Raw Bar</strong> — 4610 N Federal Hwy · Fri/Sat 7–10 PM · Sun 1–4 PM</div>}
+          {musicVenue === "nautidawg" && <div style={styles.venueInfo}>⚓ <strong>The Nauti Dawg Marina Cafe</strong> — B Dock · Fri & Sun 5:30–9:30 PM</div>}
+          {musicVenue === "packys" && <div style={styles.venueInfo}>🍺 <strong>Packy's Sports Pub</strong> — Lighthouse Point · Live music nights vary</div>}
+          {musicVenue === "galuppis" && <div style={styles.venueInfo}>🎸 <strong>Galuppi's</strong> — Pompano Beach · <a href="https://www.galuppis.com/live-music-schedule/" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>Full schedule →</a></div>}
+          {musicVenue === "cove" && <div style={styles.venueInfo}>🍻 <strong>Cove Brewery</strong> — 1500 SE 3rd Ct, Deerfield Beach · Craft beer, live music & weekly events</div>}
+          {musicVenue === "dangminds" && <div style={styles.venueInfo}>🧠 <strong>Dangerous Minds Brewing</strong> — 1901 N Federal Hwy, Pompano Beach · Tue–Sun 1–10 PM · <a href="https://dangerousmindsbrewing.com" target="_blank" rel="noreferrer" style={{ color: "#0077B6", fontWeight: 800 }}>dangerousmindsbrewing.com →</a></div>}
+          <div style={styles.musicList}>
+            {visibleMusic.map((ev) => (
+              <div key={ev.id} style={{ ...styles.musicCard, borderLeft: `4px solid ${ev.color}` }}>
+                <div style={styles.musicLeft}>
+                  <div style={styles.musicEmoji}>{ev.emoji}</div>
+                  <div style={{ flex: 1 }}>
+                    <div style={styles.musicTitle}>{ev.title}</div>
+                    <div style={styles.musicOrg}>{ev.org}</div>
+                    <div style={styles.musicMeta}><span>📅 {ev.date}</span><span>⏰ {ev.time}</span></div>
+                    {ev.note && <div style={styles.musicNote}>ℹ️ {ev.note}</div>}
+                    <div style={styles.musicBottom}>
+                      <span style={{ ...styles.musicPrice, color: ev.color }}>🎟 {ev.price}</span>
+                      {ev.link && <a href={ev.link} target="_blank" rel="noreferrer" style={{ ...styles.musicLink, color: ev.color }}>More Info →</a>}
+                    </div>
+                  </div>
+                </div>
+                <button onClick={() => toggleSave(ev.id)} style={{ ...styles.musicSave, color: savedEvents.includes(ev.id) ? ev.color : "#cce4f0" }}>
+                  {savedEvents.includes(ev.id) ? "♥" : "♡"}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div style={styles.footer}>
         <div style={styles.footerIcon}>📚</div>
@@ -610,6 +616,7 @@ export default function LHPApp() {
                   <div style={{ fontSize: 36, marginBottom: 12 }}>♡</div>
                   <div style={{ fontWeight: 800, fontSize: 15, color: "#023E8A", marginBottom: 6 }}>No saved events yet</div>
                   <div style={{ fontSize: 13, color: "#aaa" }}>Tap the ♡ on any event to save it here</div>
+                  <div style={{ fontSize: 11, color: "#ccc", marginTop: 8 }}>Saves are stored on this device only — they won't sync across browsers or devices</div>
                 </div>
               ) : (
                 <>
@@ -712,6 +719,8 @@ const styles = {
   featuredWrap: { padding: "16px 16px 0" },
   featuredHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10, flexWrap: "wrap", gap: 6 },
   featuredLabel: { fontSize: 11, fontWeight: 900, color: "#0077B6", letterSpacing: 1.5, textTransform: "uppercase" },
+  venueFilterRow: { display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 10 },
+  venueFilterLabel: { fontSize: 11, fontWeight: 700, color: "#7aabb8", whiteSpace: "nowrap" },
   venueToggle: { display: "flex", gap: 5, flexWrap: "wrap" },
   venueBtn: { border: "none", borderRadius: 12, padding: "4px 10px", fontSize: 11, cursor: "pointer", transition: "all 0.15s" },
   venueInfo: { background: "#E8F4FD", borderRadius: 10, padding: "8px 12px", fontSize: 11, color: "#023E8A", fontWeight: 600, marginBottom: 10 },
