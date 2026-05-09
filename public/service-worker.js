@@ -1,15 +1,12 @@
 // LHP Social — Service Worker
 // Caches the app shell so it loads instantly and works offline
-
-const CACHE_NAME = "lhp-social-v1";
-
+const CACHE_NAME = "lhp-social-v2";
 // Core files to cache on install
 const CORE_ASSETS = [
   "/",
   "/index.html",
   "/manifest.json"
 ];
-
 // ── Install: cache core assets ──────────────────────────────
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -20,7 +17,6 @@ self.addEventListener("install", (event) => {
   // Take over immediately without waiting for old SW to finish
   self.skipWaiting();
 });
-
 // ── Activate: clean up old caches ───────────────────────────
 self.addEventListener("activate", (event) => {
   event.waitUntil(
@@ -35,17 +31,13 @@ self.addEventListener("activate", (event) => {
   // Claim all open clients immediately
   self.clients.claim();
 });
-
 // ── Fetch: cache-first for core, network-first for everything else ──
 self.addEventListener("fetch", (event) => {
   const { request } = event;
-
   // Only handle GET requests
   if (request.method !== "GET") return;
-
   // Skip cross-origin requests (analytics, external fonts, etc.)
   if (!request.url.startsWith(self.location.origin)) return;
-
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) {
@@ -59,10 +51,8 @@ self.addEventListener("fetch", (event) => {
             return response;
           })
           .catch(() => {}); // Silence network errors when offline
-
         return cached;
       }
-
       // Not in cache — fetch from network and cache it
       return fetch(request)
         .then((response) => {
