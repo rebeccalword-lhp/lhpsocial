@@ -236,7 +236,10 @@ export default function LHPApp() {
   };
 
   const [activeCategory, setActiveCategory] = useState(null);
-  const [savedEvents, setSavedEvents] = useState([]);
+  const [savedEvents, setSavedEvents] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("lhp_saved") || "[]"); } catch { return []; }
+  });
+  const [showSaved, setShowSaved] = useState(false);
   const [search, setSearch] = useState("");
   const [musicVenue, setMusicVenue] = useState("all");
   const [installPrompt, setInstallPrompt] = useState(null);
@@ -290,9 +293,11 @@ export default function LHPApp() {
   }).sort((a, b) => eventPriority(a) - eventPriority(b));
 
   const toggleSave = (id) =>
-    setSavedEvents((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
+    setSavedEvents((prev) => {
+      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id];
+      try { localStorage.setItem("lhp_saved", JSON.stringify(next)); } catch {}
+      return next;
+    });
 
   const showByte = activeCategory === "social";
   const showMusic = !activeCategory || activeCategory === "nightlife";
@@ -334,7 +339,7 @@ export default function LHPApp() {
               <div style={styles.appSub2}>Community Guide</div>
             </div>
           </div>
-          <div style={styles.savedBadge}>♡ {savedEvents.length}</div>
+          <button onClick={() => setShowSaved(true)} style={styles.savedBadge}>♡ {savedEvents.length}</button>
         </div>
         <div style={styles.tagline}>🌊 Real events, programs & news from your city</div>
       </div>
@@ -592,6 +597,48 @@ export default function LHPApp() {
           </div>
         </div>
       )}
+      {showSaved && (
+        <div style={styles.modalOverlay} onClick={() => setShowSaved(false)}>
+          <div style={styles.modalBox} onClick={(e) => e.stopPropagation()}>
+            <div style={styles.modalHeader}>
+              <div style={styles.modalTitle}>♥ My Saved Events</div>
+              <button style={styles.modalClose} onClick={() => setShowSaved(false)}>✕</button>
+            </div>
+            <div style={styles.modalBody}>
+              {savedEvents.length === 0 ? (
+                <div style={{ textAlign: "center", padding: "32px 0" }}>
+                  <div style={{ fontSize: 36, marginBottom: 12 }}>♡</div>
+                  <div style={{ fontWeight: 800, fontSize: 15, color: "#023E8A", marginBottom: 6 }}>No saved events yet</div>
+                  <div style={{ fontSize: 13, color: "#aaa" }}>Tap the ♡ on any event to save it here</div>
+                </div>
+              ) : (
+                <>
+                  <p style={{ fontSize: 12, color: "#7aabb8", marginBottom: 14 }}>Your saved events are stored on this device. Tap ♥ again on any event to remove it.</p>
+                  {[...featuredEvents, ...byteEvents, ...allEvents].filter(e => savedEvents.includes(e.id)).map(ev => (
+                    <div key={ev.id} style={{ ...styles.eventCard, marginBottom: 10 }}>
+                      <div style={{ ...styles.eventAccent, background: ev.color || "#0077B6" }} />
+                      <div style={styles.eventBody}>
+                        <div style={styles.eventTop}>
+                          <div style={styles.eventTitle}>{ev.title}</div>
+                          <button onClick={() => toggleSave(ev.id)} style={{ ...styles.saveBtn, color: ev.color || "#0077B6" }}>♥</button>
+                        </div>
+                        <div style={styles.eventOrg}>{ev.org}</div>
+                        <div style={styles.eventMeta}>
+                          <span>📅 {ev.date}</span>
+                          <span>⏰ {ev.time}</span>
+                        </div>
+                        {ev.price && <div style={{ fontSize: 11, fontWeight: 700, color: ev.color || "#0077B6" }}>🎟 {ev.price}</div>}
+                      </div>
+                    </div>
+                  ))}
+                  <button onClick={() => { setSavedEvents([]); try { localStorage.removeItem("lhp_saved"); } catch {} }} style={{ width: "100%", marginTop: 8, padding: "10px", fontSize: 12, fontWeight: 700, background: "none", border: "1.5px solid #eee", borderRadius: 10, color: "#aaa", cursor: "pointer" }}>Clear all saved events</button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {showAbout && (
         <div style={styles.modalOverlay} onClick={() => setShowAbout(false)}>
           <div style={styles.modalBox} onClick={(e) => e.stopPropagation()}>
@@ -628,7 +675,7 @@ const styles = {
   appName: { fontWeight: 900, fontSize: 17, letterSpacing: 0.2, color: "#fff", lineHeight: 1.2 },
   appSub: { fontSize: 11, opacity: 0.75, marginTop: 2, color: "#ADE8F4", lineHeight: 1.3 },
   appSub2: { fontSize: 11, opacity: 0.75, color: "#ADE8F4", lineHeight: 1.3 },
-  savedBadge: { background: "rgba(255,255,255,0.18)", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 20, padding: "5px 14px", fontSize: 14, fontWeight: 700, color: "#fff" },
+  savedBadge: { background: "rgba(255,255,255,0.18)", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 20, padding: "5px 14px", fontSize: 14, fontWeight: 700, color: "#fff", cursor: "pointer" },
   tagline: { fontSize: 13, color: "rgba(255,255,255,0.88)", fontWeight: 600, position: "relative" },
   searchWrap: { margin: "16px 16px 0", background: "#fff", borderRadius: 14, display: "flex", alignItems: "center", padding: "10px 14px", boxShadow: "0 2px 10px rgba(0,80,140,0.08)", gap: 8 },
   searchIcon: { fontSize: 16 },
