@@ -825,4 +825,3 @@ const styles = {
   installBtn: { background: "linear-gradient(135deg, #023E8A, #0096C7)", color: "#fff", border: "none", borderRadius: 9, padding: "7px 14px", fontSize: 12, fontWeight: 800, cursor: "pointer" },
   installDismiss: { background: "none", border: "none", color: "#bbb", fontSize: 14, cursor: "pointer", padding: 4 },
 };
-
