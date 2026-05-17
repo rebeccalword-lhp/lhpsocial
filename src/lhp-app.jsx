@@ -224,7 +224,6 @@ const events = [
   { id: "dm_din2", title: "Special Dinner: Buffalo Chicken Pizza Sandwich 🍗", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["nightlife", "community"], date: "Wed, May 20", time: "6:00 – 9:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "$16 · While supplies last", color: "#0096C7", tags: ["dinner", "food", "special"], note: "Crispy fried chicken, banana peppers & buffalo sauce with Gorgonzola & mozzarella stuffed in pizza dough. Served with celery & kettle chips.", ages: null, link: "https://dangerousmindsbrewing.com/event/1976" },
   { id: "dm_din3", title: "Special Dinner: Goan Fish Curry 🍛", org: "Dangerous Minds Brewing · 1901 N Federal Hwy, Pompano Beach · (954) 520-3000", category: ["nightlife", "community"], date: "Wed, May 27", time: "6:00 – 9:00 PM", location: "Dangerous Minds Brewing, Pompano Beach", price: "$24 · Reservations required — call (954) 520-3000", color: "#0096C7", tags: ["dinner", "food", "special", "reservations"], note: "Coastal Indian curry with Mahi Mahi, coconut cream & toasted spices. Served with basmati rice & garlic naan.", ages: null, link: "https://dangerousmindsbrewing.com/event/1977" },
   // GARAGE & YARD SALES
-  { id: "sale1", title: "Submit Your Garage or Yard Sale 🏡", org: "LHP Community Guide", category: ["sales"], date: "Ongoing — submit anytime", time: "Varies", location: "Lighthouse Point & surrounding area", price: "Free to list", color: "#E07A1F", tags: ["garage-sale", "yard-sale", "deals", "local", "free"], note: "Have a sale coming up? Submit it free and let your neighbors find it!", ages: null, link: "https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" },
   { id: "sale2", title: "Garage Sale 🏷️", org: "1960 NE 31st Street, Lighthouse Point", category: ["sales"], date: "Sat, May 23", time: "10:00 AM – 1:00 PM", location: "1960 NE 31st Street, Lighthouse Point", price: "Prices marked on items", color: "#E07A1F", tags: ["garage-sale", "yard-sale", "deals", "lhp"], note: "Possibly multiple households. Come early for the best finds!", ages: null, link: null },
 ];
 
@@ -305,7 +304,6 @@ export default function LHPApp() {
     });
 
   const showMusic = !activeCategory || activeCategory === "nightlife";
-  const showSales = !activeCategory || activeCategory === "sales";
 
   const visibleMusic = showMusic
     ? musicVenue === "all" ? featuredEvents : featuredEvents.filter(e => e.venue === musicVenue)
@@ -479,51 +477,6 @@ export default function LHPApp() {
         </div>
       )}
 
-      {showSales && (
-        <div style={styles.salesWrap}>
-          <div style={styles.salesHeader}>
-            <div style={styles.salesTitle}>🏷️ Garage & Yard Sales</div>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={styles.salesAddLink}>+ Submit yours →</a>
-          </div>
-          <div style={styles.salesSub}>Local deals in Lighthouse Point & surrounding area · Free to list</div>
-          {(() => {
-            const sales = events.filter(e => e.category.includes("sales") && e.id !== "sale1");
-            if (sales.length === 0) return (
-              <div style={styles.salesEmpty}>
-                <div style={styles.salesEmoji}>🏡</div>
-                <div style={styles.salesEmptyText}>No sales listed yet this month</div>
-                <div style={styles.salesEmptySub}>Hosting a sale? Submit it free and let your neighbors find it!</div>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={styles.salesBtn}>
-                  Submit a Garage Sale →
-                </a>
-              </div>
-            );
-            return (
-              <div style={styles.salesList}>
-                {sales.map(ev => (
-                  <div key={ev.id} style={styles.saleCard}>
-                    <div style={styles.saleEmoji}>🏷️</div>
-                    <div style={{ flex: 1 }}>
-                      <div style={styles.saleTitle}>{ev.title}</div>
-                      <div style={styles.saleMeta}>📍 {ev.location}</div>
-                      <div style={styles.saleMeta}>📅 {ev.date} · ⏰ {ev.time}</div>
-                      {ev.note && <div style={styles.saleNote}>{ev.note}</div>}
-                      <div style={styles.salePrice}>💲 {ev.price}</div>
-                    </div>
-                    <button onClick={() => toggleSave(ev.id)} style={{ ...styles.byteCardSave, color: savedEvents.includes(ev.id) ? "#E07A1F" : "#ddd" }}>
-                      {savedEvents.includes(ev.id) ? "♥" : "♡"}
-                    </button>
-                  </div>
-                ))}
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={{ ...styles.salesBtn, display: "inline-block", marginTop: 12 }}>
-                  + Submit your sale →
-                </a>
-              </div>
-            );
-          })()}
-        </div>
-      )}
-
       <div style={styles.section}>
         <div style={styles.eventsHeader}>
           <div style={styles.sectionLabel}>
@@ -560,6 +513,11 @@ export default function LHPApp() {
             </div>
           ))}
         </div>
+        {activeCategory === "sales" && (
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={styles.submitSaleBtn}>
+            + Submit your garage sale →
+          </a>
+        )}
       </div>
 
       <div style={styles.footer}>
@@ -774,6 +732,7 @@ const styles = {
   tagRow: { display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 8 },
   tag: { background: "#E8F4FD", color: "#0096C7", fontSize: 10, fontWeight: 700, borderRadius: 6, padding: "2px 7px" },
   ctaBtn: { display: "inline-block", color: "#fff", borderRadius: 10, padding: "7px 14px", fontSize: 12, fontWeight: 800, cursor: "pointer", textDecoration: "none" },
+  submitSaleBtn: { display: "block", background: "#E07A1F", color: "#fff", borderRadius: 12, padding: "12px 20px", fontSize: 13, fontWeight: 800, cursor: "pointer", textDecoration: "none", textAlign: "center", marginTop: 14, boxShadow: "0 2px 10px rgba(224,122,31,0.25)" },
   footer: { margin: "24px 16px 0", background: "linear-gradient(135deg, #023E8A 0%, #0096C7 100%)", borderRadius: 20, padding: "22px 20px", textAlign: "center" },
   footerIcon: { fontSize: 28, marginBottom: 6 },
   footerText: { color: "#fff", fontSize: 15, fontWeight: 800, marginBottom: 4 },
