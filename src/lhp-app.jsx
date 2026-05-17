@@ -198,6 +198,7 @@ const events = [
   { id: "tc10", title: "Intermediate Tennis 2.0–2.5 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Saturday", time: "9:00 – 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "intermediate", "weekly", "saturday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.0–2.5 level", link: null },
   { id: "tc11", title: "Advanced LiveBall Tennis 3.5+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Saturday", time: "9:00 – 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "advanced", "liveball", "weekly", "saturday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "3.5+ level", link: null },
   { id: "tc12", title: "LiveBall Tennis 2.5+ 🎾", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness"], date: "Every Sunday", time: "9:00 – 10:30 AM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Call for pricing · (954) 946-7306", color: "#52B788", tags: ["tennis", "liveball", "weekly", "sunday", "morning"], note: "Sign up on Court Reserve app or call the Pro Shop. Members 7 days advance · Non-members 5 days prior.", ages: "2.5+ level", link: null },
+  { id: "tc_mem", title: "Memorial Day Round Robin & BBQ 🇺🇸", org: "LHP Tennis Center · 3500 NE 27th Ave · (954) 946-7306", category: ["fitness", "community", "social"], date: "Mon, May 25", time: "9:30 AM – 12:00 PM", location: "LHP Tennis Center, 3500 NE 27th Ave", price: "Members $20 · Non-members $30 · Includes food for players", color: "#0077B6", tags: ["tennis", "round-robin", "bbq", "memorial-day", "holiday", "special-event"], note: "Sign up on the Court Reserve app. Sponsored by Coldwell Banker Realty — Thomas Group.", ages: null, link: null },
   // ARTS & KIDS
   { id: 13, title: "Baton Twirling Classes", org: "John Trudel Community Center", category: ["families"], date: "Mondays", time: "4:30–6:30 PM (varies by age)", location: "John Trudel Community Center", price: "$65/mo or $45 one-time", color: "#48CAE4", tags: ["kids", "performance", "weekly"], note: null, ages: "Ages 5–14", link: "https://lhp.recdesk.com" },
   { id: 14, title: "Robotics Class", org: "John Trudel Community Center", category: ["families"], date: "Thursdays — ends May 21", time: "4:00–6:00 PM", location: "John Trudel Community Center", price: "$270 res / $297 non-res", color: "#0077B6", tags: ["STEM", "robotics", "kids"], note: "Trial class available", ages: "K–4th grade", link: "https://lhp.recdesk.com" },
@@ -227,7 +228,7 @@ const events = [
   { id: "sale2", title: "Garage Sale 🏷️", org: "1960 NE 31st Street, Lighthouse Point", category: ["sales"], date: "Sat, May 23", time: "10:00 AM – 1:00 PM", location: "1960 NE 31st Street, Lighthouse Point", price: "Prices marked on items", color: "#E07A1F", tags: ["garage-sale", "yard-sale", "deals", "lhp"], note: "Possibly multiple households. Come early for the best finds!", ages: null, link: null },
 ];
 
-const allEvents = [...events];
+const allEvents = [...events, ...byteEvents];
 
 export default function LHPApp() {
   const trackCategoryClick = (label) => {
@@ -303,7 +304,6 @@ export default function LHPApp() {
       return next;
     });
 
-  const showByte = activeCategory === "social";
   const showMusic = !activeCategory || activeCategory === "nightlife";
   const showSales = !activeCategory || activeCategory === "sales";
 
@@ -429,31 +429,9 @@ export default function LHPApp() {
         </div>
       </div>
 
-      {showByte && (
-        <div style={styles.byteWrap}>
-          <div style={styles.byteHeader}>
-            <div style={styles.byteTitle}>☕ Byte & Coffee — Weekly Games</div>
-            <a href="https://bytencoffee.com/events/" target="_blank" rel="noreferrer" style={styles.byteLink}>All events →</a>
-          </div>
-          <div style={styles.byteSub}>2424 N Federal Hwy · Coffee shop by day, game nights by evening</div>
-          <div style={styles.byteCards}>
-            {byteEvents.map((ev) => (
-              <div key={ev.id} style={styles.byteCard}>
-                <div style={styles.byteCardEmoji}>{ev.id === "b3" ? "🀄" : ev.id === "b1" ? "♟️" : "🎲"}</div>
-                <div style={{ flex: 1 }}>
-                  <div style={styles.byteCardTitle}>{ev.title}</div>
-                  <div style={styles.byteCardTime}>{ev.date} · {ev.time}</div>
-                  <div style={styles.byteCardNote}>{ev.note}</div>
-                  <div style={{ ...styles.byteCardPrice, color: ev.color }}>🎟 {ev.price}</div>
-                </div>
-                <button onClick={() => toggleSave(ev.id)} style={{ ...styles.byteCardSave, color: savedEvents.includes(ev.id) ? ev.color : "#ddd" }}>
-                  {savedEvents.includes(ev.id) ? "♥" : "♡"}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      <div style={styles.disclaimerBanner}>
+        <span style={styles.disclaimerText}>ℹ️ Events are subject to change. Please confirm details with the venue or organizer before heading out.</span>
+      </div>
 
       {showMusic && (
         <div style={styles.featuredWrap}>
@@ -727,6 +705,8 @@ const styles = {
   registerText: { fontSize: 12, color: "#023E8A", fontWeight: 700, display: "block", marginBottom: 5 },
   registerLinks: { display: "flex", gap: 16 },
   registerLink: { fontSize: 12, color: "#0096C7", fontWeight: 800, textDecoration: "none" },
+  disclaimerBanner: { margin: "8px 16px 0", background: "#FFF8E7", borderRadius: 10, padding: "8px 12px", border: "1px solid #FCE4B6" },
+  disclaimerText: { fontSize: 11, color: "#8a6d3b", fontWeight: 600, lineHeight: 1.4, display: "block" },
   byteWrap: { margin: "16px 16px 0", background: "#fff", borderRadius: 18, padding: "16px", boxShadow: "0 2px 14px rgba(72,202,228,0.12)", border: "2px solid #E0F7FC" },
   byteHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 },
   byteTitle: { fontWeight: 900, fontSize: 15, color: "#0096C7" },
