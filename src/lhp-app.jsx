@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 // LHP Social brand tokens (v4 design refresh — May 2026)
-// Used by the new header logo lockup and install bar.
-// Existing per-event/per-category colors throughout the data stay as-is.
+// Light palette: navy reserved for headlines, teal for accents, lime for highlights.
 const LHP4 = {
   navy:       "#001D44",
   navySoft:   "#0F2A4F",
@@ -10,10 +9,31 @@ const LHP4 = {
   tealBright: "#32DAD8",
   lime:       "#A6B813",
   ink:        "#0B2545",
+  body:       "#3E5A7A",
   mute:       "#7592B0",
+  pageBg:     "#F4FAFD",
+  tintBlue:   "#E5F0F7",
   tintTeal:   "#DDF0EE",
+  card:       "#FFFFFF",
   hair:       "rgba(0, 29, 68, 0.10)",
   hairSoft:   "rgba(0, 29, 68, 0.06)",
+};
+
+// Time-of-day greeting helper for the home screen header
+const getGreeting = () => {
+  const h = new Date().getHours();
+  if (h >= 5  && h < 12) return "Good morning, LHP.";
+  if (h >= 12 && h < 17) return "Good afternoon, LHP.";
+  if (h >= 17 && h < 22) return "Good evening, LHP.";
+  return "Welcome to LHP Social.";
+};
+
+// Live date pill — e.g. "MON · MAY 25"
+const getDatePill = () => {
+  const d = new Date();
+  const day = d.toLocaleDateString("en-US", { weekday: "short" }).toUpperCase();
+  const month = d.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+  return `${day} · ${month} ${d.getDate()}`;
 };
 
 // Clean SVG icons per category — monoline style, stroked, no fills
@@ -450,26 +470,41 @@ export default function LHPApp() {
   return (
     <div style={styles.root}>
       <div style={styles.header}>
-        <div style={styles.waveBg} />
         <div style={styles.headerInner}>
           <div style={styles.logoRow}>
             <img
-              src="/lhplighthousemedium_1.png"
+              src="/lhp-lighthouse-medium_1.png"
               alt="LHP lighthouse"
               style={styles.logoLighthouse}
             />
-            <div style={styles.wordmarkBlock}>
-              <div style={styles.wordmark}>
-                <span style={styles.wordmarkLHP}>LHP</span>
-                <span style={styles.wordmarkSocial}>SOCIAL</span>
-              </div>
-              <div style={styles.appSub}>Lighthouse Point, FL 33064</div>
-              <div style={styles.appSub2}>Community Guide</div>
+            <div style={styles.wordmark}>
+              <span style={styles.wordmarkLHP}>LHP</span>
+              <span style={styles.wordmarkSocial}>SOCIAL</span>
             </div>
           </div>
-          <button onClick={() => setShowSaved(true)} style={styles.savedBadge}>♡ {savedEvents.length}</button>
+          <div style={styles.headerRight}>
+            <div style={styles.datePill}>{getDatePill()}</div>
+            <button onClick={() => setShowSaved(true)} style={styles.savedBadge}>♡ {savedEvents.length}</button>
+          </div>
         </div>
-        <div style={styles.tagline}>Real events, programs &amp; news from your city</div>
+      </div>
+
+      {/* v4 signature lockup — "Stay Connected. Stay Local." + "Built by a local, for locals." */}
+      <div style={styles.signatureBlockTop}>
+        <div style={styles.signatureRow}>
+          <svg width="11" height="10" viewBox="0 0 11 10" fill="none">
+            <path d="M5.5 9.2C2 6.5 1 5 1 3.2 1 1.8 2 1 3.2 1c.9 0 1.7.5 2.3 1.4C6.1 1.5 6.9 1 7.8 1 9 1 10 1.8 10 3.2c0 1.8-1 3.3-4.5 6z" fill={LHP4.lime}/>
+          </svg>
+          <span>Stay Connected.</span>
+          <span style={styles.signatureLime}>Stay Local.</span>
+        </div>
+        <div style={styles.signatureItalic}>Built by a local, for locals.</div>
+      </div>
+
+      {/* Time-of-day greeting */}
+      <div style={styles.greeting}>
+        <div style={styles.greetingHello}>{getGreeting()}</div>
+        <div style={styles.greetingSub}>Here's what's happening around the point.</div>
       </div>
 
       {showInstallBanner && !installed && (
@@ -478,7 +513,7 @@ export default function LHPApp() {
             <div style={styles.installIcon}>
               <div style={styles.installIconBeam} />
               <img
-                src="/lhplighthousemedium_1.png"
+                src="/lhp-lighthouse-medium_1.png"
                 alt=""
                 style={styles.installIconLighthouse}
               />
@@ -523,41 +558,60 @@ export default function LHPApp() {
       <div style={styles.section}>
         <div style={styles.sectionLabel}>Browse by category</div>
         <div style={styles.categoryGrid}>
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => {
-                const newCat = activeCategory === cat.id ? null : cat.id;
-                trackCategoryClick(newCat || "all");
-                setActiveCategory(newCat);
-                scrollToCategory(newCat);
-              }}
-              style={{ ...styles.categoryCard, background: activeCategory === cat.id ? cat.color : cat.bg, border: `2.5px solid ${activeCategory === cat.id ? cat.color : "transparent"}`, transform: activeCategory === cat.id ? "scale(1.04)" : "scale(1)", boxShadow: activeCategory === cat.id ? `0 6px 20px ${cat.color}40` : "0 2px 8px rgba(0,100,160,0.07)" }}>
-              <div style={{ marginBottom: 6 }}>
-                <CatIcon id={cat.id} color={activeCategory === cat.id ? "rgba(255,255,255,0.95)" : cat.color} size={26} />
-              </div>
-              <span style={{ ...styles.catLabel, color: activeCategory === cat.id ? "#fff" : cat.color }}>{cat.label}</span>
-              <span style={{ ...styles.catDesc, color: activeCategory === cat.id ? "rgba(255,255,255,0.85)" : "#7a9aaa" }}>{cat.description}</span>
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => {
+                  const newCat = isActive ? null : cat.id;
+                  trackCategoryClick(newCat || "all");
+                  setActiveCategory(newCat);
+                  scrollToCategory(newCat);
+                }}
+                style={{
+                  ...styles.categoryCard,
+                  background: isActive ? cat.bg : "#fff",
+                  border: `1.5px solid ${isActive ? cat.color : LHP4.hairSoft}`,
+                  boxShadow: isActive
+                    ? `0 4px 16px ${cat.color}25`
+                    : `0 1px 2px ${LHP4.hairSoft}, 0 2px 8px rgba(0,29,68,0.04)`,
+                }}>
+                <div style={{ marginBottom: 6 }}>
+                  <CatIcon id={cat.id} color={cat.color} size={26} />
+                </div>
+                <span style={{ ...styles.catLabel, color: cat.color }}>{cat.label}</span>
+                <span style={{ ...styles.catDesc, color: LHP4.mute }}>{cat.description}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
       <div style={styles.tabBarWrap}>
         <div style={styles.tabBar}>
-          {sections.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => {
-                const newCat = tab.id === "all" ? null : tab.id;
-                trackCategoryClick(tab.id);
-                setActiveCategory(newCat);
-                scrollToCategory(newCat);
-              }}
-              style={{ ...styles.tab, background: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? "#0077B6" : "#E8F4FD", color: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? "#fff" : "#0077B6", fontWeight: (tab.id === "all" ? activeCategory === null : activeCategory === tab.id) ? 800 : 600 }}>
-              {tab.label}
-            </button>
-          ))}
+          {sections.map((tab) => {
+            const isActive = tab.id === "all" ? activeCategory === null : activeCategory === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  const newCat = tab.id === "all" ? null : tab.id;
+                  trackCategoryClick(tab.id);
+                  setActiveCategory(newCat);
+                  scrollToCategory(newCat);
+                }}
+                style={{
+                  ...styles.tab,
+                  background: isActive ? LHP4.navy : "#fff",
+                  color: isActive ? "#fff" : LHP4.navy,
+                  fontWeight: isActive ? 800 : 600,
+                  borderColor: isActive ? LHP4.navy : LHP4.hairSoft,
+                }}>
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -582,7 +636,7 @@ export default function LHPApp() {
                 <button
                   key={id}
                   onClick={() => setMusicVenue(id)}
-                  style={{ ...styles.venueBtn, background: musicVenue === id ? "#0077B6" : "#E8F4FD", color: musicVenue === id ? "#fff" : "#0077B6", fontWeight: musicVenue === id ? 800 : 600 }}>
+                  style={{ ...styles.venueBtn, background: musicVenue === id ? LHP4.navy : "#fff", color: musicVenue === id ? "#fff" : LHP4.navy, fontWeight: musicVenue === id ? 800 : 600, border: `1px solid ${musicVenue === id ? LHP4.navy : LHP4.hairSoft}` }}>
                   {label}
                 </button>
               ))}
@@ -706,7 +760,7 @@ export default function LHPApp() {
         <div style={styles.footerDivider} />
         <div style={styles.footerText}>John Trudel Community Center</div>
         <div style={styles.footerSub}>4521 NE 22nd Ave · (954) 784-3439</div>
-        <a href="https://lhp.recdesk.com/Community/Home" target="_blank" rel="noreferrer" style={{ ...styles.footerBtn, background: "rgba(255,255,255,0.15)", border: "1.5px solid rgba(255,255,255,0.3)" }}>Register at lhp.recdesk.com →</a>
+        <a href="https://lhp.recdesk.com/Community/Home" target="_blank" rel="noreferrer" style={{ ...styles.footerBtn, background: LHP4.tintTeal, color: LHP4.teal, border: `1px solid ${LHP4.hairSoft}` }}>Register at lhp.recdesk.com →</a>
         <div style={styles.footerDivider} />
         <div style={styles.footerText2}>Own a local business? List your events & deals.</div>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSeznT4FeZSAhSIG6R9-0F22Iykx1NO1bGFBMt8d9fcXd5ekag/viewform?usp=publish-editor" target="_blank" rel="noreferrer" style={{ ...styles.footerBtn2, display: "block", textDecoration: "none", textAlign: "center" }}>+ Submit an Event or Special</a>
@@ -716,7 +770,7 @@ export default function LHPApp() {
         </div>
         <div style={styles.footerLinkRow}>
           <button onClick={() => setShowAbout(true)} style={styles.privacyLink}>About</button>
-          <span style={{ color: "rgba(255,255,255,0.3)", fontSize: 11 }}>·</span>
+          <span style={{ color: LHP4.mute, fontSize: 11, opacity: 0.4 }}>·</span>
           <button onClick={() => setShowPrivacy(true)} style={styles.privacyLink}>Privacy Policy</button>
         </div>
         <div style={styles.footerCopyright}>© 2026 lhpsocial.com</div>
@@ -759,7 +813,7 @@ export default function LHPApp() {
               ) : (
                 <>
                   <p style={{ fontSize: 12, color: "#7aabb8", marginBottom: 14 }}>Your saved events are stored on this device. Tap ♥ again on any event to remove it.</p>
-                  {[...visibleFeaturedEvents, ...allEvents].filter(e => savedEvents.includes(e.id)).map(ev => (
+                  {[...visibleFeaturedEvents, ...byteEvents, ...allEvents].filter(e => savedEvents.includes(e.id)).map(ev => (
                     <div key={ev.id} style={{ ...styles.eventCard, marginBottom: 10 }}>
                       <div style={{ ...styles.eventAccent, background: ev.color || "#0077B6" }} />
                       <div style={styles.eventBody}>
@@ -813,7 +867,7 @@ export default function LHPApp() {
             <div style={styles.installSheetHero}>
               <div style={styles.installSheetIcon}>
                 <div style={styles.installSheetIconBeam} />
-                <img src="/lhplighthousemedium_1.png" alt="" style={styles.installSheetIconLighthouse} />
+                <img src="/lhp-lighthouse-medium_1.png" alt="" style={styles.installSheetIconLighthouse} />
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={styles.installSheetTitle}>Install LHP Social</div>
@@ -882,41 +936,44 @@ export default function LHPApp() {
 }
 
 const styles = {
-  root: { fontFamily: "'Nunito', 'Segoe UI', sans-serif", background: "#F0F8FF", minHeight: "100vh", maxWidth: 480, margin: "0 auto", paddingBottom: 48 },
-  header: { background: `linear-gradient(160deg, #001324 0%, ${LHP4.navy} 55%, ${LHP4.navySoft} 100%)`, padding: "28px 20px 28px", color: "#fff", position: "relative", overflow: "hidden" },
-  waveBg: { position: "absolute", bottom: -10, left: 0, right: 0, height: 40, background: "rgba(255,255,255,0.06)", borderRadius: "50% 50% 0 0 / 30px 30px 0 0" },
-  headerInner: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, position: "relative" },
-  logoRow: { display: "flex", alignItems: "center", gap: 11 },
-  logoLighthouse: { height: 52, width: "auto", display: "block", filter: "brightness(0) invert(1)", flexShrink: 0 },
-  wordmarkBlock: { display: "flex", flexDirection: "column" },
-  wordmark: { fontFamily: '"Inter", "SF Pro Display", system-ui, sans-serif', fontWeight: 900, fontSize: 22, letterSpacing: -0.6, lineHeight: 1, textTransform: "uppercase", whiteSpace: "nowrap", marginBottom: 4 },
-  wordmarkLHP: { color: "#fff" },
-  wordmarkSocial: { color: LHP4.tealBright, marginLeft: 5 },
-  appSub: { fontSize: 11, opacity: 0.85, color: "#ADE8F4", lineHeight: 1.3 },
-  appSub2: { fontSize: 11, opacity: 0.75, color: "#ADE8F4", lineHeight: 1.3 },
-  savedBadge: { background: "rgba(255,255,255,0.18)", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 20, padding: "5px 14px", fontSize: 14, fontWeight: 700, color: "#fff", cursor: "pointer" },
-  tagline: { fontSize: 13, color: "rgba(255,255,255,0.88)", fontWeight: 600, position: "relative" },
-  searchWrap: { margin: "16px 16px 0", background: "#fff", borderRadius: 14, display: "flex", alignItems: "center", padding: "10px 14px", boxShadow: "0 2px 10px rgba(0,80,140,0.08)", gap: 8 },
+  root: { fontFamily: "'Nunito', 'Segoe UI', sans-serif", background: LHP4.pageBg, minHeight: "100vh", maxWidth: 480, margin: "0 auto", paddingBottom: 48 },
+  // v4 light header — small lighthouse + LHP SOCIAL wordmark + date pill
+  header: { background: LHP4.pageBg, padding: "18px 18px 12px", borderBottom: `1px solid ${LHP4.hairSoft}` },
+  headerInner: { display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10 },
+  logoRow: { display: "flex", alignItems: "center", gap: 9 },
+  logoLighthouse: { height: 40, width: "auto", display: "block", flexShrink: 0 },
+  wordmark: { fontFamily: '"Inter", "SF Pro Display", system-ui, sans-serif', fontWeight: 900, fontSize: 21, letterSpacing: -0.6, lineHeight: 1, textTransform: "uppercase", whiteSpace: "nowrap" },
+  wordmarkLHP: { color: LHP4.navy },
+  wordmarkSocial: { color: LHP4.teal, marginLeft: 5 },
+  headerRight: { display: "flex", alignItems: "center", gap: 8 },
+  datePill: { fontSize: 10, color: LHP4.mute, fontWeight: 700, letterSpacing: 0.8, textTransform: "uppercase" },
+  savedBadge: { background: LHP4.tintTeal, border: "none", borderRadius: 20, padding: "5px 12px", fontSize: 13, fontWeight: 700, color: LHP4.teal, cursor: "pointer" },
+  // v4 greeting block (time-of-day aware)
+  greeting: { padding: "16px 20px 6px" },
+  greetingHello: { fontSize: 26, fontWeight: 800, color: LHP4.navy, letterSpacing: -0.5, lineHeight: 1.15 },
+  greetingSub: { marginTop: 5, fontSize: 13.5, color: LHP4.body, fontWeight: 500 },
+  searchWrap: { margin: "14px 16px 0", background: "#fff", borderRadius: 14, display: "flex", alignItems: "center", padding: "10px 14px", boxShadow: `0 1px 2px ${LHP4.hairSoft}, 0 4px 14px rgba(0,29,68,0.05)`, border: `1px solid ${LHP4.hairSoft}`, gap: 8 },
   searchIcon: { fontSize: 16 },
-  searchInput: { border: "none", outline: "none", flex: 1, fontSize: 14, color: "#023E8A", fontFamily: "inherit", background: "transparent" },
-  clearBtn: { background: "none", border: "none", color: "#aaa", cursor: "pointer", fontSize: 14, padding: 0 },
-  searchResultNote: { margin: "6px 16px 0", fontSize: 12, color: "#0096C7", fontWeight: 700 },
+  searchInput: { border: "none", outline: "none", flex: 1, fontSize: 14, color: LHP4.navy, fontFamily: "inherit", background: "transparent" },
+  clearBtn: { background: "none", border: "none", color: LHP4.mute, cursor: "pointer", fontSize: 14, padding: 0 },
+  searchResultNote: { margin: "6px 16px 0", fontSize: 12, color: LHP4.teal, fontWeight: 700 },
   section: { padding: "20px 16px 0" },
-  sectionLabel: { fontWeight: 800, fontSize: 16, color: "#023E8A", marginBottom: 12, letterSpacing: -0.3 },
+  sectionLabel: { fontWeight: 800, fontSize: 15, color: LHP4.navy, marginBottom: 12, letterSpacing: -0.3 },
   categoryGrid: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 },
-  categoryCard: { display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "14px", borderRadius: 16, cursor: "pointer", transition: "all 0.18s ease", textAlign: "left", gap: 3 },
+  // Toned-down category tiles — white-ish background, color reserved for icon/accent
+  categoryCard: { display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "14px", borderRadius: 14, cursor: "pointer", transition: "all 0.18s ease", textAlign: "left", gap: 3 },
   catEmoji: { fontSize: 26, marginBottom: 4 },
   catLabel: { fontWeight: 800, fontSize: 13, lineHeight: 1.2 },
   catDesc: { fontSize: 11, fontWeight: 500 },
   tabBarWrap: { overflowX: "auto", padding: "16px 16px 0", scrollbarWidth: "none" },
   tabBar: { display: "flex", gap: 8, width: "max-content" },
-  tab: { border: "none", borderRadius: 20, padding: "7px 16px", fontSize: 12, cursor: "pointer", whiteSpace: "nowrap", transition: "all 0.15s" },
-  registerBanner: { margin: "14px 16px 0", background: "#E0F4FB", borderRadius: 12, padding: "10px 14px" },
-  registerText: { fontSize: 12, color: "#023E8A", fontWeight: 700, display: "block", marginBottom: 5 },
+  tab: { border: `1px solid ${LHP4.hairSoft}`, borderRadius: 20, padding: "7px 16px", fontSize: 12, cursor: "pointer", whiteSpace: "nowrap", transition: "all 0.15s" },
+  registerBanner: { margin: "14px 16px 0", background: LHP4.tintTeal, borderRadius: 12, padding: "10px 14px" },
+  registerText: { fontSize: 12, color: LHP4.navy, fontWeight: 700, display: "block", marginBottom: 5 },
   registerLinks: { display: "flex", gap: 16 },
-  registerLink: { fontSize: 12, color: "#0096C7", fontWeight: 800, textDecoration: "none" },
+  registerLink: { fontSize: 12, color: LHP4.teal, fontWeight: 800, textDecoration: "none" },
   disclaimerBanner: { margin: "8px 16px 0", padding: "6px 12px" },
-  disclaimerText: { fontSize: 10, color: "#9aabb5", fontWeight: 500, lineHeight: 1.4, display: "block", textAlign: "center", fontStyle: "italic" },
+  disclaimerText: { fontSize: 10, color: LHP4.mute, fontWeight: 500, lineHeight: 1.4, display: "block", textAlign: "center", fontStyle: "italic" },
   byteWrap: { margin: "16px 16px 0", background: "#fff", borderRadius: 18, padding: "16px", boxShadow: "0 2px 14px rgba(72,202,228,0.12)", border: "2px solid #E0F7FC" },
   byteHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 },
   byteTitle: { fontWeight: 900, fontSize: 15, color: "#0096C7" },
@@ -932,21 +989,21 @@ const styles = {
   byteCardSave: { background: "none", border: "none", fontSize: 18, cursor: "pointer", flexShrink: 0 },
   featuredWrap: { padding: "16px 16px 0" },
   featuredHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10, flexWrap: "wrap", gap: 6 },
-  featuredLabel: { fontSize: 11, fontWeight: 900, color: "#0077B6", letterSpacing: 1.5, textTransform: "uppercase" },
+  featuredLabel: { fontSize: 11, fontWeight: 900, color: LHP4.navy, letterSpacing: 1.5, textTransform: "uppercase" },
   venueToggle: { display: "flex", gap: 5, flexWrap: "wrap" },
   venueBtn: { border: "none", borderRadius: 12, padding: "4px 10px", fontSize: 11, cursor: "pointer", transition: "all 0.15s" },
-  venueInfo: { background: "#E8F4FD", borderRadius: 10, padding: "8px 12px", fontSize: 11, color: "#023E8A", fontWeight: 600, marginBottom: 10 },
+  venueInfo: { background: LHP4.tintTeal, borderRadius: 10, padding: "8px 12px", fontSize: 11, color: LHP4.navy, fontWeight: 600, marginBottom: 10 },
   musicList: { display: "flex", flexDirection: "column", gap: 8 },
-  musicDateHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", margin: "14px 0 8px", paddingBottom: 6, borderBottom: "1.5px solid #cce4f0" },
-  musicDateBadge: { fontSize: 12, fontWeight: 900, color: "#023E8A", letterSpacing: 0.3 },
-  musicDateCount: { fontSize: 10, fontWeight: 700, color: "#7aabb8", background: "#E0F4FB", padding: "2px 8px", borderRadius: 10 },
-  musicCard: { background: "#fff", borderRadius: 14, padding: "12px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", boxShadow: "0 2px 10px rgba(0,80,140,0.08)" },
+  musicDateHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", margin: "14px 0 8px", paddingBottom: 6, borderBottom: `1.5px solid ${LHP4.hairSoft}` },
+  musicDateBadge: { fontSize: 12, fontWeight: 900, color: LHP4.navy, letterSpacing: 0.3 },
+  musicDateCount: { fontSize: 10, fontWeight: 700, color: LHP4.teal, background: LHP4.tintTeal, padding: "2px 8px", borderRadius: 10 },
+  musicCard: { background: "#fff", borderRadius: 14, padding: "12px", display: "flex", justifyContent: "space-between", alignItems: "flex-start", boxShadow: `0 1px 2px ${LHP4.hairSoft}, 0 4px 12px rgba(0,29,68,0.05)`, border: `1px solid ${LHP4.hairSoft}` },
   musicLeft: { display: "flex", gap: 10, alignItems: "flex-start", flex: 1 },
   musicEmoji: { fontSize: 22, flexShrink: 0, marginTop: 2 },
-  musicTitle: { fontWeight: 800, fontSize: 13, color: "#023E8A", lineHeight: 1.3, marginBottom: 2 },
-  musicOrg: { fontSize: 11, color: "#7aabb8", fontWeight: 600, marginBottom: 4 },
-  musicMeta: { display: "flex", flexWrap: "wrap", gap: 8, fontSize: 11, color: "#4a7a8a", fontWeight: 600, marginBottom: 3 },
-  musicNote: { fontSize: 11, color: "#7aabb8", fontStyle: "italic", marginBottom: 4 },
+  musicTitle: { fontWeight: 800, fontSize: 13, color: LHP4.navy, lineHeight: 1.3, marginBottom: 2 },
+  musicOrg: { fontSize: 11, color: LHP4.mute, fontWeight: 600, marginBottom: 4 },
+  musicMeta: { display: "flex", flexWrap: "wrap", gap: 8, fontSize: 11, color: LHP4.body, fontWeight: 600, marginBottom: 3 },
+  musicNote: { fontSize: 11, color: LHP4.mute, fontStyle: "italic", marginBottom: 4 },
   musicBottom: { display: "flex", gap: 10, alignItems: "center" },
   musicPrice: { fontSize: 11, fontWeight: 700 },
   musicLink: { fontSize: 11, fontWeight: 800, textDecoration: "none" },
@@ -969,52 +1026,59 @@ const styles = {
   saleNote: { fontSize: 11, color: "#888", fontStyle: "italic", marginTop: 3, marginBottom: 3 },
   salePrice: { fontSize: 11, fontWeight: 700, color: "#E07A1F", marginTop: 4 },
   eventsHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 },
-  eventCount: { fontSize: 12, color: "#7aabb8", fontWeight: 700, background: "#ddf0f7", padding: "3px 10px", borderRadius: 10 },
+  eventCount: { fontSize: 12, color: LHP4.teal, fontWeight: 700, background: LHP4.tintTeal, padding: "3px 10px", borderRadius: 10 },
   eventList: { display: "flex", flexDirection: "column", gap: 12 },
-  emptyState: { textAlign: "center", color: "#aaa", fontSize: 14, padding: "32px 0" },
+  emptyState: { textAlign: "center", color: LHP4.mute, fontSize: 14, padding: "32px 0" },
   salesEmptyState: { textAlign: "center", padding: "32px 20px", background: "#FEF3E7", borderRadius: 16, border: "2px dashed #E07A1F40" },
   salesEmptyEmoji: { fontSize: 36, marginBottom: 10 },
   salesEmptyTitle: { fontWeight: 800, fontSize: 15, color: "#E07A1F", marginBottom: 6 },
   salesEmptySub: { fontSize: 12, color: "#a06030", marginBottom: 16, lineHeight: 1.5 },
   salesEmptyBtn: { display: "inline-block", background: "#E07A1F", color: "#fff", borderRadius: 10, padding: "10px 20px", fontSize: 13, fontWeight: 800, textDecoration: "none", boxShadow: "0 2px 8px rgba(224,122,31,0.25)" },
-  eventCard: { background: "#fff", borderRadius: 16, overflow: "hidden", display: "flex", boxShadow: "0 2px 14px rgba(0,80,140,0.09)" },
-  eventAccent: { width: 5, flexShrink: 0 },
+  eventCard: { background: "#fff", borderRadius: 14, overflow: "hidden", display: "flex", boxShadow: `0 1px 2px ${LHP4.hairSoft}, 0 4px 14px rgba(0,29,68,0.05)`, border: `1px solid ${LHP4.hairSoft}` },
+  eventAccent: { width: 4, flexShrink: 0 },
   eventBody: { padding: "14px", flex: 1 },
   eventTop: { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 8 },
-  eventTitle: { fontWeight: 800, fontSize: 15, color: "#023E8A", lineHeight: 1.3, flex: 1 },
+  eventTitle: { fontWeight: 800, fontSize: 15, color: LHP4.navy, lineHeight: 1.3, flex: 1 },
   saveBtn: { background: "none", border: "none", fontSize: 20, cursor: "pointer", padding: 0, lineHeight: 1, flexShrink: 0 },
-  eventOrg: { fontSize: 12, color: "#7aabb8", fontWeight: 600, marginTop: 2, marginBottom: 8 },
-  eventMeta: { display: "flex", flexWrap: "wrap", gap: 8, fontSize: 11, color: "#4a7a8a", fontWeight: 600, marginBottom: 8 },
+  eventOrg: { fontSize: 12, color: LHP4.mute, fontWeight: 600, marginTop: 2, marginBottom: 8 },
+  eventMeta: { display: "flex", flexWrap: "wrap", gap: 8, fontSize: 11, color: LHP4.body, fontWeight: 600, marginBottom: 8 },
   badgeRow: { display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 6 },
   ageBadge: { borderRadius: 8, padding: "3px 9px", fontSize: 11, fontWeight: 700 },
   priceBadge: { borderRadius: 8, padding: "3px 9px", fontSize: 11, fontWeight: 700 },
-  noteBadge: { fontSize: 11, color: "#7aabb8", fontStyle: "italic", marginBottom: 8 },
+  noteBadge: { fontSize: 11, color: LHP4.mute, fontStyle: "italic", marginBottom: 8 },
   tagRow: { display: "flex", flexWrap: "wrap", gap: 5, marginBottom: 8 },
-  tag: { background: "#E8F4FD", color: "#0096C7", fontSize: 10, fontWeight: 700, borderRadius: 6, padding: "2px 7px" },
+  tag: { background: LHP4.tintTeal, color: LHP4.teal, fontSize: 10, fontWeight: 700, borderRadius: 6, padding: "2px 7px" },
   ctaBtn: { display: "inline-block", color: "#fff", borderRadius: 10, padding: "7px 14px", fontSize: 12, fontWeight: 800, cursor: "pointer", textDecoration: "none" },
   submitSaleBtn: { display: "block", background: "#E07A1F", color: "#fff", borderRadius: 12, padding: "12px 20px", fontSize: 13, fontWeight: 800, cursor: "pointer", textDecoration: "none", textAlign: "center", marginTop: 14, boxShadow: "0 2px 10px rgba(224,122,31,0.25)" },
-  footer: { margin: "24px 16px 0", background: "linear-gradient(135deg, #023E8A 0%, #0096C7 100%)", borderRadius: 20, padding: "22px 20px", textAlign: "center" },
+  // v4 footer — light card style with navy text and lime accent
+  footer: { margin: "28px 16px 0", background: "#fff", borderRadius: 18, padding: "24px 20px", textAlign: "center", border: `1px solid ${LHP4.hairSoft}`, boxShadow: `0 1px 2px ${LHP4.hairSoft}` },
   footerIcon: { fontSize: 28, marginBottom: 6 },
-  footerText: { color: "#fff", fontSize: 15, fontWeight: 800, marginBottom: 4 },
-  footerSub: { color: "rgba(255,255,255,0.7)", fontSize: 11, marginBottom: 12 },
-  footerBtn: { display: "block", background: "linear-gradient(135deg, #00B4A6, #52B788)", color: "#fff", border: "none", borderRadius: 12, padding: "12px 24px", fontWeight: 800, fontSize: 14, cursor: "pointer", width: "100%", textDecoration: "none", boxSizing: "border-box", marginBottom: 4 },
-  footerDivider: { height: 1, background: "rgba(255,255,255,0.15)", margin: "14px 0" },
-  footerText2: { color: "rgba(255,255,255,0.8)", fontSize: 13, fontWeight: 600, marginBottom: 10, marginTop: 4 },
-  footerBtn2: { background: "rgba(255,255,255,0.15)", color: "#fff", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 12, padding: "10px 24px", fontWeight: 800, fontSize: 13, cursor: "pointer", width: "100%" },
-  footerDisclaimer: { color: "rgba(255,255,255,0.6)", fontSize: 11, fontWeight: 500, lineHeight: 1.5, marginTop: 4, padding: "0 4px" },
-  privacyLink: { background: "none", border: "none", color: "rgba(255,255,255,0.55)", fontSize: 11, fontWeight: 700, cursor: "pointer", textDecoration: "underline", marginTop: 8, padding: 0 },
-  footerCopyright: { color: "rgba(255,255,255,0.4)", fontSize: 10, marginTop: 6 },
+  footerText: { color: LHP4.navy, fontSize: 15, fontWeight: 800, marginBottom: 4 },
+  footerSub: { color: LHP4.mute, fontSize: 11, marginBottom: 12 },
+  footerBtn: { display: "block", background: LHP4.navy, color: "#fff", border: "none", borderRadius: 12, padding: "12px 24px", fontWeight: 800, fontSize: 14, cursor: "pointer", width: "100%", textDecoration: "none", boxSizing: "border-box", marginBottom: 4 },
+  footerDivider: { height: 1, background: LHP4.hairSoft, margin: "16px 0" },
+  footerText2: { color: LHP4.body, fontSize: 13, fontWeight: 600, marginBottom: 10, marginTop: 4 },
+  footerBtn2: { background: LHP4.tintTeal, color: LHP4.teal, border: `1px solid ${LHP4.hairSoft}`, borderRadius: 12, padding: "10px 24px", fontWeight: 800, fontSize: 13, cursor: "pointer", width: "100%" },
+  footerDisclaimer: { color: LHP4.mute, fontSize: 11, fontWeight: 500, lineHeight: 1.5, marginTop: 4, padding: "0 4px" },
+  privacyLink: { background: "none", border: "none", color: LHP4.mute, fontSize: 11, fontWeight: 700, cursor: "pointer", textDecoration: "underline", marginTop: 8, padding: 0 },
+  footerCopyright: { color: LHP4.mute, fontSize: 10, marginTop: 6, opacity: 0.7 },
   footerLinkRow: { display: "flex", justifyContent: "center", alignItems: "center", gap: 8, marginTop: 10 },
+  // v4 signature lockup — sits at top, between header and greeting
+  signatureBlockTop: { display: "flex", flexDirection: "column", alignItems: "center", gap: 4, padding: "10px 16px 4px" },
+  signatureRow: { display: "flex", alignItems: "center", gap: 8, fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: LHP4.mute },
+  signatureLime: { color: LHP4.lime },
+  signatureItalic: { fontSize: 11, fontStyle: "italic", color: LHP4.mute, opacity: 0.7, fontWeight: 400, letterSpacing: 0.1 },
   modalOverlay: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "flex-end", justifyContent: "center" },
   modalBox: { background: "#fff", borderRadius: "20px 20px 0 0", width: "100%", maxWidth: 480, maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" },
-  modalHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 20px 14px", borderBottom: "1px solid #E8F4FD" },
-  modalTitle: { fontWeight: 900, fontSize: 16, color: "#023E8A" },
-  modalClose: { background: "none", border: "none", fontSize: 18, color: "#aaa", cursor: "pointer", padding: 4 },
+  modalHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 20px 14px", borderBottom: `1px solid ${LHP4.hairSoft}` },
+  modalTitle: { fontWeight: 900, fontSize: 16, color: LHP4.navy },
+  modalClose: { background: "none", border: "none", fontSize: 18, color: LHP4.mute, cursor: "pointer", padding: 4 },
   modalBody: { overflowY: "auto", padding: "16px 20px 32px" },
-  modalSection: { fontSize: 13, color: "#444", lineHeight: 1.6, marginBottom: 12 },
-  modalDivider: { height: 1, background: "#E8F4FD", margin: "14px 0" },
-  modalDisclaimer: { fontSize: 12, color: "#7aabb8", fontStyle: "italic", lineHeight: 1.6, marginBottom: 10 },
-  modalContact: { fontSize: 12, color: "#555", marginTop: 8 },
+  modalSection: { fontSize: 13, color: LHP4.body, lineHeight: 1.6, marginBottom: 12 },
+  modalDivider: { height: 1, background: LHP4.hairSoft, margin: "14px 0" },
+  modalDisclaimer: { fontSize: 12, color: LHP4.mute, fontStyle: "italic", lineHeight: 1.6, marginBottom: 10 },
+  modalContact: { fontSize: 12, color: LHP4.body, marginTop: 8 },
+  // v4 install banner — light card, lighthouse icon with beam, navy button
   installBanner: { margin: "12px 16px 0", background: "#fff", borderRadius: 18, padding: "11px 12px", boxShadow: "0 12px 28px rgba(0, 29, 68, 0.12), 0 4px 10px rgba(0, 29, 68, 0.05)", border: `1px solid ${LHP4.hairSoft}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 },
   installBannerLeft: { display: "flex", alignItems: "center", gap: 11, flex: 1, minWidth: 0 },
   installIcon: { width: 44, height: 44, borderRadius: 10, background: `linear-gradient(160deg, ${LHP4.navySoft} 0%, ${LHP4.navy} 55%, #00132A 100%)`, display: "grid", placeItems: "center", flexShrink: 0, position: "relative", overflow: "hidden", boxShadow: "0 1px 0 rgba(255,255,255,0.10) inset, 0 2px 8px rgba(0, 29, 68, 0.30)" },
@@ -1025,21 +1089,21 @@ const styles = {
   installActions: { display: "flex", alignItems: "center", gap: 6, flexShrink: 0 },
   installBtn: { background: LHP4.navy, color: "#fff", border: "none", borderRadius: 999, padding: "0 12px", height: 36, fontSize: 13, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", letterSpacing: 0.1, boxShadow: "0 2px 6px rgba(0, 29, 68, 0.25)" },
   installDismiss: { background: "none", border: "none", color: "#bbb", fontSize: 14, cursor: "pointer", padding: 4 },
-  installSheetHero: { display: "flex", alignItems: "center", gap: 14, padding: "4px 4px 0" },
+  installSheetHero: { display: "flex", alignItems: "center", gap: 14, padding: "20px 20px 0" },
   installSheetIcon: { width: 64, height: 64, borderRadius: 14, background: `linear-gradient(160deg, ${LHP4.navySoft} 0%, ${LHP4.navy} 55%, #00132A 100%)`, display: "grid", placeItems: "center", flexShrink: 0, position: "relative", overflow: "hidden", boxShadow: "0 1px 0 rgba(255,255,255,0.10) inset, 0 4px 12px rgba(0, 29, 68, 0.30)" },
   installSheetIconBeam: { position: "absolute", left: 0, right: 0, bottom: 0, height: "38%", background: `radial-gradient(80% 100% at 50% 100%, ${LHP4.teal}55 0%, transparent 70%)` },
   installSheetIconLighthouse: { height: 40, width: "auto", position: "relative", zIndex: 2, filter: "brightness(0) invert(1)", opacity: 0.96 },
   installSheetTitle: { fontSize: 18, fontWeight: 800, letterSpacing: -0.3, color: LHP4.navy, lineHeight: 1.15 },
   installSheetSub: { fontSize: 12.5, color: LHP4.mute, marginTop: 3, lineHeight: 1.35 },
-  installSheetDivider: { height: 1, background: LHP4.hairSoft, margin: "18px 0 6px" },
-  installStepRow: { display: "flex", alignItems: "center", gap: 14, padding: "12px 4px" },
+  installSheetDivider: { height: 1, background: LHP4.hairSoft, margin: "18px 20px 6px" },
+  installStepRow: { display: "flex", alignItems: "center", gap: 14, padding: "12px 20px" },
   installStepNum: { width: 26, height: 26, borderRadius: 999, background: LHP4.tintTeal, color: LHP4.teal, display: "grid", placeItems: "center", fontSize: 13, fontWeight: 800, flexShrink: 0 },
   installStepTitle: { fontSize: 15, fontWeight: 700, color: LHP4.navy, lineHeight: 1.25 },
   installStepSub: { fontSize: 12.5, color: LHP4.mute, marginTop: 2, lineHeight: 1.35 },
-  installStepHair: { height: 1, background: "rgba(0, 29, 68, 0.04)", marginLeft: 40 },
+  installStepHair: { height: 1, background: "rgba(0, 29, 68, 0.04)", marginLeft: 60 },
   installStepGlyph: { width: 38, height: 38, borderRadius: 10, background: "#EEF2F7", display: "grid", placeItems: "center", flexShrink: 0 },
   installStepGlyphWide: { minWidth: 160, height: 38, borderRadius: 10, background: "#F2F2F7", display: "flex", alignItems: "center", padding: "0 10px", gap: 8, flexShrink: 0 },
   installStepAddBtn: { height: 34, padding: "0 16px", borderRadius: 999, background: "#0A84FF", display: "grid", placeItems: "center", fontSize: 14, fontWeight: 700, color: "#fff", boxShadow: "0 2px 6px rgba(10,132,255,0.35)", flexShrink: 0 },
-  installTipStrip: { marginTop: 16, background: LHP4.tintTeal, color: LHP4.teal, borderRadius: 12, padding: "10px 12px", display: "flex", alignItems: "center", gap: 10, fontSize: 12, fontWeight: 600 },
-  installSheetSig: { marginTop: 18, textAlign: "center", fontSize: 11, fontStyle: "italic", color: LHP4.mute, opacity: 0.85, letterSpacing: 0.1 },
+  installTipStrip: { margin: "16px 20px 0", background: LHP4.tintTeal, color: LHP4.teal, borderRadius: 12, padding: "10px 12px", display: "flex", alignItems: "center", gap: 10, fontSize: 12, fontWeight: 600 },
+  installSheetSig: { margin: "18px 20px 24px", textAlign: "center", fontSize: 11, fontStyle: "italic", color: LHP4.mute, opacity: 0.85, letterSpacing: 0.1 },
 };
