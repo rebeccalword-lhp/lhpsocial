@@ -1,5 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 
+// LHP Social brand tokens (v4 design refresh — May 2026)
+// Used by the new header logo lockup and install bar.
+// Existing per-event/per-category colors throughout the data stay as-is.
+const LHP4 = {
+  navy:       "#001D44",
+  navySoft:   "#0F2A4F",
+  teal:       "#1A9B9D",
+  tealBright: "#32DAD8",
+  lime:       "#A6B813",
+  ink:        "#0B2545",
+  mute:       "#7592B0",
+  tintTeal:   "#DDF0EE",
+  hair:       "rgba(0, 29, 68, 0.10)",
+  hairSoft:   "rgba(0, 29, 68, 0.06)",
+};
+
 // Clean SVG icons per category — monoline style, stroked, no fills
 const CatIcon = ({ id, color, size = 28 }) => {
   const s = { width: size, height: size, display: "block" };
@@ -356,6 +372,7 @@ export default function LHPApp() {
   const [installed, setInstalled] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showInstallSheet, setShowInstallSheet] = useState(false);
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -367,21 +384,35 @@ export default function LHPApp() {
       setShowInstallBanner(true);
     };
     window.addEventListener("beforeinstallprompt", handler);
-    if (window.matchMedia("(display-mode: standalone)").matches) {
+    // Detect if already installed (running as PWA).
+    if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone) {
       setInstalled(true);
+    } else {
+      // iOS Safari never fires beforeinstallprompt — show the banner so users
+      // can still get the manual "Add to Home Screen" tutorial.
+      const isIOS = /iPad|iPhone|iPod/.test(window.navigator.userAgent) && !window.MSStream;
+      const dismissed = (() => { try { return localStorage.getItem("lhp_install_dismissed") === "1"; } catch { return false; } })();
+      if (isIOS && !dismissed) {
+        setShowInstallBanner(true);
+      }
     }
     return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
   const handleInstall = async () => {
-    if (!installPrompt) return;
-    installPrompt.prompt();
-    const { outcome } = await installPrompt.userChoice;
-    if (outcome === "accepted") {
-      setInstalled(true);
-      setShowInstallBanner(false);
+    // If we have a native install prompt (Android/Chrome), use it.
+    if (installPrompt) {
+      installPrompt.prompt();
+      const { outcome } = await installPrompt.userChoice;
+      if (outcome === "accepted") {
+        setInstalled(true);
+        setShowInstallBanner(false);
+      }
+      setInstallPrompt(null);
+      return;
     }
-    setInstallPrompt(null);
+    // No native prompt (iOS Safari) — show the manual tutorial sheet.
+    setShowInstallSheet(true);
   };
 
   const eventPriority = (e) => {
@@ -422,49 +453,53 @@ export default function LHPApp() {
         <div style={styles.waveBg} />
         <div style={styles.headerInner}>
           <div style={styles.logoRow}>
-            <div style={styles.logoBadge}>
-              <svg width="68" height="68" viewBox="0 0 68 68" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="34" cy="34" r="33" fill="#0a1f44" />
-                <circle cx="34" cy="34" r="33" fill="none" stroke="#7EC8E3" strokeWidth="1.5" />
-                <circle cx="34" cy="34" r="28" fill="none" stroke="#7EC8E3" strokeWidth="0.6" strokeDasharray="2 2.5" />
-                <text x="34" y="37" textAnchor="middle" fontFamily="'Arial Black', Impact, sans-serif" fontWeight="900" fontSize="18" fill="#ffffff" letterSpacing="2">LHP</text>
-                <path id="topArc" d="M 10,34 A 24,24 0 0,1 58,34" fill="none" />
-                <text fontFamily="Arial, sans-serif" fontSize="6" fontWeight="700" fill="#7EC8E3" letterSpacing="1.8">
-                  <textPath href="#topArc" startOffset="50%" textAnchor="middle">COMMUNITY</textPath>
-                </text>
-                <path id="botArc" d="M 12,36 A 22,22 0 0,0 56,36" fill="none" />
-                <text fontFamily="Arial, sans-serif" fontSize="6" fontWeight="700" fill="#ADE8F4" letterSpacing="2.5">
-                  <textPath href="#botArc" startOffset="50%" textAnchor="middle">SOCIAL</textPath>
-                </text>
-                <circle cx="18" cy="34" r="1.5" fill="#7EC8E3" />
-                <circle cx="50" cy="34" r="1.5" fill="#7EC8E3" />
-              </svg>
-            </div>
-            <div>
-              <div style={styles.appName}>LHP Social</div>
+            <img
+              src="/lhplighthousemedium_1.png"
+              alt="LHP lighthouse"
+              style={styles.logoLighthouse}
+            />
+            <div style={styles.wordmarkBlock}>
+              <div style={styles.wordmark}>
+                <span style={styles.wordmarkLHP}>LHP</span>
+                <span style={styles.wordmarkSocial}>SOCIAL</span>
+              </div>
               <div style={styles.appSub}>Lighthouse Point, FL 33064</div>
               <div style={styles.appSub2}>Community Guide</div>
             </div>
           </div>
           <button onClick={() => setShowSaved(true)} style={styles.savedBadge}>♡ {savedEvents.length}</button>
         </div>
-        <div style={styles.tagline}>🌊 Real events, programs & news from your city</div>
+        <div style={styles.tagline}>Real events, programs &amp; news from your city</div>
       </div>
 
       {showInstallBanner && !installed && (
         <div style={styles.installBanner}>
           <div style={styles.installBannerLeft}>
             <div style={styles.installIcon}>
-              <span style={{ color: "#fff", fontSize: 10, fontWeight: 900, letterSpacing: 0.5 }}>LHP</span>
+              <div style={styles.installIconBeam} />
+              <img
+                src="/lhplighthousemedium_1.png"
+                alt=""
+                style={styles.installIconLighthouse}
+              />
             </div>
             <div>
-              <div style={styles.installTitle}>Add to Home Screen</div>
-              <div style={styles.installSub}>Get quick access — works like a real app</div>
+              <div style={styles.installTitle}>Add LHP Social to your phone</div>
+              <div style={styles.installSub}>Get one-tap access to local events</div>
             </div>
           </div>
           <div style={styles.installActions}>
-            <button style={styles.installBtn} onClick={handleInstall}>Install</button>
-            <button style={styles.installDismiss} onClick={() => setShowInstallBanner(false)}>✕</button>
+            <button style={styles.installBtn} onClick={handleInstall}>
+              <svg width="14" height="16" viewBox="0 0 18 22" fill="none" style={{ marginRight: 5 }}>
+                <path d="M9 1v13M9 1L5.2 4.9M9 1l3.8 3.9" stroke="#fff" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M3.5 8.5h-1A1.5 1.5 0 0 0 1 10v9.5A1.5 1.5 0 0 0 2.5 21h13a1.5 1.5 0 0 0 1.5-1.5V10a1.5 1.5 0 0 0-1.5-1.5h-1" stroke="#fff" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              Install
+            </button>
+            <button style={styles.installDismiss} onClick={() => {
+              setShowInstallBanner(false);
+              try { localStorage.setItem("lhp_install_dismissed", "1"); } catch {}
+            }}>✕</button>
           </div>
         </div>
       )}
@@ -771,19 +806,93 @@ export default function LHPApp() {
           </div>
         </div>
       )}
+
+      {showInstallSheet && (
+        <div style={styles.modalOverlay} onClick={() => setShowInstallSheet(false)}>
+          <div style={styles.modalBox} onClick={(e) => e.stopPropagation()}>
+            <div style={styles.installSheetHero}>
+              <div style={styles.installSheetIcon}>
+                <div style={styles.installSheetIconBeam} />
+                <img src="/lhplighthousemedium_1.png" alt="" style={styles.installSheetIconLighthouse} />
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={styles.installSheetTitle}>Install LHP Social</div>
+                <div style={styles.installSheetSub}>Three taps and it lives on your home screen. No app store, no account.</div>
+              </div>
+              <button style={styles.modalClose} onClick={() => setShowInstallSheet(false)}>✕</button>
+            </div>
+
+            <div style={styles.installSheetDivider} />
+
+            <div style={styles.installStepRow}>
+              <div style={styles.installStepNum}>1</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={styles.installStepTitle}>Tap the Share button</div>
+                <div style={styles.installStepSub}>At the bottom of Safari</div>
+              </div>
+              <div style={styles.installStepGlyph}>
+                <svg width="20" height="20" viewBox="0 0 18 22" fill="none">
+                  <path d="M9 1v13M9 1L5.2 4.9M9 1l3.8 3.9" stroke="#0A84FF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M3.5 8.5h-1A1.5 1.5 0 0 0 1 10v9.5A1.5 1.5 0 0 0 2.5 21h13a1.5 1.5 0 0 0 1.5-1.5V10a1.5 1.5 0 0 0-1.5-1.5h-1" stroke="#0A84FF" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <div style={styles.installStepHair} />
+
+            <div style={styles.installStepRow}>
+              <div style={styles.installStepNum}>2</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={styles.installStepTitle}>Choose Add to Home Screen</div>
+                <div style={styles.installStepSub}>Scroll the share sheet if you don't see it</div>
+              </div>
+              <div style={styles.installStepGlyphWide}>
+                <span style={{ fontSize: 12, fontWeight: 500, color: "#000", flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>Add to Home Screen</span>
+                <svg width="18" height="18" viewBox="0 0 22 22" fill="none">
+                  <rect x="1" y="1" width="20" height="20" rx="5.5" stroke="#000" strokeWidth="1.6"/>
+                  <path d="M11 6.5v9M6.5 11h9" stroke="#000" strokeWidth="1.6" strokeLinecap="round"/>
+                </svg>
+              </div>
+            </div>
+
+            <div style={styles.installStepHair} />
+
+            <div style={styles.installStepRow}>
+              <div style={styles.installStepNum}>3</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={styles.installStepTitle}>Tap Add</div>
+                <div style={styles.installStepSub}>Top right corner. That's it.</div>
+              </div>
+              <div style={styles.installStepAddBtn}>Add</div>
+            </div>
+
+            <div style={styles.installTipStrip}>
+              <svg width="14" height="14" viewBox="0 0 10 10" style={{ flexShrink: 0 }}>
+                <path d="M5 1l1.2 2.5L9 4l-2 2 .5 2.8L5 7.5 2.5 8.8 3 6 1 4l2.8-.5L5 1z" fill={LHP4.lime}/>
+              </svg>
+              <span>Opens like a real app — no Safari bars, just your weekend.</span>
+            </div>
+
+            <div style={styles.installSheetSig}>Built by a Local, for Locals.</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 const styles = {
   root: { fontFamily: "'Nunito', 'Segoe UI', sans-serif", background: "#F0F8FF", minHeight: "100vh", maxWidth: 480, margin: "0 auto", paddingBottom: 48 },
-  header: { background: "linear-gradient(160deg, #023E8A 0%, #0096C7 55%, #00B4A6 100%)", padding: "28px 20px 28px", color: "#fff", position: "relative", overflow: "hidden" },
-  waveBg: { position: "absolute", bottom: -10, left: 0, right: 0, height: 40, background: "rgba(255,255,255,0.08)", borderRadius: "50% 50% 0 0 / 30px 30px 0 0" },
+  header: { background: `linear-gradient(160deg, #001324 0%, ${LHP4.navy} 55%, ${LHP4.navySoft} 100%)`, padding: "28px 20px 28px", color: "#fff", position: "relative", overflow: "hidden" },
+  waveBg: { position: "absolute", bottom: -10, left: 0, right: 0, height: 40, background: "rgba(255,255,255,0.06)", borderRadius: "50% 50% 0 0 / 30px 30px 0 0" },
   headerInner: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, position: "relative" },
-  logoRow: { display: "flex", alignItems: "center", gap: 12 },
-  logoBadge: { flexShrink: 0 },
-  appName: { fontWeight: 900, fontSize: 17, letterSpacing: 0.2, color: "#fff", lineHeight: 1.2 },
-  appSub: { fontSize: 11, opacity: 0.75, marginTop: 2, color: "#ADE8F4", lineHeight: 1.3 },
+  logoRow: { display: "flex", alignItems: "center", gap: 11 },
+  logoLighthouse: { height: 52, width: "auto", display: "block", filter: "brightness(0) invert(1)", flexShrink: 0 },
+  wordmarkBlock: { display: "flex", flexDirection: "column" },
+  wordmark: { fontFamily: '"Inter", "SF Pro Display", system-ui, sans-serif', fontWeight: 900, fontSize: 22, letterSpacing: -0.6, lineHeight: 1, textTransform: "uppercase", whiteSpace: "nowrap", marginBottom: 4 },
+  wordmarkLHP: { color: "#fff" },
+  wordmarkSocial: { color: LHP4.tealBright, marginLeft: 5 },
+  appSub: { fontSize: 11, opacity: 0.85, color: "#ADE8F4", lineHeight: 1.3 },
   appSub2: { fontSize: 11, opacity: 0.75, color: "#ADE8F4", lineHeight: 1.3 },
   savedBadge: { background: "rgba(255,255,255,0.18)", border: "1.5px solid rgba(255,255,255,0.3)", borderRadius: 20, padding: "5px 14px", fontSize: 14, fontWeight: 700, color: "#fff", cursor: "pointer" },
   tagline: { fontSize: 13, color: "rgba(255,255,255,0.88)", fontWeight: 600, position: "relative" },
@@ -906,12 +1015,31 @@ const styles = {
   modalDivider: { height: 1, background: "#E8F4FD", margin: "14px 0" },
   modalDisclaimer: { fontSize: 12, color: "#7aabb8", fontStyle: "italic", lineHeight: 1.6, marginBottom: 10 },
   modalContact: { fontSize: 12, color: "#555", marginTop: 8 },
-  installBanner: { margin: "12px 16px 0", background: "#fff", borderRadius: 14, padding: "12px 14px", boxShadow: "0 2px 16px rgba(0,80,140,0.12)", border: "1.5px solid #E0F4FB", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 },
-  installBannerLeft: { display: "flex", alignItems: "center", gap: 10, flex: 1 },
-  installIcon: { width: 40, height: 40, borderRadius: 11, background: "linear-gradient(135deg, #023E8A, #0096C7)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 },
-  installTitle: { fontWeight: 800, fontSize: 13, color: "#023E8A", lineHeight: 1.2 },
-  installSub: { fontSize: 10, color: "#7aabb8", fontWeight: 600, marginTop: 2 },
-  installActions: { display: "flex", alignItems: "center", gap: 8, flexShrink: 0 },
-  installBtn: { background: "linear-gradient(135deg, #023E8A, #0096C7)", color: "#fff", border: "none", borderRadius: 9, padding: "7px 14px", fontSize: 12, fontWeight: 800, cursor: "pointer" },
+  installBanner: { margin: "12px 16px 0", background: "#fff", borderRadius: 18, padding: "11px 12px", boxShadow: "0 12px 28px rgba(0, 29, 68, 0.12), 0 4px 10px rgba(0, 29, 68, 0.05)", border: `1px solid ${LHP4.hairSoft}`, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 },
+  installBannerLeft: { display: "flex", alignItems: "center", gap: 11, flex: 1, minWidth: 0 },
+  installIcon: { width: 44, height: 44, borderRadius: 10, background: `linear-gradient(160deg, ${LHP4.navySoft} 0%, ${LHP4.navy} 55%, #00132A 100%)`, display: "grid", placeItems: "center", flexShrink: 0, position: "relative", overflow: "hidden", boxShadow: "0 1px 0 rgba(255,255,255,0.10) inset, 0 2px 8px rgba(0, 29, 68, 0.30)" },
+  installIconBeam: { position: "absolute", left: 0, right: 0, bottom: 0, height: "38%", background: `radial-gradient(80% 100% at 50% 100%, ${LHP4.teal}55 0%, transparent 70%)` },
+  installIconLighthouse: { height: 27, width: "auto", position: "relative", zIndex: 2, filter: "brightness(0) invert(1)", opacity: 0.96 },
+  installTitle: { fontWeight: 700, fontSize: 14, color: LHP4.navy, lineHeight: 1.2, letterSpacing: -0.1 },
+  installSub: { fontSize: 11.5, color: LHP4.mute, fontWeight: 500, marginTop: 2, lineHeight: 1.3 },
+  installActions: { display: "flex", alignItems: "center", gap: 6, flexShrink: 0 },
+  installBtn: { background: LHP4.navy, color: "#fff", border: "none", borderRadius: 999, padding: "0 12px", height: 36, fontSize: 13, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", letterSpacing: 0.1, boxShadow: "0 2px 6px rgba(0, 29, 68, 0.25)" },
   installDismiss: { background: "none", border: "none", color: "#bbb", fontSize: 14, cursor: "pointer", padding: 4 },
+  installSheetHero: { display: "flex", alignItems: "center", gap: 14, padding: "4px 4px 0" },
+  installSheetIcon: { width: 64, height: 64, borderRadius: 14, background: `linear-gradient(160deg, ${LHP4.navySoft} 0%, ${LHP4.navy} 55%, #00132A 100%)`, display: "grid", placeItems: "center", flexShrink: 0, position: "relative", overflow: "hidden", boxShadow: "0 1px 0 rgba(255,255,255,0.10) inset, 0 4px 12px rgba(0, 29, 68, 0.30)" },
+  installSheetIconBeam: { position: "absolute", left: 0, right: 0, bottom: 0, height: "38%", background: `radial-gradient(80% 100% at 50% 100%, ${LHP4.teal}55 0%, transparent 70%)` },
+  installSheetIconLighthouse: { height: 40, width: "auto", position: "relative", zIndex: 2, filter: "brightness(0) invert(1)", opacity: 0.96 },
+  installSheetTitle: { fontSize: 18, fontWeight: 800, letterSpacing: -0.3, color: LHP4.navy, lineHeight: 1.15 },
+  installSheetSub: { fontSize: 12.5, color: LHP4.mute, marginTop: 3, lineHeight: 1.35 },
+  installSheetDivider: { height: 1, background: LHP4.hairSoft, margin: "18px 0 6px" },
+  installStepRow: { display: "flex", alignItems: "center", gap: 14, padding: "12px 4px" },
+  installStepNum: { width: 26, height: 26, borderRadius: 999, background: LHP4.tintTeal, color: LHP4.teal, display: "grid", placeItems: "center", fontSize: 13, fontWeight: 800, flexShrink: 0 },
+  installStepTitle: { fontSize: 15, fontWeight: 700, color: LHP4.navy, lineHeight: 1.25 },
+  installStepSub: { fontSize: 12.5, color: LHP4.mute, marginTop: 2, lineHeight: 1.35 },
+  installStepHair: { height: 1, background: "rgba(0, 29, 68, 0.04)", marginLeft: 40 },
+  installStepGlyph: { width: 38, height: 38, borderRadius: 10, background: "#EEF2F7", display: "grid", placeItems: "center", flexShrink: 0 },
+  installStepGlyphWide: { minWidth: 160, height: 38, borderRadius: 10, background: "#F2F2F7", display: "flex", alignItems: "center", padding: "0 10px", gap: 8, flexShrink: 0 },
+  installStepAddBtn: { height: 34, padding: "0 16px", borderRadius: 999, background: "#0A84FF", display: "grid", placeItems: "center", fontSize: 14, fontWeight: 700, color: "#fff", boxShadow: "0 2px 6px rgba(10,132,255,0.35)", flexShrink: 0 },
+  installTipStrip: { marginTop: 16, background: LHP4.tintTeal, color: LHP4.teal, borderRadius: 12, padding: "10px 12px", display: "flex", alignItems: "center", gap: 10, fontSize: 12, fontWeight: 600 },
+  installSheetSig: { marginTop: 18, textAlign: "center", fontSize: 11, fontStyle: "italic", color: LHP4.mute, opacity: 0.85, letterSpacing: 0.1 },
 };
