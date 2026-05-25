@@ -489,16 +489,16 @@ export default function LHPApp() {
         </div>
       </div>
 
-      {/* v4 signature lockup — "Stay Connected. Stay Local." + "Built by a local, for locals." */}
-      <div style={styles.signatureBlockTop}>
-        <div style={styles.signatureRow}>
-          <svg width="11" height="10" viewBox="0 0 11 10" fill="none">
-            <path d="M5.5 9.2C2 6.5 1 5 1 3.2 1 1.8 2 1 3.2 1c.9 0 1.7.5 2.3 1.4C6.1 1.5 6.9 1 7.8 1 9 1 10 1.8 10 3.2c0 1.8-1 3.3-4.5 6z" fill={LHP4.lime}/>
+      {/* Designer's mark — "Built by a local, for locals." sits below the wordmark */}
+      <div style={styles.designerMarkWrap}>
+        <div style={styles.designerMark}>
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" style={{ flexShrink: 0 }}>
+            <path d="M5 1.2L5.6 2.4 6.8 2.6 5.6 3.4 5.6 4.6 5 3.8 4.4 4.6 4.4 3.4 3.2 2.6 4.4 2.4z" fill={LHP4.lime}/>
+            <rect x="3.5" y="4.6" width="3" height="6.5" rx="0.3" fill={LHP4.navy}/>
+            <path d="M2.5 11.1 L7.5 11.1 L8 13 L2 13 Z" fill={LHP4.navy}/>
           </svg>
-          <span>Stay Connected.</span>
-          <span style={styles.signatureLime}>Stay Local.</span>
+          <span style={styles.designerMarkText}>Built by a local, <em style={styles.designerMarkEm}>for locals.</em></span>
         </div>
-        <div style={styles.signatureItalic}>Built by a local, for locals.</div>
       </div>
 
       {/* Time-of-day greeting */}
@@ -774,6 +774,17 @@ export default function LHPApp() {
           <button onClick={() => setShowPrivacy(true)} style={styles.privacyLink}>Privacy Policy</button>
         </div>
         <div style={styles.footerCopyright}>© 2026 lhpsocial.com</div>
+      </div>
+
+      {/* v4 bottom signature — "Stay Connected. Stay Local." sign-off */}
+      <div style={styles.bottomSignature}>
+        <div style={styles.bottomSignatureRow}>
+          <svg width="11" height="10" viewBox="0 0 11 10" fill="none">
+            <path d="M5.5 9.2C2 6.5 1 5 1 3.2 1 1.8 2 1 3.2 1c.9 0 1.7.5 2.3 1.4C6.1 1.5 6.9 1 7.8 1 9 1 10 1.8 10 3.2c0 1.8-1 3.3-4.5 6z" fill={LHP4.lime}/>
+          </svg>
+          <span>Stay Connected.</span>
+          <span style={styles.bottomSignatureLime}>Stay Local.</span>
+        </div>
       </div>
 
       {showPrivacy && (
@@ -1063,11 +1074,15 @@ const styles = {
   privacyLink: { background: "none", border: "none", color: LHP4.mute, fontSize: 11, fontWeight: 700, cursor: "pointer", textDecoration: "underline", marginTop: 8, padding: 0 },
   footerCopyright: { color: LHP4.mute, fontSize: 10, marginTop: 6, opacity: 0.7 },
   footerLinkRow: { display: "flex", justifyContent: "center", alignItems: "center", gap: 8, marginTop: 10 },
-  // v4 signature lockup — sits at top, between header and greeting
-  signatureBlockTop: { display: "flex", flexDirection: "column", alignItems: "center", gap: 4, padding: "10px 16px 4px" },
-  signatureRow: { display: "flex", alignItems: "center", gap: 8, fontSize: 10, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", color: LHP4.mute },
-  signatureLime: { color: LHP4.lime },
-  signatureItalic: { fontSize: 11, fontStyle: "italic", color: LHP4.mute, opacity: 0.7, fontWeight: 400, letterSpacing: 0.1 },
+  // v4 bottom signature lockup — sign-off at end of page
+  bottomSignature: { display: "flex", flexDirection: "column", alignItems: "center", gap: 10, padding: "22px 16px 18px" },
+  bottomSignatureRow: { display: "flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", color: LHP4.mute },
+  bottomSignatureLime: { color: LHP4.lime },
+  // Designer's mark — slightly elevated "Built by a local, for locals."
+  designerMarkWrap: { display: "flex", justifyContent: "center", padding: "12px 16px 4px" },
+  designerMark: { display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 14px", background: "#fff", border: `1px solid ${LHP4.hairSoft}`, borderRadius: 999, boxShadow: `0 1px 2px ${LHP4.hairSoft}` },
+  designerMarkText: { fontSize: 12, fontWeight: 600, color: LHP4.navy, letterSpacing: 0.1 },
+  designerMarkEm: { fontStyle: "italic", color: LHP4.teal, fontWeight: 700 },
   modalOverlay: { position: "fixed", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(0,0,0,0.5)", zIndex: 1000, display: "flex", alignItems: "flex-end", justifyContent: "center" },
   modalBox: { background: "#fff", borderRadius: "20px 20px 0 0", width: "100%", maxWidth: 480, maxHeight: "80vh", overflow: "hidden", display: "flex", flexDirection: "column" },
   modalHeader: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 20px 14px", borderBottom: `1px solid ${LHP4.hairSoft}` },
