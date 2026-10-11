@@ -184,7 +184,9 @@ const isEventActive = (event) => {
   if (!event.endDate) return true;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const end = new Date(event.endDate);
+  // Parse as a local date (not UTC) so today's events stay visible all day in Florida
+  const [y, m, d] = event.endDate.split("-").map(Number);
+  const end = new Date(y, m - 1, d);
   end.setHours(0, 0, 0, 0);
   return end >= today;
 };
