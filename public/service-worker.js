@@ -1,6 +1,6 @@
 // LHP Social — Service Worker
 // Caches the app shell so it loads instantly and works offline
-const CACHE_NAME = "lhp-social-v2";
+const CACHE_NAME = "lhp-social-v3";
 // Core files to cache on install
 const CORE_ASSETS = [
   "/",
